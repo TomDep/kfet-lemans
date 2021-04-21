@@ -1,0 +1,26 @@
+{
+
+	"cmd": [
+		"sass",
+		"--update",
+		"--stop-on-error",
+		"--load-path",
+		"${folder}/global.scss",
+		"$file:${folder}/main.css",
+		"--no-source-map"
+	],
+
+	"selector": "source.sass, source.scss",
+	"line_regex": "Line ([0-9]+):",
+
+	"osx":
+	{
+		"path": "/usr/local/bin:$PATH"
+	},
+
+	"windows":
+	{
+		"shell": "true"
+	}
+
+}

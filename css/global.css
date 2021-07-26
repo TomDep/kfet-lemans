@@ -1,0 +1,11 @@
+/*
+ * Global CSS
+ * ----------------------------------------------------------------------------
+ * All CSS files must be imported here so that you only have to link this global
+ * file in your html/php files.
+ * You have to import them from the most general to the most specific.
+ */
+
+/* Basic CSS for the apps */
+@import "theme.css";        /* Color variables for the applied theme */
+@import "typography.css";   /* Fonts */

@@ -12,6 +12,7 @@
 <head>
 	<?php include "head.php"; ?>
 
+	<!-- Test coucou -->
 	<title>Kfet - Accueil</title>
 </head>
 <body>

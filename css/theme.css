@@ -1,0 +1,19 @@
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+
+  --color-primary: #eb5757;
+  --color-secondary: #f9bfbf;  
+  --color-tertiary: #b12741;
+  --color-quaternary: #74192a;
+  
+  --color-font-text: white;
+  
+  --color-menu-background: #ededed;
+  --color-menu-font-text: black;
+  --color-menu-font-text-hover: var(--color-tertiary);
+  --color-menu-span-burger: black;
+}

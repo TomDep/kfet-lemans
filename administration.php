@@ -14,9 +14,7 @@
 
 </head>
 <body>
-	<header>
-		<?php include('administration/administration_header.php'); ?>
-	</header>
+	<?php include "templates/nav.php"; ?>
 
 	<section id="default">
 		<h1>Choix de la section</h1>

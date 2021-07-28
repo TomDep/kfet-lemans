@@ -9,3 +9,170 @@
 /* Basic CSS for the apps */
 @import "theme.css";        /* Color variables for the applied theme */
 @import "typography.css";   /* Fonts */
+
+body{
+  background: var(--color-primary);
+  color: var(--color-font-text);
+  font-family: "Avenir Next", "Avenir", sans-serif;
+  height: 500vh;
+}
+
+
+/* Menu */
+
+nav{
+  position : sticky;                  
+  top: 0;
+  height:100px;
+  z-index: 2;
+  background: var(--color-primary);
+}
+
+#menuToggle{
+  display: block;
+  position: relative;
+  top: 40px;
+  margin-left: 30px;
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+ 
+#menuToggle a{
+  text-decoration: none;
+  color: var(--color-menu-font-text);
+  
+  transition: color 0.3s ease;
+}
+ 
+#menuToggle input{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; 
+  z-index: 2; 
+  
+  -webkit-touch-callout: none;
+}
+ 
+
+#menuToggle span{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: var(--color-menu-span-burger);
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.3s ease;
+}
+ 
+#menuToggle span:first-child{
+  transform-origin: 0% 0%;
+}
+ 
+#menuToggle span:nth-last-child(2){
+  transform-origin: 0% 100%;
+}
+ 
+#menuToggle input:checked ~ span{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: var(--color-menu-span-burger);
+}
+
+ #menuToggle input:checked ~ span:nth-last-child(3){
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+ 
+#menuToggle input:checked ~ span:nth-last-child(2){
+  transform: rotate(-45deg) translate(0, -1px);
+}
+ 
+
+#menu
+{
+  height: 105vh;  
+  width: 500px;
+  position: absolute;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 150px;
+  
+  background: var(--color-menu-background);
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+} 
+
+/* On small screens */ 
+@media (max-width: 800px){
+  #menu{
+    width: 105vw;
+  }
+}
+ 
+#menu li{
+  padding: 10px 0;
+  font-size: 22px;
+}
+ 
+#menuToggle input:checked ~ ul{
+  transform: none;
+}
+
+#menuToggle .active, #menuToggle a:hover{
+  color : var(--color-menu-font-text-hover);
+}
+
+#navspan{
+  height: 2px;
+  background: black;
+  width: 100%;
+  margin-top: 65px;
+
+  display: block;
+  position: absolute;
+  border-radius: 3px;
+  
+  z-index: 2;
+}
+
+.logo{
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  height: 80px;
+  width: 80px;
+  z-index: 2;
+}
+
+section{
+  margin: 50px auto 0 auto;
+  
+  height: 400px;
+  width: 80%;
+  
+  background-color: var(--color-secondary);
+  color: black;
+}

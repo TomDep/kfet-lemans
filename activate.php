@@ -93,7 +93,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include "head.php"; ?>
+	<?php include "templates/head.php"; ?>
 
 	<title>Kfet - Se connecter</title>
 </head>

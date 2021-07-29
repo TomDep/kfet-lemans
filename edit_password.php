@@ -64,7 +64,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include "head.php"; ?>
+	<?php include "templates/head.php"; ?>
 
 	<title>Kfet - Editer son mot de passe</title>
 </head>

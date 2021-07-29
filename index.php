@@ -10,7 +10,7 @@
 <html>
 
 <head>
-	<?php include "head.php"; ?>
+	<?php include "templates/head.php"; ?>
 
 	<!-- Test coucou -->
 	<title>Kfet - Accueil</title>

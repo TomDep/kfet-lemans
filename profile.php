@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include "head.php"; ?>
+	<?php include "templates/head.php"; ?>
 
 	<title>Kfet - Mon Compte</title>
 </head>

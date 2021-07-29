@@ -13,7 +13,7 @@
       <a class="active" href="index.php"><li>Accueil</li></a>
       <a href="profile.php"><li>Mon Compte</li></a>
       <a href="#"><li>Mes Commandes</li></a>
-      <a href="#"><li>L'équipe de la KFet</li></a>
+      <a href="team.php"><li>L'équipe de la KFet</li></a>
       <a href="#"><li>Contact</li></a>
         
       <!--Pour les baristas :-->
@@ -30,12 +30,12 @@
         <div style="margin-left:20px;">
           <a href="administration.php#produits"><li>Gestion des produits</li></a>
           <a href="administration.php#usagers"><li>Gestion des utilisateurs</li></a>
-          <a href="#"><li>Gestion de l'équipe</li></a>
+          <a href="administration/manage_team.php"><li>Gestion de l'équipe</li></a>
           <a href="administration.php#statistiques"><li>Statistiques</li></a>
           <a href="#"><li>Modifier la page d'accueil</li></a>
         </div>
 
-        <a href="logout.php"><li>Se Déconnecter</li></a>
+        <a href="library/logout.php"><li>Se Déconnecter</li></a>
     </ul>
   </div>
   <img class="logo" src="res/icon.svg" alt="Logo de la KFET">

@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include "head.php"; ?>
+	<?php include "templates/head.php"; ?>
 
 	<title>Kfet - Se connecter</title>
 </head>
@@ -17,7 +17,7 @@
 
 	<div class="login">
 		<h1>Connexion</h1>
-		<form action="authenticate.php" method="post">
+		<form action="library/authenticate.php" method="post">
 		
 			<label for="student_number">Numéro étudiant</label>
 			<input type="text" name="student_number" placeholder="182355" id="student_number" required>

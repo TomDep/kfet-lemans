@@ -1,5 +1,6 @@
 <meta charset="utf-8"/>
 <meta lang="fr"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!--Description's project-->
 <meta name="description" content="Site web de la KFet (ENSIM)">

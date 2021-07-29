@@ -35,7 +35,8 @@
           <a href="#"><li>Modifier la page d'accueil</li></a>
         </div>
 
-        <a href="logout.php"><li>Se Déconnecter</li></a>
+      <hr>
+      <a href="logout.php"><li>Se Déconnecter</li></a>
     </ul>
   </div>
   <img class="logo" src="res/icon.svg" alt="Logo de la KFET">

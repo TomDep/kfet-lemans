@@ -113,12 +113,17 @@
 	// This is step one :
 	// The user gives their student number
 ?>
+	<img class="biggerLogo" src="res/icon.svg" alt="Logo de la KFET">
+
+	<div class="centeredForm">
 		<form action="activate.php" autocomplete="off" method="post">
 			<label for="student_number">Numéro étudiant</label>
 			<input type="text" name="student_number" placeholder="182355" id="student_number" required>
 			
 			<input type="submit" value="Suivant">
 		</form>
+	</div>
+		
 <?php
 	}
 ?>

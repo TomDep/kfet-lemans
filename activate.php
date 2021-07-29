@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	require_once('connect.php');
+	require_once('library/connect.php');
 
 	// Check if the user is already connected
 	if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE) {

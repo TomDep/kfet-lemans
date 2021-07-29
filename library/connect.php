@@ -1,7 +1,7 @@
 <?php
 
 function readDatabaseInformations() {
-	$LOGFILE_NAME = 'database_logs.txt';
+	$LOGFILE_NAME = '../database_logs.txt';
 
 	if($file = fopen($LOGFILE_NAME, 'r')) {
 		while(!feof($file)) {
@@ -9,8 +9,6 @@ function readDatabaseInformations() {
 			$keyword = substr($line, 0, 4);
 			$value = substr($line, 5);
 			$value = preg_replace( "/\r|\n/", "", $value);	// Remove new line chars
-
-			var_dump($value);
 
 			switch ($keyword) {
 				case 'HOST':

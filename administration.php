@@ -6,7 +6,7 @@
 <html>
 <head>
 <?php
-	include('head.php');
+	include('templates/head.php');
 ?>
 	<title>Kfet - Administration</title>
 

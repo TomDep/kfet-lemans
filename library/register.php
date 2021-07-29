@@ -27,7 +27,7 @@ if(empty($_POST['student_number']) || empty($_POST['username'])) {
 $bdlc_member = (isset($_POST['bdlc_member'])) ? TRUE : FALSE;
 
 // Connect to the database
-$connection = connect_to_database();
+$connection = connectToDatabase();
 if($connection == FALSE) {
 	exit();
 }

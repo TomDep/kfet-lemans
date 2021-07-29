@@ -10,13 +10,14 @@ if ( !isset($_POST['student_number'], $_POST['password']) ) {
 }
 
 // Connect to the database
-$connection = connect_to_database();
+$connection = connectToDatabase();
 if($connection == FALSE) {
 	exit();
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $connection->prepare('SELECT id, password, username, auth_level FROM users WHERE student_number = ?')) {
+$req = 'SELECT id, password, username, bdlc_member, auth_level, credit FROM users WHERE student_number = ?';
+if ($stmt = $connection->prepare($req)) {
 
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the student number is an int so we use "i"
 	$stmt->bind_param('s', $_POST['student_number']);
@@ -25,7 +26,7 @@ if ($stmt = $connection->prepare('SELECT id, password, username, auth_level FROM
 	$stmt->store_result();
 
 	if ($stmt->num_rows > 0) {
-		$stmt->bind_result($id, $password, $username, $auth_level);
+		$stmt->bind_result($id, $password, $username, $bdlc_member, $auth_level, $credit);
 		$stmt->fetch();
 		// Account exists, now we verify the password.
 		// Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -35,11 +36,12 @@ if ($stmt = $connection->prepare('SELECT id, password, username, auth_level FROM
 			session_regenerate_id();
 			$_SESSION['logged_in'] = TRUE;
 			$_SESSION['username'] = $username;
+			$_SESSION['bdlc_member'] = $bdlc_member;
 			$_SESSION['auth_level'] = $auth_level;
 			$_SESSION['id'] = $id;
+			$_SESSION['credit'] = $credit;
 
-			echo 'Welcome ' . $_SESSION['username'] . '!';
-			echo '<a href="index.php">Retour à l\'acceuil</a>';
+			header('Location: ../index.php');
 		} else {
 			// Incorrect password
 			echo 'Incorrect username and/or password!';

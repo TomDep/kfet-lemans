@@ -41,7 +41,7 @@ if ($stmt = $connection->prepare($req)) {
 			$_SESSION['id'] = $id;
 			$_SESSION['credit'] = $credit;
 
-			header('Location: index.php');
+			header('Location: ../index.php');
 		} else {
 			// Incorrect password
 			echo 'Incorrect username and/or password!';

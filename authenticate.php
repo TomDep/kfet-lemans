@@ -10,7 +10,7 @@ if ( !isset($_POST['student_number'], $_POST['password']) ) {
 }
 
 // Connect to the database
-$connection = connect_to_database();
+$connection = connectToDatabase();
 if($connection == FALSE) {
 	exit();
 }

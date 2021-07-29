@@ -1,15 +1,54 @@
 <?php
 
-function connect_to_database() {
-	// Todo : load these informations from a txt file so that we can publish the code of this file
+function readDatabaseInformations() {
+	$LOGFILE_NAME = 'database_logs.txt';
+
+	if($file = fopen($LOGFILE_NAME, 'r')) {
+		while(!feof($file)) {
+			$line = fgets($file);
+			$keyword = substr($line, 0, 4);
+			$value = substr($line, 5);
+			$value = preg_replace( "/\r|\n/", "", $value);	// Remove new line chars
+
+			var_dump($value);
+
+			switch ($keyword) {
+				case 'HOST':
+					$HOST = $value;
+					break;
+
+				case 'USER':
+					$USER = $value;
+					break;
+
+				case 'PASS':
+					$PASS = $value;
+					break;
+
+				case 'NAME':
+					$NAME = $value;
+					break;
+			}
+		}
+
+		fclose($file);
+	}
+
+	return [
+		'HOST' => $HOST,
+		'USER' => $USER,
+		'PASS' => $PASS,
+		'NAME' => $NAME
+	];
+}
+
+function connectToDatabase() {
+	
 	// Connection info.
-	$DATABASE_HOST = 'localhost';
-	$DATABASE_USER = 'root';
-	$DATABASE_PASS = '';
-	$DATABASE_NAME = 'kfet';
+	$INFOS = readDatabaseInformations();
 
 	// Try and connect using the info above.
-	$connection = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+	$connection = mysqli_connect($INFOS['HOST'], $INFOS['USER'], $INFOS['PASS'], $INFOS['NAME']);
 	if ( mysqli_connect_errno() ) {
 		// If there is an error with the connection, stop the script and display the error.
 		echo 'Failed to connect to MySQL: ' . mysqli_connect_error();

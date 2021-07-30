@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once('connect.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/kfet/library/connect.php');
 
 // Maybe some sort of rooting could be used to avoid such things
 // Root to the index if the user is not authorized

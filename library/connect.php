@@ -1,7 +1,7 @@
 <?php
 
 function readDatabaseInformations() {
-	$LOGFILE_NAME = '../database_logs.txt';
+	$LOGFILE_NAME = $_SERVER['DOCUMENT_ROOT'] . '/kfet/library/database_logs.txt';
 
 	if($file = fopen($LOGFILE_NAME, 'r')) {
 		while(!feof($file)) {
@@ -30,6 +30,8 @@ function readDatabaseInformations() {
 		}
 
 		fclose($file);
+	} else {
+		return NULL;
 	}
 
 	return [

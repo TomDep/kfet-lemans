@@ -30,7 +30,7 @@
         <div style="margin-left:20px;">
           <a href="administration.php#produits"><li>Gestion des produits</li></a>
           <a href="administration.php#usagers"><li>Gestion des utilisateurs</li></a>
-          <a href="administration/manage_team.php"><li>Gestion de l'équipe</li></a>
+          <a href="manage_team.php"><li>Gestion de l'équipe</li></a>
           <a href="administration.php#statistiques"><li>Statistiques</li></a>
           <a href="#"><li>Modifier la page d'accueil</li></a>
         </div>

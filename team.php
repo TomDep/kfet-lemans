@@ -21,12 +21,20 @@
         exit();
     }
 
-    if($result = $connection->query('SELECT * FROM baristas')) {
-        while ($barista = $result->fetch_row()) {
-            var_dump($barista);
+    $req = 'SELECT * FROM users INNER JOIN baristas WHERE users.id = baristas.user_id';
+    if($result = $connection->query($req)) {
+        while($barista = $result->fetch_array()) {
+?>
+    <div>
+        <p><?php echo htmlspecialchars($barista['username']); ?></p>
+        <p> Classe : <?php echo htmlspecialchars($barista['class']); ?></p>
+        <img src="res/images/baristas/<?php echo htmlspecialchars($barista['photo']); ?>">
+    <div>
+<?php
         }
     }
 
+    $connection->close();
 ?>
 
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php include "../templates/head.php"; ?>
+    <?php include "templates/head.php"; ?>
 
     <title>Kfet - Gérer l'équipe</title>
 </head>
@@ -10,14 +10,13 @@
 
 <h1>Ajouter un.e barista</h1>
 
-<form method="post" autocomplete="off" action="../library/add_barista.php" enctype="multipart/form-data">
+<form method="post" autocomplete="off" action="library/add_barista.php" enctype="multipart/form-data">
     
     <label for="username">Nom de l'utilisateur</label>
     <input type="text" id="username" name="username" list="usernames" required>
     <datalist id="usernames">
 <?php
-    // Load all usernames from the database
-    require_once('../library/connect.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/kfet/library/connect.php');
 
     // Connect to the database
     $connection = connectToDatabase();
@@ -35,6 +34,9 @@
     }
 ?>
     </datalist>
+
+    <label for="class">Classe</label>
+    <input type="text" name="class" id="class" required>
 
     <label for="barista_photo">Photo</label>
     <input type="file" name="barista_photo" id="barista_photo">

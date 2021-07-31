@@ -19,7 +19,7 @@
       <!--Pour les baristas :-->
 
       <hr>
-      <a href="#"><li>Recharger un compte</li></a>
+      <a href="recharge_account.php"><li>Recharger un compte</li></a>
       <a href="#"><li>Ajouter une nouvelle personne</li></a>
       <a href="#"><li>Historique des commmandes</li></a>
 

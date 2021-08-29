@@ -10,26 +10,28 @@
 @import "theme.css";        /* Color variables for the applied theme */
 @import "typography.css";   /* Fonts */
 
-
-/* Changements between web and smaller screens like tablets and smartphone */
-*{
-  --small-device-size : 600px;  
+#biggerLogo{
+  display: block; 
+  height: 200px;
+  width: 200px;
+  margin: 50px auto 0 auto;
 }
 
-body{
-  background: var(--color-primary);
-  color: var(--color-font-text);
-  font-family: "Avenir Next", "Avenir", sans-serif;
-  height: 100vh;
+@media (max-width: 600px){
+  #biggerLogo{
+    height: 150px; width: 150px;
+    margin: 40px auto;
+  }
 }
 
 /* Menu */
 
 nav{
-  position : sticky;                  
+  position : fixed;                  
   top: 0;
   height:100px;
-  z-index: 2;
+  width: 100%;
+  z-index: 20;
   background: var(--color-primary);
 }
 
@@ -38,12 +40,9 @@ nav{
   position: relative;
   top: 40px;
   margin-left: 30px;
-  z-index: 1;
   
   -webkit-user-select: none;
   user-select: none;
-
-
 }
  
 #menuToggle a{
@@ -135,21 +134,11 @@ nav{
 } 
  
 #menu li{
-  padding: 10px 0;
-  font-size: 1em;
-}
+  font-family: var(--menu-font-family);     
+  font-size: var(--menu-font-size);
+  font-weight: var(--menu-font-weight);     
 
-/*  */
-
-@media (max-width: 600px){
-  #menu{
-    width: 105vw;
-  }
-
-  #menu li{
-    padding: 5px 0;
-    font-size: 12px;
-  }
+  padding: 5px 0;
 }
  
 #menuToggle input:checked ~ ul{
@@ -182,52 +171,158 @@ nav .logo{
   z-index: 2;
 }
 
-section{
-  margin: 50px auto 0 auto;
-  
-  height: 400px;
-  width: 80%;
-  
-  background-color: var(--color-secondary);
-  color: black;
+.dropdown-toggle{
+  margin-left: -16px;
 }
 
-
-.biggerLogo{
-  /*position: absolute;
-  top: 2%;
-  left: 38%;*/
-  display: block;
-  padding-top: 20px;
-  margin: 0 auto 0 auto; 
-
-  height: 250px;
-  width: 250px;
-}
-
-.centeredForm{
-  position: absolute;
-  width: 60%;
-  height: 40%;
-  left: 20%;
-  top: 30%;
-
-  background: var(--color-secondary);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 23px;
-
-  color: var(--color-font-text);
-}
-
-.centeredForm h1{
-  margin : 2% 0 2% 0;
-  text-align : center;
-}
-
-
-@media (max-width: 800px){
-  .biggerLogo{
-    height: 100px;width: 100px;
+/* Responsive Menu on smaller screens */
+@media (max-width: 600px){
+  nav{
+    height:60px;
   }
 
+  #menuToggle{
+    top: 15px;
+    margin-left: 15px;
+  }
+
+  nav .logo{
+    height: 40px;
+    width: 40px;
+    margin-top: 4px;
+  }
+
+  #navspan{
+    margin-top: 30px;
+  }
+
+  #menu{
+    height: 120vh;
+    width: calc(100vw + 50px);
+  }
+
+  #menu li, hr{
+    padding-left: 10px;
+  }
+
+  hr{
+    width: auto;
+  }
+}
+
+body{
+  background: var(--color-primary);
+  background-image: url("../res/wave (1).svg"),url("../res/wave.svg"),url("../res/wave (2).svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% auto;
+  background-position: bottom;
+}
+
+hr{
+  width: 100%;
+  background-color: black;
+}
+
+a{
+  text-decoration: underline;
+  color: black;
+  font-size: var(--form-label-font-size);
+}
+
+a:hover{
+  color: var(--color-primary);
+}
+
+.float-left{
+  float: left;
+}
+
+.float-right{
+  float: right;
+}
+
+form{
+  background-color: var(--color-secondary);
+  /*Selon les préférences:  
+    30% sur les côtés, 2 en haut
+    40% sur les côtés, 5 en haut, effet carte
+  */
+  margin: 5% 40% 0 40%;
+  padding: 0 20px;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 23px;
+}
+
+form h1{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+
+  font-family: var(--form-header-font-family);      
+  font-size: var(--form-header-font-size);
+  font-weight: var(--form-header-font-weight);
+}
+
+form .form-group{
+  padding: 5px;
+  margin: 0 5px 0 5px;
+}
+
+form ::placeholder, 
+form .form-group select{
+  font-size: var(--form-label-font-size);
+}
+
+form .form-group input,
+form .form-group select
+{
+  background-color: var(--color-secondary);
+  border: 1px black solid;
+  height: 40px;
+}
+
+form .form-group input[type="text"]{
+  line-height: 40px;
+}
+
+
+form .form-group label{
+  font-family: var(--form-label-font-family);     
+  font-size: var(--form-label-font-size);
+  font-weight: var(--form-label-font-weight);
+}
+
+.form-row{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+input[type="submit"]{
+  font-size: var(--form-button-font-size);
+
+}
+
+.form-check-input{
+  margin-top: -0.6rem;
+}
+
+@media (max-width: 600px){
+  form{
+    margin: 20px 10%;
+    padding: 0 10px;
+  }
+
+  form .form-group{
+    padding: 2px;
+    margin: 0 5px 0 5px;
+  }
+
+  body{
+    height: auto;
+    background-size: auto 200px;
+  }
 }

@@ -18,13 +18,14 @@
       <!--Pour les baristas :-->
 
       <hr>
-      <a href="#"><li>Recharger un compte</li></a>
+      <a href="recharge_account.php"><li>Recharger un compte</li></a>
       <a href="#"><li>Ajouter une nouvelle personne</li></a>
       <a href="#"><li>Historique des commmandes</li></a>
 
       <!--Pour le boss-->
 
       <hr>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
         <div class="dropdown-menu">
@@ -36,6 +37,7 @@
           <a class="dropdown-item" href="administration/manage_team.php">Gestion de l'équipe</a>
           <a class="dropdown-item" href="administration.php#statistiques">Statistiques</a>
           <a class="dropdown-item" href="#">Modifier la page d'accueil</a>
+
         </div>
       </li>
 

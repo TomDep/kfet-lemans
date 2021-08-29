@@ -17,3 +17,50 @@
   --color-menu-font-text-hover: var(--color-tertiary);
   --color-menu-span-burger: black;
 }
+
+/*   Indications
+*   - sm : small
+*   - lg : large 
+*/ 
+
+#btn-validate-lg{
+  height: 40px;
+  width: 200px;       
+  background-color: var(--color-primary);
+  color: black;
+
+  border-radius: 20px;
+  margin: 20px 0 20px 0;
+  border: none;
+  text-align: center;
+
+  text-transform: capitalize;
+}
+
+#btn-validate-sm{
+  height: 40px;
+  width: 100px;       
+  background-color: var(--color-primary);
+  color: black;
+
+  border-radius: 20px;
+  margin: 20px 0 20px 0;
+  border: none;
+  text-align: center;
+
+  text-transform: capitalize;
+}
+
+#btn-cancel-sm{
+  height: 40px;
+  width: 100px;       
+  background-color: grey;
+  color: black;
+
+  border-radius: 20px;
+  margin: 20px 0 20px 0;
+  border: none;
+  text-align: center;
+
+  text-transform: capitalize;
+}

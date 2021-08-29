@@ -1,13 +1,12 @@
 <!-- Contains only the menu and the header -->
 
-<nav role="navigation">
+<nav role="navigation" id="nav">
   <div id="menuToggle">
     <input type="checkbox" />
 
     <span></span>
     <span></span>
     <span></span>
-
     
     <ul id="menu">
       <a class="active" href="index.php"><li>Accueil</li></a>
@@ -26,17 +25,22 @@
       <!--Pour le boss-->
 
       <hr>
-      <a href="administration.php"><li>Administrer</li></a>
-        <div style="margin-left:20px;">
-          <a href="administration.php#produits"><li>Gestion des produits</li></a>
-          <a href="administration.php#usagers"><li>Gestion des utilisateurs</li></a>
-          <a href="administration/manage_team.php"><li>Gestion de l'équipe</li></a>
-          <a href="administration.php#statistiques"><li>Statistiques</li></a>
-          <a href="#"><li>Modifier la page d'accueil</li></a>
-        </div>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="administration.php">Menu administration</a>
 
-        <hr>
-        <a href="library/logout.php"><li>Se Déconnecter</li></a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="administration.php#produits">Gestion des produits</a>
+          <a class="dropdown-item" href="administration.php#usagers">Gestion des utilisateurs</a>
+          <a class="dropdown-item" href="administration/manage_team.php">Gestion de l'équipe</a>
+          <a class="dropdown-item" href="administration.php#statistiques">Statistiques</a>
+          <a class="dropdown-item" href="#">Modifier la page d'accueil</a>
+        </div>
+      </li>
+
+      <hr>
+      <a href="library/logout.php"><li>Se Déconnecter</li></a>
 
     </ul>
   </div>

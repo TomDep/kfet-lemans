@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Oswald&display=swap');
+
+*{
+	--menu-font-family : "Avenir Next", "Avenir", sans-serif;
+	--menu-font-size: 15px ;
+	--menu-font-weight: regular;
+
+	--form-header-font-family : "Oswald", sans-serif;
+	--form-header-font-size: 25px ;
+	--form-header-font-weight: regular;
+
+	/*--form-label-font-family : "Avenir Next", "Avenir", sans-serif;*/
+	--form-label-font-size:  15px;
+	--form-label-font-weight:  regular;
+
+	--form-button-font-size:  15px;
+}
+
+@media (max-width: 600px){
+	*{
+		--menu-font-size: 15px ;
+		--form-header-font-size: 22px ;
+		--form-label-font-size:  12px;
+		--form-button-font-size:  15px;
+	}
+	
+}

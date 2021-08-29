@@ -94,40 +94,46 @@
 <html>
 <head>
 	<?php include "templates/head.php"; ?>
-
-	<title>Kfet - Se connecter</title>
+	<title>Kfet - Se Connecter</title>
 </head>
 <body>
-	<a href="login.php">Retour à l'écran de connexion</a>
-	<div>
-		<h1>Activation du compte</h1>
+	<img src="res/icon.svg" id="biggerLogo">
 
-<?php	
-	if($step == 0) {
-	// The user gives their student number
-?>
-	<img class="biggerLogo" src="res/icon.svg" alt="Logo de la KFET">
+    <section>
+		<?php	
+			if($step == 0) {
+			// The user gives their student number
+		?>
 
-	<div class="centeredForm">
-		<form action="activate.php" autocomplete="off" method="post">
-			<label for="student_number">Numéro étudiant</label>
-			<input type="text" name="student_number" placeholder="182355" id="student_number" required>
-			
-			<input type="submit" value="Suivant">
+		<form action="activate.php" method="post">
+
+			<h1>Bienvenue à toi, 'tit nouveau! </h1>
+
+			<div class="form-group">
+			    <label>Numéro étudiant</label>
+			    <input type="text" name="student_number" class="form-control input-lg" placeholder="182355" required>			
+			    <a href="login.php">Retour à l'écran de connexion</a>
+			</div>
+		  
+		  	<div class="text-center">
+		  		<input type="submit" value="Suivant" class="btn-validate-lg">
+		  	</div>
 		</form>
-	</div>
 		
-<?php
-	} else if($step == 1) {
-	// The user gives a new password (and it's student number using an hidden input)
-?>
-		<form action="activate.php" autocomplete="off" method="post">
-			<input type="hidden" name="student_number" value="<?php echo htmlspecialchars($_POST['student_number']); ?>">
+		<?php
+			} else if($step == 1) {
+			// The user gives a new password (and it's student number using an hidden input)
+		?>
 
-			<label for="password">Choississez un mot de passe</label>
-			<input type="password" name="password" id="password" required>
-			
-			<input type="submit" value="Valider">
+		<form action="activate.php" method="post">
+			<div class="form-group">
+			    <label>Choississez un mot de passe</label>
+			    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Shhh! C'est secret" required>
+			</div>
+		  
+		  	<div class="text-center">
+		  		<input type="submit" value="Valider" class="btn-validate-lg">
+		  	</div>
 		</form>
 <?php
 	}
@@ -139,6 +145,5 @@
 	if($databaseError) echo '<p>Il y a eu une erreur ...</p>';
 ?>
 
-	</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	require_once('library/connect.php');
+	require_once('lib/connect.php');
 
 	// Redirect if the user isn't connected
 	if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != TRUE) {
@@ -71,7 +71,7 @@
 	<body>
 		<h2>Changement de mot de passe</h2>
 
-		<form action="edit_password.php" method="post" autocomplete="off">
+		<form class="standard-form" action="edit_password.php" method="post" autocomplete="off">
 			
 			<label for="password">Mot de passe actuel</label>
 			<input type="password" name="password" id="password" required>
@@ -96,35 +96,3 @@
 
 	</body>
 </html>
-
-<body>
-		<img src="res/icon.svg" id="biggerLogo">
-
-	    <section>
-			<form action="library/authenticate.php" method="post">
-				<h1>Bienvenue! </h1>
-
-				<div class="form-group">
-				    <label>Numéro étudiant</label>
-				    <input type="text" name="student_number" class="form-control input-lg" placeholder="182355" required>
-				</div>
-
-				<div class="form-group">
-				    <label>Mot de passe</label>
-				    <input type="password" name="password" class="form-control" id="password" placeholder="Shhh! C'est secret" required>
-
-				    
-				    <div class="float-right">
-				    	<a href="edit_password.php">Mot de passe oublié ?</a>
-				    </div>
-				    <div class="float-left">
-				    	<a href="activate.php">Première connexion ?</a>
-					</div>							  	
-				</div>
-			  
-			  	<div class="text-center">
-			  		<input type="submit" value="Se connecter" class="btn-validate-lg">
-			  	</div>
-			</form>
-		</section>
-	</body>

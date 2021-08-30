@@ -4,7 +4,7 @@
 	if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == FALSE) {
 		header('Location: login.php');
 	}	// Include the database connect file
-	include $_SERVER['DOCUMENT_ROOT'] . '/kfet/library/connect.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/kfet/lib/connect.php';
 
 	function displayProductFromCategory($categoryName) {
 

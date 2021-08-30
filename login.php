@@ -19,7 +19,7 @@
 		<img src="res/icon.svg" id="biggerLogo">
 
 	    <section>
-			<form action="library/authenticate.php" method="post">
+			<form class="standard-form" action="lib/authenticate.php" method="post">
 				<h1>Bienvenue! </h1>
 
 				<div class="form-group">

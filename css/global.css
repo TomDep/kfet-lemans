@@ -29,7 +29,9 @@
   }
 }
 
-/* Menu */
+/****** Navbar ******/
+
+
 nav{
   position : fixed;                  
   top: 0;
@@ -37,6 +39,15 @@ nav{
   width: 100%;
   z-index: 20;
   background: var(--color-primary);
+}
+
+nav .logo{
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  height: 80px;
+  width: 80px;
+  z-index: 2;
 }
 
 #menuToggle{
@@ -48,13 +59,60 @@ nav{
   -webkit-user-select: none;
   user-select: none;
 }
+
+#menuToggle input:checked ~ ul{
+  transform: none;
+}
+
+#menu
+{
+  height: 105vh;  
+  width: 500px;
+  position: absolute;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 150px;
+  
+  background: var(--color-menu-background);
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+
+  overflow-y: auto;
+} 
  
-#menuToggle a{
+#menu li a, #menu a{
   text-decoration: none;
   color: var(--color-menu-font-text);
   
   transition: color 0.3s ease;
+
+  font-family: var(--menu-font-family);     
+  font-size: var(--menu-font-size);
+  font-weight: var(--menu-font-weight);     
 }
+
+#menu li{
+  padding: 5px 0;
+}
+
+#menu .dropdown-toggle{
+  margin-left: -16px;
+}
+
+#menuToggle .active, #menuToggle a:hover{
+  color : var(--color-menu-font-text-hover);
+}
+
+/* For the animation on the navbar
+ *
+ * we are using 3 spans placed like a burger in a first time 
+ * and with a single click, we are moving those span for making a cross
+ */
  
 #menuToggle input{
   display: block;
@@ -115,44 +173,6 @@ nav{
   transform: rotate(-45deg) translate(0, -1px);
 }
  
-
-#menu
-{
-  height: 105vh;  
-  width: 500px;
-  position: absolute;
-  margin: -100px 0 0 -50px;
-  padding: 50px;
-  padding-top: 150px;
-  
-  background: var(--color-menu-background);
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  
-  transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-
-  overflow-y: auto;
-} 
- 
-#menu li{
-  font-family: var(--menu-font-family);     
-  font-size: var(--menu-font-size);
-  font-weight: var(--menu-font-weight);     
-
-  padding: 5px 0;
-}
- 
-#menuToggle input:checked ~ ul{
-  transform: none;
-}
-
-#menuToggle .active, #menuToggle a:hover{
-  color : var(--color-menu-font-text-hover);
-}
-
 #navspan{
   height: 2px;
   background: black;
@@ -166,20 +186,11 @@ nav{
   z-index: 2;
 }
 
-nav .logo{
-  position: absolute;
-  top: 5px;
-  right: 20px;
-  height: 80px;
-  width: 80px;
-  z-index: 2;
+.margin-top{
+  margin-top: 150px;
 }
 
-.dropdown-toggle{
-  margin-left: -16px;
-}
-
-/* Responsive Menu on smaller screens */
+/****** Responsive Navbar on smaller screens ******/
 @media (max-width: 600px){
   nav{
     height:60px;
@@ -211,6 +222,10 @@ nav .logo{
 
   hr{
     width: auto;
+  }
+
+  .margin-top{
+    margin-top: 100px;
   }
 }
 

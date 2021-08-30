@@ -68,20 +68,28 @@
 		<title>Kfet - Editer son mot de passe</title>
 	</head>
 
-	<body>
-		<h2>Changement de mot de passe</h2>
+	<body>		
+		<?php include "templates/nav.php";?>
 
-		<form class="standard-form" action="edit_password.php" method="post" autocomplete="off">
-			
-			<label for="password">Mot de passe actuel</label>
-			<input type="password" name="password" id="password" required>
-
-			<label for="new_password">Nouveau mot de passe</label>
-			<input type="password" name="new_password" id="new_password" required>
-
-			<input type="submit" name="submit" value="Modifier">
-		</form>
-
+		<div class="margin-top">
+			<form action="edit_password.php" method="post" autocomplete="off" class="standard-form">		
+				<h1>Changement de mot de passe</h1>
+				<div class="form-group">
+					<label for="password">Mot de passe actuel</label>
+					<input type="password" name="password" id="password" class="form-control input-lg" required>
+				</div>
+				
+				<div class="form-group">
+					<label for="new_password">Nouveau mot de passe</label>
+					<input type="password" name="new_password" id="new_password" class="form-control input-lg" required>
+				</div>
+				
+				<div class="text-center">
+					<input type="submit" name="submit" value="Modifier" id="btn-validate-lg">
+				</div>
+			</form>
+		</div>	
+	
 	<?php
 		// Display an error message if the entered password was wrong
 		if($invalidPassword == TRUE) {

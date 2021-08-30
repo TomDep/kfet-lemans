@@ -116,7 +116,7 @@
 			</div>
 		  
 		  	<div class="text-center">
-		  		<input type="submit" value="Suivant" class="btn-validate-lg">
+		  		<input type="submit" value="Suivant" id="btn-validate-lg">
 		  	</div>
 		</form>
 		
@@ -126,13 +126,15 @@
 		?>
 
 		<form action="activate.php" method="post">
+			<h1>C'est presque fini...!</h1>
+
 			<div class="form-group">
 			    <label>Choississez un mot de passe</label>
 			    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Shhh! C'est secret" required>
 			</div>
 		  
 		  	<div class="text-center">
-		  		<input type="submit" value="Valider" class="btn-validate-lg">
+		  		<input type="submit" value="Valider" id="btn-validate-lg">
 		  	</div>
 		</form>
 <?php

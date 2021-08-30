@@ -15,13 +15,6 @@
 
 			#shop{
 				height: calc(100vh - 10vh);
-				margin-top: 100px;
-			}
-
-			@media(max-width: 600px){
-				#shop{
-					margin-top: 60px;
-				}
 			}
 
 			.index-profile {        
@@ -232,7 +225,7 @@
 	<body>
 	<?php include "templates/nav.php";?>
 
-	<div id="shop">
+	<div class="margin-top" id="shop">
 		<!-- Identification de l'étudiant -->
 
 		<div class="index-profile">

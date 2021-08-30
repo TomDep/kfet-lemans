@@ -10,7 +10,7 @@
 	<?php include "templates/nav.php";?>
 
     <section>
-		<div class="add-user" style="margin-top:80px;">
+		<div class="margin-top">
 			<form action="register.php" method="post">
 				<h1>Ajout d'un nouveau camarade</h1>
 

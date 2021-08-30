@@ -1,0 +1,57 @@
+/* 
+ * Administration CSS
+ * ----------------------------------------------------------------------------
+ * This stylesheet is reserved only for the administration page. Do not import it on global
+ */
+
+main {
+    margin: var(--nav-menu-height);
+}
+
+.grid-box {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+
+    /* Specify the divider gap measurement in a grid */
+    grid-row-gap: 30px;
+    grid-column-gap: 30px;
+
+    width: 60%;
+    margin: auto;
+}
+
+.card {
+    width: 100%;
+}
+
+/* Style for the table head that are sortable
+ * We indicate that the column is sortable by changing the cursor to pointer
+ */
+.sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Style for the delete button in a table 
+ * The button only appears when the row is hovered
+ */
+.delete-row {
+    visibility: hidden;
+}
+
+tr:hover .delete-row {
+    visibility: visible;
+}
+
+/* Style to change the default size of checkboxes and radio buttons */
+.form-check .form-check-input[type=checkbox] {
+    border-radius: .25em;
+    height: 31px;
+    width: 31px;
+    margin-left: 0;
+}
+.form-check .form-check-input[type=radio] {
+    border-radius: 100%;
+    height: 32px;
+    width: 32px;
+}

@@ -29,20 +29,19 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="administration.php">Menu administration</a>
-
+          <a class="dropdown-item" href="administrate.php">Menu d'administration</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="administration.php#produits">Gestion des produits</a>
-          <a class="dropdown-item" href="administration.php#usagers">Gestion des utilisateurs</a>
-          <a class="dropdown-item" href="administration/manage_team.php">Gestion de l'équipe</a>
-          <a class="dropdown-item" href="administration.php#statistiques">Statistiques</a>
-          <a class="dropdown-item" href="#">Modifier la page d'accueil</a>
+          <a class="dropdown-item" href="administrate_products.php">Produits</a>
+          <a class="dropdown-item" href="administrate_users.php">Utilisateurices</a>
+          <a class="dropdown-item" href="administrate_baristas.php">Baristas</a>
+          <a class="dropdown-item" href="administrate_stats.php">Statistiques</a>
+          <a class="dropdown-item" href="administrate_events.php">Évévenements</a>
 
         </div>
       </li>
 
       <hr>
-      <a href="library/logout.php"><li>Se Déconnecter</li></a>
+      <a href="lib/logout.php"><li>Se Déconnecter</li></a>
 
     </ul>
   </div>

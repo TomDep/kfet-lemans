@@ -16,19 +16,19 @@
 	<!--Icons for menu-->
 	<script src="https://kit.fontawesome.com/37366ba499.js"></script>
 
+	<!-- jQuery library v3.5.1 -->
+	<script src="plugins/jQuery-3.5.1/jquery.min.js"></script>
+
+	<!-- Popper JS v1.16 -->
+	<script src="plugins/Popper-1.16/popper.min.js"></script>
+
 	<!--Bootstrap 4 CDN-->
 
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-		<!-- Popper JS -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<link rel="stylesheet" href="plugins/Bootstrap-4.5.2/css/bootstrap.min.css">
 
 		<!-- Latest compiled JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="plugins/Bootstrap-4.5.2/js/bootstrap.min.js"></script>
 
 	<!--Contains our CSS with the menu, buttons, etc-->
 	<link rel="stylesheet" type="text/css" href="css/global.css" />

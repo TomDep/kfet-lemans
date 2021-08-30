@@ -83,7 +83,7 @@
 
     <h1>Recharger un compte</h1>
 
-    <form method="post" autocomplete="off" action="#">
+    <form method="post" autocomplete="off" action="#" class="standard-form">
         
         <label for="username">Nom de l'utilisateurice</label>
         <input type="text" id="username" name="username" list="usernames" required>

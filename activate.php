@@ -126,6 +126,7 @@
 		?>
 
 		<form action="activate.php" method="post">
+			
 			<h1>C'est presque fini...!</h1>
 
 			<div class="form-group">

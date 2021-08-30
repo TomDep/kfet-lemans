@@ -131,7 +131,6 @@
         <?php
 
             /*
-
             // Get all baristas from the database
             require_once('library/connect.php');
 
@@ -325,6 +324,5 @@
 
         document.getElementById("under").style.marginTop = margin_top;
     </script>
-
 </body>
 </html>

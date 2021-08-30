@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	require_once('library/connect.php');
+	require_once('lib/connect.php');
 
 	// Redirect if the user isn't connected
 	if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != TRUE) {
@@ -72,7 +72,7 @@
 		<?php include "templates/nav.php";?>
 
 		<div class="margin-top">
-			<form action="edit_password.php" method="post" autocomplete="off">		
+			<form action="edit_password.php" method="post" autocomplete="off" class="standard-form">		
 				<h1>Changement de mot de passe</h1>
 				<div class="form-group">
 					<label for="password">Mot de passe actuel</label>
@@ -89,10 +89,7 @@
 				</div>
 			</form>
 		</div>	
-		
-
-		
-
+	
 	<?php
 		// Display an error message if the entered password was wrong
 		if($invalidPassword == TRUE) {

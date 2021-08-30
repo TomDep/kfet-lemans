@@ -151,7 +151,9 @@
 			<img src="https://www.bolde.com/wp-content/uploads/2020/09/iStock-1269607964-400x400.jpg">	
 		</div>
 
-		<?php
+
+			<?php
+
 
 		// User's informations
 		echo '<h2>' . htmlspecialchars($_SESSION['username']) . '</h2>';

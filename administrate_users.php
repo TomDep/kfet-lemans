@@ -34,7 +34,7 @@
                 </form>
 
                 <table id="table" class="table table-hover table-sm sortable-table table-striped bg-light">
-                    <thead class="thead-dark sticky-top">
+                    <thead class="thead-dark">
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Numéro étudiant.e</th>

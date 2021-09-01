@@ -19,7 +19,7 @@
 
       <hr>
       <a href="recharge_account.php"><li>Recharger un compte</li></a>
-      <a href="#"><li>Ajouter une nouvelle personne</li></a>
+      <a href="add_user.php"><li>Ajouter une nouvelle personne</li></a>
       <a href="observe_commands.php"><li>Historique des commmandes</li></a>
 
       <!--Pour le boss-->

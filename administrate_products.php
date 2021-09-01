@@ -57,7 +57,7 @@
         exit();
     }
 
-    $req = 'SELECT * FROM products';
+    $req = 'SELECT * FROM products ORDER BY name ASC';
     if($result = $connection->query($req)) {
         while($product = $result->fetch_array()) {
 ?>

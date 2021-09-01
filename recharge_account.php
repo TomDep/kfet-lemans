@@ -81,39 +81,49 @@
 
     <?php include 'templates/nav.php'; ?>
 
-    <h1>Recharger un compte</h1>
+    <div class="margin-top">
 
-    <form method="post" autocomplete="off" action="#" class="standard-form">
-        
-        <label for="username">Nom de l'utilisateurice</label>
-        <input type="text" id="username" name="username" list="usernames" required>
-        <datalist id="usernames">
-<?php
-    // Connect to the database
-    $connection = connectToDatabase();
-    if($connection == FALSE) {
-        $databaseError = TRUE;
-        $databaseErrorMessage = $connection->error;
-    }
+        <form method="post" autocomplete="off" action="#" class="standard-form">
+            <h1>Recharger un compte</h1>
 
-    if($result = $connection->query('SELECT username FROM users')) {
-        while($row = $result->fetch_array()) {
-            echo '<option>' . htmlspecialchars($row['username']) . '</option>';
-        }
-    } else {
-        $databaseError = TRUE;
-        $databaseErrorMessage = $connection->error;
-    }
+            <div class="form-group">
+                <label for="username">Nom complet</label>
+                <input type="text" id="username" name="username" list="usernames" class="form-control" required>
+            </div>
 
-    $connection->close();
-?>
-        </datalist>
+            <datalist id="usernames">
+                <?php
+                    // Connect to the database
+                    $connection = connectToDatabase();
+                    if($connection == FALSE) {
+                        $databaseError = TRUE;
+                        $databaseErrorMessage = $connection->error;
+                    }
 
-        <label for="amount">Montant</label>
-        <input type="number" name="amount" id="amout" required>
+                    if($result = $connection->query('SELECT username FROM users')) {
+                        while($row = $result->fetch_array()) {
+                            echo '<option>' . htmlspecialchars($row['username']) . '</option>';
+                        }
+                    } else {
+                        $databaseError = TRUE;
+                        $databaseErrorMessage = $connection->error;
+                    }
 
-        <input type="submit" value="Ajouter">
-    </form>
+                    $connection->close();
+                ?>
+            </datalist>
+
+            <div class="form-group">
+                <label for="amount">Montant</label>
+                <input type="number" name="amount" id="amount" class="form-control" required placeholder="10 ou 5.5">
+            </div>
+
+           <div class="text-center">
+                <input type="submit" value="Ajouter" id="btn-validate-lg">
+            </div>
+        </form>
+    </div>
+    
 
 <?php
     if($emptyFieldsError) echo '<p>Vous devez remplir les deux champs.</p>';

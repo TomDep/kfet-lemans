@@ -261,7 +261,7 @@ a:hover{
   float: right;
 }
 
-form.standard-form {
+form .standard-form {
   background-color: var(--color-secondary);
   /*Selon les préférences:  
     30% sur les côtés, 2 en haut
@@ -274,7 +274,7 @@ form.standard-form {
   border-radius: 23px;
 }
 
-form.standard-form h1{
+form .standard-form h1{
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: center;
@@ -284,30 +284,30 @@ form.standard-form h1{
   font-weight: var(--form-header-font-weight);
 }
 
-form.standard-form .form-group{
+form .standard-form .form-group{
   padding: 5px;
   margin: 0 5px 0 5px;
 }
 
-form.standard-form ::placeholder, 
-form.standard-form .form-group select{
+form .standard-form ::placeholder, 
+form .standard-form .form-group select{
   font-size: var(--form-label-font-size);
 }
 
-form.standard-form .form-group input,
-form.standard-form .form-group select
+form .standard-form .form-group input,
+form .standard-form .form-group select
 {
   background-color: var(--color-secondary);
   border: 1px black solid;
   height: 40px;
 }
 
-form.standard-form .form-group input[type="text"]{
+form .standard-form .form-group input[type="text"]{
   line-height: 40px;
 }
 
 
-form.standard-form .form-group label{
+form .standard-form .form-group label{
   font-family: var(--form-label-font-family);     
   font-size: var(--form-label-font-size);
   font-weight: var(--form-label-font-weight);
@@ -322,7 +322,6 @@ form.standard-form .form-group label{
 
 input[type="submit"]{
   font-size: var(--form-button-font-size);
-
 }
 
 .form-check-input{
@@ -330,12 +329,12 @@ input[type="submit"]{
 }
 
 @media (max-width: 600px){
-  form.standard-form {
+  form .standard-form {
     margin: 20px 10%;
     padding: 0 10px;
   }
 
-  form.standard-form .form-group{
+  form .standard-form .form-group{
     padding: 2px;
     margin: 0 5px 0 5px;
   }

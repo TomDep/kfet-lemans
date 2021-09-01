@@ -3,7 +3,9 @@
 
 	if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == FALSE) {
 		header('Location: login.php');
-	}	// Include the database connect file
+	}	
+
+	// Include the database connect file
 	include $_SERVER['DOCUMENT_ROOT'] . '/kfet/lib/connect.php';
 
 	function displayProductFromCategory($categoryName) {
@@ -82,7 +84,14 @@
 
 			#shop{
 				height: calc(100vh - 10vh);
+        margin-top: 100px ;
 			}
+
+      @media(max-width: 600px){
+        #shop{
+          margin-top: 60px;
+        }
+      }
 
 			.index-profile {        
         margin: 10px 20px;
@@ -284,15 +293,269 @@
 
         			/*********************************/
 
+        .shoping-cart .icon{
+        	color:  black;
+        	border-radius: 100%;
+        	height: 60px;
+        	width: 60px;
+        	font-size: 2em;
+        	padding: 5px 10px;
 
-		</style>
+        	position: fixed;
+        	right: 0;
+        	bottom: 0;
+        	margin: 0 20px 20px 0;
+
+        	z-index: 15;
+					background-color: #f1f2f6;
+					background-image: linear-gradient(315deg, #f1f2f6 0%, #c9c6c6 74%);
+
+
+					box-shadow:  5px 5px 100px #c2c2c2,
+					             -5px -5px 100px #ffffff;
+        }
+
+        .shoping-cart .icon .fa-layers-counter{
+        	position: fixed;
+        	right: 0;
+        	bottom: 0;
+        	margin: 0 15px 55px 0;
+        	font-size: 20px;
+        	background-color: #ff8c00;
+        	border-radius: 100%;
+        	height: 30px;
+        	width: 30px;
+        }
+
+        .shoping-cart #order-summary{
+        	display: none;
+        	position: fixed;
+        	font-size: 500px;
+        	width: calc(100vw - 40px);
+        	margin: 0 20px;
+        	height: calc(80vh - 200px);
+        	background-color: white;
+        	z-index: 10;
+        	top: 100px;
+          filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+        	border-radius: 5px;
+
+        	overflow: scroll;
+        }
+
+        .shoping-cart #order-summary h1{
+        	font-size: 24px;
+        	font-weight: bold;
+        	border-bottom: black 1px solid;
+        	padding-left:10px ;
+        	background-image: url("res/food_pattern.svg");
+        	background-repeat: no-repeat;
+				  background-attachment: fixed;
+				  background-size: 100% 100%;
+        	height: 50px;
+        	position: relative;
+        	bottom: 0;
+        	padding-top: 10px;
+        }
+
+        @media (max-width: 600px){
+        	.shoping-cart #order-summary h1{
+        		margin-left: -50px;
+        	}
+        }
+
+        .shoping-cart #order-summary .check{
+        	background-color: #ff8c00;
+        	
+        	font-size: 24px;
+        	border-radius: 100%;
+        	z-index: 15;
+
+        	position: fixed;
+        	top: 0;
+        	right: 0;
+        	padding: 6px 15px;
+        	margin: 20px 20px 0 0;
+
+        	border: none;
+        }
+
+        .shoping-cart #order-summary .presentation-card{
+					box-shadow: var(--color-secondary) 0px 10px 30px -10px;        
+				}
+
+        .presentation-card .content-sm .card-subtitles{
+        	margin-bottom: 2px;
+        	font-size: 12px;
+        }
+
+        .presentation-card .delete{
+        	position: fixed;
+        	right: 0;
+        	bottom: 0;
+        	font-size: 14px;
+        	
+        	height: 61px;
+        	padding-top: 20px;
+        	width: 30px;
+        }
+
+        .shoping-cart #order-summary #order-form .presentation-card{
+          width: calc(100% - 20px);
+          margin: 5px 10px;
+        }
+
+        .shoping-cart #order-summary #order-form .presentation-card .content-sm{
+        	margin-left: 70px;
+        }
+
+        .shoping-cart #order-summary #order-form .presentation-card .content-sm .card-name{
+        	margin: 5px 0;
+        }
+
+        @media (min-width: 600px){
+        	.shoping-cart #order-summary{
+						height: calc(100vh - 180px);
+						width: 20%;
+						margin: 0 40%;
+						overflow: hidden;
+        	}
+        	
+        }
+
+        @media (max-width:  600px){
+        	.shoping-cart #order-summary{
+        		top: 70px;
+        		height: calc(100vh - 180px);
+        	}
+        }
+
+        /************************/
+
+        .detailed-item{
+        	display: none;
+        	position: fixed;
+        	font-size: 500px;
+
+        	background-color: white;
+        	z-index: 5;
+        	top: 100px;
+          filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+        	border-radius: 5px;
+
+        	height: calc(100vh - 180px);
+					width: 20%;
+					margin: 0 40%;
+        }
+
+				.detailed-item .item-presentation{
+        	height: 60%;
+
+        }
+
+        .detailed-item .item-description{
+        	height: 40%;
+        }
+
+        .detailed-item .item-presentation .item-picture{
+        	position: fixed;
+        	top: 0;
+        	width: calc(100% - 60px);
+        	margin: 0 30px;
+        	padding: 30px 0;
+        	height: 60%;
+        }
+
+        .detailed-item .item-presentation .item-name{
+        	position: fixed;
+        	background-color: black;
+        	font-size: 20px;
+        	color: white;
+        	margin: 0 30px;
+        	bottom: 40%;
+        	width: calc(100% - 60px);
+        	text-transform: capitalize;
+        	z-index: 10;
+        	line-height: 1.6;
+        }
+
+        .detailed-item .item-description{
+        	margin: 0 30px;
+        	width: calc(100% - 60px);
+        	padding: 10px 0;
+          /*box-shadow: var(--color-secondary) 0px 20px 30px 10px;*/        
+        }
+
+        .detailed-item .item-description .item-price,
+        .detailed-item .item-description .item-quantity{
+        	font-size: 16px;
+        	margin-bottom: 2px;
+        	margin-left: 15px;
+        }
+
+        .detailed-item .close{
+        	position: fixed;
+        	right: 0;
+        	top: 0;
+        	font-size: 24px;
+        	
+        	height: 61px;
+        	padding-top: 5px;
+        	padding-left: 5px;
+        	width: 30px;
+        }
+
+        .detailed-item .item-add{
+        	text-align : center!important;
+        	position: fixed;
+        	top: -150px;
+        	width: 100%;
+        	z-index: 10;
+        	height: 100px;
+        } 
+
+        .detailed-item .item-control .item-control-plus,
+        .detailed-item .item-control .item-control-minus{
+        	position: fixed;
+        	right: 30px;
+        	font-size: 30px;
+        	width: 30px;
+        }
+
+        .detailed-item .item-control .item-control-plus{
+        	top: 65%;
+        }
+
+        .detailed-item .item-control .item-control-minus{
+        	top: 80%;
+        }
+
+
+
+        .detailed-item .item-add #btn-validate-lg{
+
+        	text-transform: none;
+        }
+
+        @media (max-width:  600px){
+        	.detailed-item{
+        		top: 70px;
+        		height: calc(100vh - 180px);
+        		width: calc(100vw - 40px);
+	        	margin: 0 20px;
+	        	overflow: hidden;
+        	}
+        }
+</style>
 
 	</head>
 
 	<body>
 	<?php include "templates/nav.php";?>
 
-	<div class="margin-top" id="shop">
+	<div id="shop">
 		<!-- Identification de l'étudiant -->
 
 		<div class="index-profile">
@@ -367,175 +630,112 @@
 		</div>
 	</div>
 
-	<div>
-		<div class="header" id="hot-drinks">
-      <h1>Les boisons les plus chaudes de ta région</h1>
+	<div id="hot-drinks">
+		<div class="header">
+      <h1>Les boisons chaudes</h1>
     </div>
     
-    <div class="presentation-card" onclick="myFunction()">
-      <img class="card-picture" src="res/images/products/Café.jpg">
+    <!-- Faire comme ci dessous! -->
+
+    <div class="presentation-card" id="12" onclick="toggleItem(12)">
+      <img class="card-picture" id="card-picture" src="res/images/products/Café.svg">
       <div class="content">
           <h4 class="card-name">Café</h4>
           <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
       </div> 
     </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
+    <div class="presentation-card" id="14" onclick="toggleItem(14)">
+      <img class="card-picture" src="res/images/products/Café.svg">
       <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card" onclick="myFunction()">
-      <img class="card-picture" src="res/images/products/Café.jpg">
-      <div class="content">
-          <h4 class="card-name">Café</h4>
-          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card" onclick="myFunction()">
-      <img class="card-picture" src="res/images/products/Café.jpg">
-      <div class="content">
-          <h4 class="card-name">Café</h4>
-          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card" onclick="myFunction()">
-      <img class="card-picture" src="res/images/products/Café.jpg">
-      <div class="content">
-          <h4 class="card-name">Café</h4>
-          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
-      </div> 
-    </div>
-    <div class="presentation-card">
-      <img class="card-picture" src="res/icon.svg">
-      <div class="content">
-          <h4 class="card-name">Tom de Pasquale</h4>
-          <h4 class="card-subtitles">4A info</h4>
+          <h4 class="card-name">Cafééééééééé</h4>
+          <h4 class="card-subtitles">Prix unitaire: 0.80€</h4>
       </div> 
     </div>
 	</div>
 	
-	<div class="detailed-item">
-		
-	</div>
-
-	</body>
-
-<script type="text/javascript">
-	function myFunction(){
-		return console.log("Test");
-	}
-</script>
-
-=======
-	<script type="text/javascript" src="js/linked_sections.js"></script>
-
-	<?php include "templates/nav.php";?>
-
-    <section class="default-linked-section linked-section">
-    	<h1>Bonjour <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
-
-		<div class="add-user">
-			<h1>Ajouter un utilisateur</h1>
-			<form action="register.php" method="post" autocomplete="off">
-			
-				<label for="student_number">Numéro étudiant</label>
-				<input type="text" name="student_number" placeholder="182355" id="student_number" required>
-
-				<label for="username">Nom</label>
-				<input type="text" name="username" placeholder="Tom de Pasquale" id="username" required>
-				
-				<label for="bdlc_member">Abonné BDLC</label>
-				<input type="checkbox" name="bdlc_member" id="bdlc_member">
-
-				<label for="auth_level">Niveau d'autorisation</label>
-				<select id="auth_level" name="auth_level" required>
-					<option value="0">Ensimien</option>
-					<option value="1">Barista</option>
-					<?php
-						// Add the administrator only if the administrator is logged on
-						if(isset($_SESSION['auth_level']) && $_SESSION['auth_level'] > 1)
-							echo '<option value="2">Administrateur</option>';
-					?>
-				</select>
-
-				<input type="submit" value="Ajouter">
-			</form>
+	<div id="detailed-item" class="detailed-item" >
+		<div class="item-presentation">
+			<img class="item-picture" id="item-picture" src="">
+			<h2 class="item-name text-center" id="item-name"></h2>
 		</div>
 
-		<hr>
+		<div class="item-description">
+				<h4 class="item-price">Prix unitaire: <span id="item-price"></span>€</h4>
+				<h4 class="item-quantity">Quantité: <span id="item-quantity"></span></h4>
+				<div class="item-control">
+					<div class="item-control-plus" onclick="quantityItem(1)"><i class="fas fa-plus"></i></div>
+					<div class="item-control-minus" onclick="quantityItem(-1)"><i class="fas fa-minus"></i></div>
+				</div>
+		</div>
 
+		<div class="item-add">
+		  	<input type="submit" value="Ajouter pour 1.20€" id="btn-validate-lg" onclick="addItem()">
+		</div>
+
+  	<div class="close" onclick="toggleItem()"><i class="fas fa-times"></i></div>
+	</div>
+
+	<div class="shoping-cart">
+		<div class="icon" onclick="toggleShop()">
+			<span class="fa-layers fa-fw">
+		    <i class="fas fa-shopping-cart"></i>
+		    <span class="fa-layers-counter" id="number-item"></span>
+		  </span>
+		</div>
+
+		<div id="order-summary">
+			<h1 class="text-center">Total panier: <span id="total"></span></h1>
+
+			<form method="post" action="lib/command.php" id="order-form">
+				<button type="submit" class="check"><i class="fas fa-check"></i></button>
+
+
+				<div class="presentation-card" id="5">
+		      <img class="card-picture" src="res/images/products/Café.svg">
+
+		      <div class="content-sm">
+		          <h4 class="card-name">Caaaaaaaaaaaa</h4>
+		          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
+		          <h4 class="card-subtitles">Quantité: 3</h4>
+		      </div>				
+
+		      <input type="number" name="4" value="3" hidden>
+		      <input type="number" name="price" value="0.4" hidden>
+
+		      <div class="delete" onclick="deleteItem(5)"><i class="fas fa-times"></i></div>
+	    	</div>
+
+	    	<div class="presentation-card" id="4">
+		      <img class="card-picture" src="res/images/products/Café.svg">
+		      <div class="content-sm">
+		          <h4 class="card-name">Café</h4>
+		          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
+		          <h4 class="card-subtitles">Quantité: 3</h4>
+		      </div>				
+		      <input type="number" name="4" value="3" hidden>
+		      <input type="number" name="price" value="0.4" hidden>
+		      <div class="delete" onclick="deleteItem(4)"><i class="fas fa-times"></i></div>
+	    	</div>
+
+	    	<div class="presentation-card" id="6">
+		      <img class="card-picture" src="res/images/products/Café.svg">
+		      <div class="content-sm">
+		          <h4 class="card-name">Caféééééééééééé</h4>
+		          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
+		          <h4 class="card-subtitles">Quantité: 3</h4>
+		      </div>				
+		      <input type="number" name="4" value="3" hidden>
+		      <input type="number" name="price" value="0.4" hidden>
+		      <div class="delete" onclick="deleteItem(6)"><i class="fas fa-times"></i></div>
+	    	</div>
+				
+    	</form>
+	</div>	
+
+
+<!--
+  <section class="default-linked-section linked-section">
+  
 		<div>
 			<a href="#boissons-chaudes">Boissons chaudes</a>
 			<a href="#boissons-froides">Boissons froides</a>
@@ -575,7 +775,230 @@
 		<h1>Formules</h1>
 
 		<a href="#">Retour</a>
-	</section>
+	</section>-->
+	<!--<script type="text/javascript" src="js/linked_sections.js"></script>-->
+ <script type="text/javascript">
+		function quantityItem(x){
+			var qty = parseInt(document.getElementById("item-quantity").innerHTML);
 
+			if(x==0){
+				document.getElementById("item-quantity").innerHTML = "1";
+			}else{
+				qty += x;
+				if(qty==0){
+					qty = 1;
+				}
+				document.getElementById("item-quantity").innerHTML = String(qty);
+			}
+			calculateItemPrice();
+		}
+
+		function calculateItemPrice(){
+			var qty = parseInt(document.getElementById("item-quantity").innerHTML);
+			var price = parseFloat(document.getElementById("item-price").innerHTML);
+
+			var totalPrice = qty * price;
+			totalPrice = totalPrice.toFixed(2);
+
+			document.getElementById("btn-validate-lg").value = "Ajouter pour " + totalPrice + "€";
+		}
+
+		function calculateTotalPrice(){
+			var form = document.getElementById("order-form");
+			var inputs = form.getElementsByTagName("input");
+
+			var sum = 0;
+			for(var i=0; i< inputs.length; i=i+2){
+				var qty = inputs[i].value;
+				var price = inputs[i+1].value;
+			  sum += qty * price;
+			}
+
+			sum = sum.toFixed(2);
+			document.getElementById("total").innerHTML = sum + "€";
+
+			if(sum == 0){
+				var x = document.createElement("div");
+
+				x.style.backgroundImage = "url(res/empty-john-travolta.gif)";
+				x.style.backgroundRepeat = "no-repeat";
+				x.style.backgroundSize = "100% auto";
+				x.style.marginTop = "80px";
+				x.style.marginLeft = "40px";
+				x.style.marginRight = "40px";
+				x.style.width = "auto";
+				x.style.height = "200px";
+				x.setAttribute("id","easter-egg");
+
+			  document.getElementById("order-form").appendChild(x);
+			}else{
+				do{
+					var x = document.getElementById("easter-egg");
+					if(x != null){
+						x.remove();
+					}
+				}while(x != null)
+				
+			}
+		}
+
+		function calculateTotalItems(){
+			var form = document.getElementById("order-form");
+			var inputs = form.getElementsByTagName("input");
+			var num = 0;
+
+			for(var i=0; i<inputs.length; i++){
+				if(inputs[i].name != "price"){
+					num += parseInt(inputs[i].value);
+				}
+			}
+
+			var elmt = document.getElementById("number-item");
+
+			if(num == 0){
+				elmt.style.display = "none";
+			}else{
+				elmt.style.display = "block";
+				elmt.innerHTML = num;
+			}
+
+			return num;
+		}
+
+		function findById(myArray, id) {
+			for(let i=0; i<myArray.length;i++){
+				if(myArray[i].className == "presentation-card"){
+					if(myArray[i].id == id){
+						return i;
+					}
+				}
+			}
+		}
+
+		function toggleItem(id){
+			var x = document.getElementById("detailed-item");
+			if(id==0){
+		  	x.style.display = "none";
+		  	return;
+		  }
+
+			if (x.style.display === "none" || x.style.display === "") {
+
+				var elmtList = document.getElementById("hot-drinks").childNodes;
+				let myArray = Array.from(elmtList);
+				let idArray = findById(myArray, String(id));
+
+				var img = myArray[idArray].firstElementChild.currentSrc;
+				var name = myArray[idArray].children[1].children[0].textContent;
+				var price = myArray[idArray].children[1].children[1].textContent;
+				var priceFloat = price.match(/\d\W\S\d/g);
+				priceFloat = parseFloat(priceFloat).toFixed(2);
+
+				document.getElementById("item-picture").setAttribute("src",img);
+				document.getElementById("item-name").innerHTML = name;
+				document.getElementById("item-price").innerHTML = String(priceFloat);
+
+				document.getElementById("btn-validate-lg").setAttribute("onclick","addItem(" + id + ")");
+
+				quantityItem(0);
+
+		    x.style.display = "block";
+		  } else {
+		    x.style.display = "none";
+		  }
+		}
+
+		function addItem(id){
+			var presentation = document.createElement("div");
+			presentation.classList.add("presentation-card");
+			presentation.setAttribute("id",id);
+
+			var img = document.createElement("img");
+			img.classList.add("card-picture");
+
+			var src = document.getElementById("item-picture").getAttribute("src");
+			img.setAttribute("src",src);
+			presentation.appendChild(img);
+
+			var content = document.createElement("div");
+			content.classList.add("content-sm");
+			presentation.appendChild(content);
+
+			var titre = document.createElement("h4");
+			titre.classList.add("card-name");
+			var title = document.getElementById("item-name").innerHTML;
+			titre.innerHTML = title;
+			content.appendChild(titre);
+
+			var titre = document.createElement("h4");
+			titre.classList.add("card-subtitles");
+			var price = parseFloat(document.getElementById("item-price").innerHTML);
+			price = price.toFixed(2);
+			titre.innerHTML = "Prix unitaire: " + price + "€";
+			content.appendChild(titre);
+
+			var titre = document.createElement("h4");
+			titre.classList.add("card-subtitles");
+			var quantity = document.getElementById("item-quantity").innerHTML;
+			titre.innerHTML = "Quantité: " + quantity;
+			content.appendChild(titre);
+
+			var input = document.createElement("input");
+			input.setAttribute("type","number");
+			input.setAttribute("name",id);
+			input.setAttribute("value",quantity);
+			input.setAttribute("hidden","");
+			presentation.appendChild(input);
+
+			var input = document.createElement("input");
+			input.setAttribute("type","number");
+			input.setAttribute("name","price");
+			input.setAttribute("value",price);
+			input.setAttribute("hidden","");
+			presentation.appendChild(input);
+
+
+			var close = document.createElement("div");
+			close.classList.add("delete");
+			var f = "deleteItem(" + id + ")";
+			close.setAttribute("onclick",f);
+			presentation.appendChild(close);
+
+			var btn_del = document.createElement("i");
+			btn_del.classList.add("fas");
+			btn_del.classList.add("fa-times");
+			close.appendChild(btn_del);
+
+			
+
+			document.getElementById("order-form").appendChild(presentation);
+
+			calculateTotalItems();
+			calculateTotalPrice();	
+		}
+
+		function deleteItem(id){
+			var elmtList = document.getElementById("order-form").childNodes;
+			let myArray = Array.from(elmtList);
+			let idArray = findById(myArray, String(id));
+			myArray[idArray].remove();
+
+			calculateTotalItems();
+			calculateTotalPrice();
+		}
+
+		function toggleShop(){
+			var x = document.getElementById("order-summary");
+		  if (x.style.display === "none" || x.style.display === "") {
+		    x.style.display = "block";
+		    toggleItem(0);
+		  } else {
+		    x.style.display = "none";
+		  }			
+		}
+
+	calculateTotalItems();
+	calculateTotalPrice();
+	</script>
 </body>
 </html>

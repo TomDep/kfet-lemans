@@ -105,7 +105,7 @@
 			// The user gives their student number
 		?>
 
-		<form action="activate.php" method="post">
+		<form action="activate.php" method="post" class="standard-form">
 
 			<h1>Bienvenue à toi, 'tit nouveau! </h1>
 
@@ -125,7 +125,7 @@
 			// The user gives a new password (and it's student number using an hidden input)
 		?>
 
-		<form action="activate.php" method="post">
+		<form action="activate.php" method="post" class="standard-form">
 			
 			<h1>C'est presque fini...!</h1>
 

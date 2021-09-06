@@ -65,9 +65,11 @@
 	<img src="res/icon.svg" id="biggerLogo">
 
     <section>
-    	<h1>Activation du compte</h1>	
+    	<form action="activate.php" method="post" class="standard-form">		
+    		<a href="login.php">Retour à l'écran de connexion</a>
 
-    	<form action="activate.php" method="post" class="standard-form">
+    		<h1>Activation du compte</h1>
+
 			<div class="form-group">
 			    <label>Numéro d'étudiant.e</label>
 			    <input type="text" name="student_number" class="form-control input-lg" placeholder="182355" required>			
@@ -76,10 +78,10 @@
 			    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Shhh! C'est secret" required>
 			</div>
 
-		  	<input class="btn bg-light" type="submit" value="Valider" id="btn-validate-lg">
+			<div class="text-center">		  	<input id="btn-validate-lg" type="submit" value="Valider" id="btn-validate-lg">
+</div>
 		</form>
 
-		<a href="login.php">Retour à l'écran de connexion</a>
 
 <?php 
 

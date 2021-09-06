@@ -45,6 +45,8 @@
 
     </ul>
   </div>
-  <img class="logo" src="res/icon.svg" alt="Logo de la KFET">
+  <a href="index.php">
+    <img class="logo" src="res/icon.svg" alt="Logo de la KFET">
+  </a>
   <span id="navspan"></span>
 </nav>

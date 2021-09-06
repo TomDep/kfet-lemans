@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php include 'templates/head.php'; ?>
-
-    <title>Kfet - Ajouter un.e utilisateurice</title>
+	<?php include "templates/head.php";?>
+	<title>Kfet - Accueil</title>
 </head>
 <body>
-    <?php include 'templates/nav.php'; ?>
+	<?php include "templates/nav.php";?>
 
-    <h1>Ajouter un.e utilisateurice</h1>
+    <section>
+		<div class="margin-top">
+			<form class="standard-form" action="lib/simple_user_add.php" method="post">
+				<h1>Ajout d'un.e nouvelle personne</h1>
 
-    <form method="post" autocomplete="off" action="lib/simple_user_add.php" class="standard-form">
-        <label for="student_number">Numéro étudiant.e</label>
-        <input type="number" name="student_number" required placeholder="182355"> 
+					<div class="form-group">
+					    <label>Numéro étudiant.e</label>
+					    <input type="text" name="student_number" class="form-control input-lg" placeholder="182355" required>
+					</div>
 
-        <label for="username">Nom de l'utilisateurice</label>
-        <input type="text" id="username" name="username" required>
-
-        <input type="submit" value="Ajouter">
-    </form>
+					<div class="form-group">
+					    <label>Nom complet</label>
+					    <input type="text" name="username" class="form-control" id="formGroupExampleInput2" placeholder="Tom de Pasquale" required>
+					</div>				  
+				  	<div class="text-center">
+				  		<input type="submit" value="Ajouter" id="btn-validate-lg">
+				  	</div>
+			</form>
+		</div>
+	</section>
 </body>
 </html>

@@ -82,13 +82,13 @@
 		<title>Kfet - Accueil</title>
 		<style type="text/css">
 
-			#shop{
+			#home{
 				height: calc(100vh - 10vh);
         margin-top: 100px ;
 			}
 
       @media(max-width: 600px){
-        #shop{
+        #home{
           margin-top: 60px;
         }
       }
@@ -310,6 +310,7 @@
 					background-color: #f1f2f6;
 					background-image: linear-gradient(315deg, #f1f2f6 0%, #c9c6c6 74%);
 
+filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 
 					box-shadow:  5px 5px 100px #c2c2c2,
 					             -5px -5px 100px #ffffff;
@@ -377,6 +378,8 @@
         	right: 0;
         	padding: 6px 15px;
         	margin: 20px 20px 0 0;
+
+        	filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 
         	border: none;
         }
@@ -555,7 +558,7 @@
 	<body>
 	<?php include "templates/nav.php";?>
 
-	<div id="shop">
+	<div id="home">
 		<!-- Identification de l'étudiant -->
 
 		<div class="index-profile">
@@ -630,28 +633,96 @@
 		</div>
 	</div>
 
-	<div id="hot-drinks">
-		<div class="header">
-      <h1>Les boisons chaudes</h1>
-    </div>
-    
-    <!-- Faire comme ci dessous! -->
+	<div id="shop">
+		<div id="hot-drinks">
+			<div class="header">
+	      <h1>Les boisons chaudes</h1>
+	    </div>
+	    
+	    <!-- Faire comme ci dessous! -->
 
-    <div class="presentation-card" id="12" onclick="toggleItem(12)">
-      <img class="card-picture" id="card-picture" src="res/images/products/Café.svg">
-      <div class="content">
-          <h4 class="card-name">Café</h4>
-          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-      </div> 
-    </div>
-    <div class="presentation-card" id="14" onclick="toggleItem(14)">
-      <img class="card-picture" src="res/images/products/Café.svg">
-      <div class="content">
-          <h4 class="card-name">Cafééééééééé</h4>
-          <h4 class="card-subtitles">Prix unitaire: 0.80€</h4>
-      </div> 
-    </div>
-	</div>
+	    <div class="presentation-card" id="12" onclick="toggleItem(1, 12)">
+	      <img class="card-picture" id="card-picture" src="res/images/products/Café.svg">
+	      <div class="content">
+	          <h4 class="card-name">Café</h4>
+	          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
+	      </div> 
+	    </div>
+	    <div class="presentation-card" id="14" onclick="toggleItem(1, 14)">
+	      <img class="card-picture" src="res/images/products/Café.svg">
+	      <div class="content">
+	          <h4 class="card-name">Cafééééééééé</h4>
+	          <h4 class="card-subtitles">Prix unitaire: 0.80€</h4>
+	      </div> 
+	    </div>
+		</div>
+		<div id="cold-drinks">
+			<div class="header">
+	      <h1>Les boisons froides</h1>
+	    </div>
+	    
+	    <!-- Faire comme ci dessous! -->
+
+	    <div class="presentation-card" id="12" onclick="toggleItem(2, 12)">
+	      <img class="card-picture" id="card-picture" src="res/images/products/Café.svg">
+	      <div class="content">
+	          <h4 class="card-name">Milk</h4>
+	          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
+	      </div> 
+	    </div>
+	    <div class="presentation-card" id="14" onclick="toggleItem(2, 14)">
+	      <img class="card-picture" src="res/images/products/Café.svg">
+	      <div class="content">
+	          <h4 class="card-name">Cafééééééééé</h4>
+	          <h4 class="card-subtitles">Prix unitaire: 0.80€</h4>
+	      </div> 
+	    </div>
+		</div>
+		<div id="snacks">
+			<div class="header">
+	      <h1>Les trucs à grignoter</h1>
+	    </div>
+	    
+	    <!-- Faire comme ci dessous! -->
+
+	    <div class="presentation-card" id="12" onclick="toggleItem(3, 12)">
+	      <img class="card-picture" id="card-picture" src="res/images/products/Café.svg">
+	      <div class="content">
+	          <h4 class="card-name">Chocolat</h4>
+	          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
+	      </div> 
+	    </div>
+	    <div class="presentation-card" id="14" onclick="toggleItem(3, 14)">
+	      <img class="card-picture" src="res/images/products/Café.svg">
+	      <div class="content">
+	          <h4 class="card-name">Cafééééééééé</h4>
+	          <h4 class="card-subtitles">Prix unitaire: 0.80€</h4>
+	      </div> 
+	    </div>
+		</div>
+		<div id="formules">
+			<div class="header">
+	      <h1>Formules</h1>
+	    </div>
+	    
+	    <!-- Faire comme ci dessous! -->
+
+	    <div class="presentation-card" id="12" onclick="toggleItem(4, 12)">
+	      <img class="card-picture" id="card-picture" src="res/images/products/Café.svg">
+	      <div class="content">
+	          <h4 class="card-name">Truc</h4>
+	          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
+	      </div> 
+	    </div>
+	    <div class="presentation-card" id="14" onclick="toggleItem(4, 14)">
+	      <img class="card-picture" src="res/images/products/Café.svg">
+	      <div class="content">
+	          <h4 class="card-name">Cafééééééééé</h4>
+	          <h4 class="card-subtitles">Prix unitaire: 0.80€</h4>
+	      </div> 
+	    </div>
+		</div>
+  </div>
 	
 	<div id="detailed-item" class="detailed-item" >
 		<div class="item-presentation">
@@ -689,7 +760,7 @@
 			<form method="post" action="lib/command.php" id="order-form">
 				<button type="submit" class="check"><i class="fas fa-check"></i></button>
 
-
+				<!--
 				<div class="presentation-card" id="5">
 		      <img class="card-picture" src="res/images/products/Café.svg">
 
@@ -727,7 +798,7 @@
 		      <input type="number" name="4" value="3" hidden>
 		      <input type="number" name="price" value="0.4" hidden>
 		      <div class="delete" onclick="deleteItem(6)"><i class="fas fa-times"></i></div>
-	    	</div>
+	    	</div>-->
 				
     	</form>
 	</div>	
@@ -875,16 +946,23 @@
 			}
 		}
 
-		function toggleItem(id){
+		function toggleItem(categories, id){
 			var x = document.getElementById("detailed-item");
-			if(id==0){
+			if(id==0 && categories==0){
 		  	x.style.display = "none";
 		  	return;
 		  }
 
 			if (x.style.display === "none" || x.style.display === "") {
 
-				var elmtList = document.getElementById("hot-drinks").childNodes;
+
+				switch(categories){
+					case 1: var elmtList = document.getElementById("hot-drinks").childNodes; break;
+					case 2: var elmtList = document.getElementById("cold-drinks").childNodes; break;
+					case 3: var elmtList = document.getElementById("snacks").childNodes; break;
+					case 4: var elmtList = document.getElementById("formules").childNodes; break;
+				}
+
 				let myArray = Array.from(elmtList);
 				let idArray = findById(myArray, String(id));
 
@@ -991,7 +1069,7 @@
 			var x = document.getElementById("order-summary");
 		  if (x.style.display === "none" || x.style.display === "") {
 		    x.style.display = "block";
-		    toggleItem(0);
+		    toggleItem(0, 0);
 		  } else {
 		    x.style.display = "none";
 		  }			

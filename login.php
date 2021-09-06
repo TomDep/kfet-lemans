@@ -20,7 +20,7 @@
 
 	    <section>
 			<form class="standard-form" action="lib/authenticate.php" method="post">
-				<h1>Bienvenue! </h1>
+				<h1 id="title"></h1>
 
 				<div class="form-group">
 				    <label>Numéro étudiant</label>
@@ -46,5 +46,24 @@
 			</form>
 		</section>
 	</body>
+
+
+<script type="text/javascript">
+	var i = 0;
+	var txt = "Bienvenue! ";
+	var speed = 100;
+
+	function typeWriter() {
+	  if (i < txt.length) {
+	    document.getElementById("title").innerHTML += txt.charAt(i);
+	    i++;
+	    setTimeout(typeWriter, speed);
+	  }
+	}
+
+	typeWriter();
+
+</script>
+
 </html>
 

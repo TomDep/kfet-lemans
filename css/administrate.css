@@ -55,3 +55,7 @@ tr:hover .delete-row {
     height: 32px;
     width: 32px;
 }
+
+.table .thead-dark{
+    z-index: 0;
+}

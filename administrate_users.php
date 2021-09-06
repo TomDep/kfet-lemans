@@ -42,7 +42,7 @@
                             <th scope="col" class="sortable">Adhérent.e</th>
                             <th scope="col" class="sortable">Niveau d'autorisation</th>
                             <th scope="col" class="sortable">Crédit</th>
-                            <th scope="col" class="sortable">Actif</th>
+                            <th scope="col" class="sortable">Actif.ve</th>
                             <th></th> 
                         </tr>
                     </thead>

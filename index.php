@@ -570,7 +570,29 @@
 
 		<div class="sub-categories" id="liked-items">		
 			<h4 class="sub-categories-title">J'adore ça, donnez m'en plus!</h4><span class="menuspan" id="span-like"></span>
-			<div class="grey"></div>
+			<div class="grey">
+<?php
+
+		require_once('lib/favorites.php');
+		$favorites = getFavorites($_SESSION['id'], 3);
+
+		foreach ($favorites as $favorite_id => $quantity) {
+			$query = 'SELECT id, image, name, price, bdlc_price FROM products WHERE id = ?';
+			if($stmt = $mysqli->prepare($query)) {
+				$stmt->bind_param('i', $favorite_id);
+				$stmt->execute();
+				$stmt->bind_result($id, $image, $name, $price, $bdlc_price);
+
+				while ($stmt->fetch()) {
+					// echo things there
+					echo '<p>' . $name . '</p>';
+					// ***
+				}
+			}
+		}
+
+?>
+			</div>
 		</div>
 
 		<!-- La répartition du shop avec mes 4 catégories -->

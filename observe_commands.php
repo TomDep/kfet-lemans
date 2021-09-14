@@ -73,7 +73,7 @@
             $date_message = 'Il y a ' . $time_delta->i . ' minute';
         } else if($time_delta->h == 0 && $time_delta->i == 1) {
             $date_message = 'Il y a ' . $time_delta->i . ' minute';
-        } else if($time_delta->h == 0) {
+        } else if($time_delta->h == 0 && $time_delta->i != 0) {
             $date_message = 'Il y a ' . $time_delta->i . ' minutes';
         } else if($time_delta->i == 0) {
             $date_message = 'Il y a quelques secondes';

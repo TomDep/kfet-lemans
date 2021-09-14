@@ -19,8 +19,6 @@
     $products = [];
     $total_price = 0;
 
-    var_dump($_POST);
-
     foreach ($_POST as $id => $quantity) {
         $products[$id] = $quantity;
 
@@ -62,4 +60,7 @@
     foreach ($products as $id => $quantity) {
         $mysqli->query('INSERT INTO item_orders (order_id, product_id, quantity) VALUES ('. $order_id .', '. $id .', '. $quantity .')');
     }
+
+    // Redirect to home page
+    header('Location: index.php');
 ?>

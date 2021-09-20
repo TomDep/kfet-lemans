@@ -197,9 +197,9 @@
 			.column {
 			  width: calc(50% - 10px);
 			  height: 15vh;
-			  background-color: grey;
+			  /*background-color: grey;*/
 			  margin: 5px;
-
+background-size: 100% auto;
 			  cursor: pointer;
 			}
 
@@ -310,7 +310,7 @@
 					background-color: #f1f2f6;
 					background-image: linear-gradient(315deg, #f1f2f6 0%, #c9c6c6 74%);
 
-filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+					filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 
 					box-shadow:  5px 5px 100px #c2c2c2,
 					             -5px -5px 100px #ffffff;
@@ -320,10 +320,11 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
         	position: fixed;
         	right: 0;
         	bottom: 0;
-        	margin: 0 15px 55px 0;
+        	margin: 0 0 40px 0;
         	font-size: 20px;
         	background-color: #ff8c00;
         	border-radius: 100%;
+
         	height: 30px;
         	width: 30px;
         }
@@ -374,6 +375,7 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
         	z-index: 15;
 
         	position: fixed;
+        
         	top: 0;
         	right: 0;
         	padding: 6px 15px;
@@ -510,21 +512,45 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
         	width: 30px;
         }
 
-        .detailed-item .item-add{
-        	text-align : center!important;
-        	position: fixed;
-        	top: -150px;
-        	width: 100%;
+        .detailed-item .item-add #btn-validate-lg{
+        	position: absolute;
+        	bottom: 0;
         	z-index: 10;
-        	height: 100px;
+        	text-transform: none;
+        	width: calc(100% - 60px);
+        	margin-left: 0;
+        	margin-bottom: 10%;
+        	/*margin-left: calc((100% - 200px) / 2);*/
         } 
+
+        @media (max-width: 600px){
+        	.detailed-item .item-add #btn-validate-lg{
+        		margin-bottom: 10px;
+        	}
+        }
+
+        .detailed-item .item-control{
+        	background-color: #ccc;
+        	border-radius: 20px;
+        	position: fixed;
+        	right: 35px;
+        	width: 40px;
+        	height: 20%;
+        	top: 65%;
+        }
 
         .detailed-item .item-control .item-control-plus,
         .detailed-item .item-control .item-control-minus{
         	position: fixed;
-        	right: 30px;
-        	font-size: 30px;
-        	width: 30px;
+        	right: 35px;
+        	font-size: 24px;
+        	width: 40px;
+        	height: 40px;
+        	border-radius: 100%;
+        	color: white;
+        	background-color: black;
+        	padding-left: 10px;
+        	padding-top: 1px;
         }
 
         .detailed-item .item-control .item-control-plus{
@@ -533,13 +559,6 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 
         .detailed-item .item-control .item-control-minus{
         	top: 80%;
-        }
-
-
-
-        .detailed-item .item-add #btn-validate-lg{
-
-        	text-transform: none;
         }
 
         @media (max-width:  600px){
@@ -551,17 +570,27 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 	        	overflow: hidden;
         	}
         }
+
+        .blur   {
+			    filter: blur(5px);
+			    -webkit-filter: blur(5px);
+			    -moz-filter: blur(5px);
+			    -o-filter: blur(5px);
+			    -ms-filter: blur(5px);
+				}
 </style>
 
 	</head>
 
 	<body>
+
+	<div id="container">
 	<?php include "templates/nav.php";?>
 
 	<div id="home">
 		<!-- Identification de l'étudiant -->
 
-		<div class="index-profile">
+		<div class="index-profile" onclick="document.location.href = 'profile.php';">
       <img class="index-profile-picture" src="res/icon.svg">
       <div class="content">
           <h4 class="index-name">Tom de Pasquale</h4>
@@ -615,18 +644,19 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 			<h4 class="sub-categories-title centered-text underline">Catégories</h4>
 
 			<div class="row">
-				<div class="column" onclick="location.href='index.php#hot-drinks'">
+				<div class="column" style="background-image:url(https://images.pexels.com/photos/585750/pexels-photo-585750.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);">
 					<p>Boisson<br>Chaude</p>
 				</div>
-				<div class="column">
+				<div class="column" 
+						style="background-image:url(https://images.pexels.com/photos/7235673/pexels-photo-7235673.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
 					<p>Boisson<br>Froide</p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="column">
+				<div class="column" style="background-image:url(https://images.pexels.com/photos/4087610/pexels-photo-4087610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
 					<p>Snacks</p>
 				</div>
-				<div class="column">
+				<div class="column" style="cursor:not-allowed;background: grey;">
 					<p>Formules</p>
 				</div>
 			</div>		
@@ -723,6 +753,8 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 	    </div>
 		</div>
   </div>
+
+	</div>
 	
 	<div id="detailed-item" class="detailed-item" >
 		<div class="item-presentation">
@@ -737,19 +769,20 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 					<div class="item-control-plus" onclick="quantityItem(1)"><i class="fas fa-plus"></i></div>
 					<div class="item-control-minus" onclick="quantityItem(-1)"><i class="fas fa-minus"></i></div>
 				</div>
+				<div class="item-add">
+		  		<input type="submit" value="Ajouter pour 1.20€" id="btn-validate-lg" onclick="addItem()">
+				</div>
 		</div>
 
-		<div class="item-add">
-		  	<input type="submit" value="Ajouter pour 1.20€" id="btn-validate-lg" onclick="addItem()">
-		</div>
+		
 
-  	<div class="close" onclick="toggleItem()"><i class="fas fa-times"></i></div>
+  	<div class="close" onclick="toggleItem(0,0)"><i class="fas fa-times"></i></div>
 	</div>
 
 	<div class="shoping-cart">
 		<div class="icon" onclick="toggleShop()">
-			<span class="fa-layers fa-fw">
-		    <i class="fas fa-shopping-cart"></i>
+			<span id="icon" class="fa-layers fa-fw">
+		    <i class="fas fa-shopping-cart" id="shopping-cart"></i>
 		    <span class="fa-layers-counter" id="number-item"></span>
 		  </span>
 		</div>
@@ -759,96 +792,13 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 
 			<form method="post" action="lib/command.php" id="order-form">
 				<button type="submit" class="check"><i class="fas fa-check"></i></button>
-
-				<!--
-				<div class="presentation-card" id="5">
-		      <img class="card-picture" src="res/images/products/Café.svg">
-
-		      <div class="content-sm">
-		          <h4 class="card-name">Caaaaaaaaaaaa</h4>
-		          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-		          <h4 class="card-subtitles">Quantité: 3</h4>
-		      </div>				
-
-		      <input type="number" name="4" value="3" hidden>
-		      <input type="number" name="price" value="0.4" hidden>
-
-		      <div class="delete" onclick="deleteItem(5)"><i class="fas fa-times"></i></div>
-	    	</div>
-
-	    	<div class="presentation-card" id="4">
-		      <img class="card-picture" src="res/images/products/Café.svg">
-		      <div class="content-sm">
-		          <h4 class="card-name">Café</h4>
-		          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-		          <h4 class="card-subtitles">Quantité: 3</h4>
-		      </div>				
-		      <input type="number" name="4" value="3" hidden>
-		      <input type="number" name="price" value="0.4" hidden>
-		      <div class="delete" onclick="deleteItem(4)"><i class="fas fa-times"></i></div>
-	    	</div>
-
-	    	<div class="presentation-card" id="6">
-		      <img class="card-picture" src="res/images/products/Café.svg">
-		      <div class="content-sm">
-		          <h4 class="card-name">Caféééééééééééé</h4>
-		          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-		          <h4 class="card-subtitles">Quantité: 3</h4>
-		      </div>				
-		      <input type="number" name="4" value="3" hidden>
-		      <input type="number" name="price" value="0.4" hidden>
-		      <div class="delete" onclick="deleteItem(6)"><i class="fas fa-times"></i></div>
-	    	</div>-->
-				
     	</form>
+    </div>
 	</div>	
 
 
-<!--
-  <section class="default-linked-section linked-section">
-  
-		<div>
-			<a href="#boissons-chaudes">Boissons chaudes</a>
-			<a href="#boissons-froides">Boissons froides</a>
-			<a href="#snacks">Snacks</a>
-			<a href="#formules">Formules</a>
-		</div>
-	</section>
 
-	<section class="linked-section" id="boissons-chaudes">
-		<h1>Boissons chaudes</h1>
-
-		<a href="#">Retour</a>
-<?php
-		displayProductFromCategory('hot-drinks');
-?>
-	</section>
-
-	<section class="linked-section" id="boissons-froides">
-		<h1>Boissons froides</h1>
-
-		<a href="#">Retour</a>
-<?php
-		displayProductFromCategory('cold-drinks');
-?>
-	</section>
-
-	<section class="linked-section" id="snacks">
-		<h1>Snacks</h1>
-
-		<a href="#">Retour</a>
-<?php
-		displayProductFromCategory('snacks');
-?>
-	</section>
-
-	<section class="linked-section" id="formules">
-		<h1>Formules</h1>
-
-		<a href="#">Retour</a>
-	</section>-->
-	<!--<script type="text/javascript" src="js/linked_sections.js"></script>-->
- <script type="text/javascript">
+ 	<script type="text/javascript">
 		function quantityItem(x){
 			var qty = parseInt(document.getElementById("item-quantity").innerHTML);
 
@@ -950,12 +900,11 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 			var x = document.getElementById("detailed-item");
 			if(id==0 && categories==0){
 		  	x.style.display = "none";
+		  	blur(0);
 		  	return;
 		  }
 
 			if (x.style.display === "none" || x.style.display === "") {
-
-
 				switch(categories){
 					case 1: var elmtList = document.getElementById("hot-drinks").childNodes; break;
 					case 2: var elmtList = document.getElementById("cold-drinks").childNodes; break;
@@ -981,9 +930,62 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 				quantityItem(0);
 
 		    x.style.display = "block";
+		    blur(1);
 		  } else {
 		    x.style.display = "none";
+		    blur(0);
 		  }
+		}
+
+		function toggleShop(){
+			var x = document.getElementById("order-summary");
+		  if (x.style.display === "none" || x.style.display === "") {
+		    x.style.display = "block";
+		    toggleItem(0, 0);
+
+		    // Remove shopping cart and counter
+		    var shoppingCart = document.getElementById("shopping-cart");
+		    shoppingCart.remove();
+		    var counter = document.getElementById("number-item");
+		    counter.remove();
+
+		    // Replace by a time
+		    var icon = document.createElement("i");
+		    icon.classList.add("fas");
+		    icon.classList.add("fa-times");
+		    icon.setAttribute("id","icon-times");
+
+		    icon.style.fontSize = "40px";
+		    icon.style.marginLeft = "7px";
+		    icon.style.marginTop = "5px";
+
+		    var divIcon = document.getElementById("icon");
+		    divIcon.appendChild(icon);
+
+		    blur(1);
+		  } else {
+		    x.style.display = "none";
+
+		    // Remove time
+		    var times = document.getElementById("icon-times");
+		    times.remove();
+
+		    var shoppingCart = document.createElement("i");
+		    shoppingCart.classList.add("fas");
+		    shoppingCart.classList.add("fa-shopping-cart");
+		    shoppingCart.setAttribute("id", "shopping-cart");
+
+		    var counter = document.createElement("span");
+		    counter.classList.add("fa-layers-counter");
+		    counter.setAttribute("id", "number-item");
+
+		    var divIcon = document.getElementById("icon");
+		    divIcon.appendChild(shoppingCart);
+		    divIcon.appendChild(counter);
+
+		    blur(0);
+		    calculateTotalItems();
+		  }			
 		}
 
 		function addItem(id){
@@ -1052,7 +1054,8 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 			document.getElementById("order-form").appendChild(presentation);
 
 			calculateTotalItems();
-			calculateTotalPrice();	
+			calculateTotalPrice();
+			toggleItem(0,0);	
 		}
 
 		function deleteItem(id){
@@ -1064,19 +1067,32 @@ filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 			calculateTotalItems();
 			calculateTotalPrice();
 		}
+		
 
-		function toggleShop(){
-			var x = document.getElementById("order-summary");
-		  if (x.style.display === "none" || x.style.display === "") {
-		    x.style.display = "block";
-		    toggleItem(0, 0);
-		  } else {
-		    x.style.display = "none";
-		  }			
+		function blur(state){	
+			// State 1 : blur the background and activate the overlay
+			// State 0 : remove the overlay and blur effect	
+			
+			var containerElement = document.getElementById("container");		    
+			var nav = document.getElementById("nav");
+
+			if(state == 1){
+		    containerElement.setAttribute("class", "blur");
+
+		    // Fixing the margin problem with the navbar while applying a filter
+		    if(parseInt(nav.offsetHeight) == "60"){
+		    	nav.style.top = "-60px";
+		    }else{
+		      nav.style.top = "-100px";
+		    }
+			} else{
+		    containerElement.setAttribute("class", null);
+		    nav.style.top = "0";
+			}
 		}
 
-	calculateTotalItems();
-	calculateTotalPrice();
+		calculateTotalItems();
+		calculateTotalPrice();
 	</script>
 </body>
 </html>

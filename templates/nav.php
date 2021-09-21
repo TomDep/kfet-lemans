@@ -19,8 +19,8 @@
 
       <hr>
       <a href="recharge_account.php"><li>Recharger un compte</li></a>
-      <a href="#"><li>Ajouter une nouvelle personne</li></a>
-      <a href="#"><li>Historique des commmandes</li></a>
+      <a href="add_user.php"><li>Ajouter une nouvelle personne</li></a>
+      <a href="observe_commands.php"><li>Historique des commmandes</li></a>
 
       <!--Pour le boss-->
 
@@ -45,6 +45,8 @@
 
     </ul>
   </div>
-  <img class="logo" src="res/icon.svg" alt="Logo de la KFET">
+  <a href="index.php">
+    <img class="logo" src="res/icon.svg" alt="Logo de la KFET">
+  </a>
   <span id="navspan"></span>
 </nav>

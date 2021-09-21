@@ -31,10 +31,6 @@
 				    <label>Mot de passe</label>
 				    <input type="password" name="password" class="form-control" id="password" placeholder="Shhh! C'est secret" required>
 
-				    
-				    <div class="float-right">
-				    	<a href="edit_password.php">Mot de passe oublié?</a>
-				    </div>
 				    <div class="float-left">
 				    	<a href="activate.php">Première connexion?</a>
 					</div>							  	
@@ -50,7 +46,7 @@
 
 <script type="text/javascript">
 	var i = 0;
-	var txt = "Bienvenue! ";
+	var txt = "Bienvenue !";
 	var speed = 100;
 
 	function typeWriter() {
@@ -62,6 +58,11 @@
 	}
 
 	typeWriter();
+
+	addStatusMessage('activate', {
+        'success' : 'Le compte a bien été activé !',
+        'error' : 'Il y a eu un problème lors de l\'activation du compte ...'
+    })
 
 </script>
 

@@ -77,27 +77,13 @@ $(document).ready(function() {
     $('#add-user-form').validate()
 
     // ---------- Status Messages ----------
-    let addStatus = getURLParameter('add_status')
-    let deleteStatus = getURLParameter('delete_status')
+    addStatusMessage('add', {
+        'success' : 'L\'utilisateurice a bien été ajouté !',
+        'error' : 'Il y a eu un problème lors de l\'ajout de l\'utilisateurice ... (oups)'
+    })
 
-    if(addStatus != null) {
-        if(addStatus == "success") {
-            $('#add-success-message').modal()
-        } else if(error) {
-            $('#add-error-message').modal()
-        }
-    }
-
-    if(deleteStatus != null) {
-        if(deleteStatus == "success") {
-            $('#delete-success-message').modal()
-        } else if(error) {
-            $('#delete-error-message').modal()
-        }
-    }
-
-    if(addStatus || deleteStatus) {
-        // Remove the tag from the link
-        window.history.replaceState(null, null, window.location.pathname);
-    }
+    addStatusMessage('delete', {
+        'success': 'L\'utilisateurice a bien été supprimé (de la base de donnée bien entendu). Iel va toujours bien rassurez-vous !',
+        'error': 'Il y a eu un problème lors de la suppression de l\'utilisateurice ... Espérons qu\'iel soit encore en un morceau !'
+    })
 })

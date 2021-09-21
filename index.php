@@ -6,71 +6,38 @@
 	}	
 
 	// Include the database connect file
-	include $_SERVER['DOCUMENT_ROOT'] . '/kfet/lib/connect.php';
+	require_once('lib/connect.php');
+	$mysqli = connectToDatabase();
 
-	function displayProductFromCategory($categoryName) {
+	// Update the session variables
+	$req = 'SELECT bdlc_member, credit FROM users WHERE id = ?';
+	if($stmt = $mysqli->prepare($req)) {
+		$stmt->bind_param('i', $_SESSION['id']);
+		$stmt->execute();
 
-		// Connect to the database
-		if(!$connection = connectToDatabase()) {
-			echo 'Erreur de la base de donnée : ' . $connection->error;
-		} else {
+		$stmt->bind_result($bdlc_member, $credit);
+		while($stmt->fetch()) {
+			$_SESSION['bdlc_member'] = $bdlc_member;
+			$_SESSION['credit'] = $credit;
+		}
+	}
+	
+	function displayCategory($category) {
+		// Get all products
+		$mysqli = connectToDatabase();
 
-			$isBDLCMember = FALSE;
-
-			// Check if the user is a BDLC member
-			$req = 'SELECT bdlc_member FROM users WHERE id = ?';			
-			if($stmt = $connection->prepare($req)) {
-				$stmt->bind_param('i', $category);
-				$stmt->execute();
-				$stmt->store_result();
-
-				if($stmt->num_rows > 0) {
-					$stmt->bind_result($BDLCmember);
-					$isBDLCMember = ($BDLCmember) ? TRUE : FALSE;					
-				}
-				
-				$stmt->close();
-			}
-
-			$req = 'SELECT id, name, price, bdlc_price, image FROM products WHERE category = ?';
-			if($stmt = $connection->prepare($req)) {
-				switch($categoryName) {
-					case 'hot-drinks':
-						$category = 0;
-						break;
-					case 'cold-drinks':
-						$category = 1;
-						break;
-					case 'snacks':
-						$category = 2;
-						break;
-					default:
-						$category = -1;
-						break;
-				}
-
-				$stmt->bind_param('i', $category);
-				$stmt->execute();
-				$stmt->store_result();
-
-				if($stmt->num_rows > 0) {
-					$stmt->bind_result($id, $name, $price, $bdlc_price, $image);
-					while($stmt->fetch()) {
-
-						$actualPrice = ($isBDLCMember) ? $bdlc_price : $price;
+		$result = $mysqli->query('SELECT * FROM products WHERE category = ' . $category);
+		while($row = $result->fetch_assoc()) {
+			$actualPrice = ($_SESSION['bdlc_member']) ? $row['bdlc_price'] : $row['price'];
 ?>
-						<div>
-							<p><?php echo htmlspecialchars($name); ?></p>
-							<p><?php echo htmlspecialchars($actualPrice) . '€'; ?></p>
-							<img width="50" height="50" src=<?php echo '"res/images/products/' . htmlspecialchars($image) . '"'; ?>>
-						</div>
+<div class="presentation-card" id="<?php echo htmlspecialchars($row['id']); ?>" onclick="toggleItem(<?php echo htmlspecialchars($category+1); ?>, <?php echo htmlspecialchars($row['id']); ?>)">
+  <img class="card-picture" id="card-picture" src="res/images/products/<?php echo htmlspecialchars($row['image']); ?>">
+  <div class="content">
+      <h4 class="card-name"><?php echo htmlspecialchars($row['name']); ?></h4>
+      <h4 class="card-subtitles">Prix unitaire: <?php echo htmlspecialchars($actualPrice); ?> €</h4>
+  </div> 
+</div>
 <?php
-					}
-				}
-
-			} else {
-				echo 'Erreur de la base de donnée : ' . $connection->error;
-			}
 		}
 	}
 ?>
@@ -82,20 +49,16 @@
 		<title>Kfet - Accueil</title>
 		<style type="text/css">
 
-			#home{
-				height: calc(100vh - 10vh);
-        margin-top: 100px ;
-			}
-
-      @media(max-width: 600px){
-        #home{
-          margin-top: 60px;
-        }
+			.index-profile {        
+        margin: 100px 20px 10px 20px;
+        height: 60px;
       }
 
-			.index-profile {        
-        margin: 10px 20px;
-        height: 60px;
+      @media(max-width:  600px) {
+      	.index-profile {        
+    	    margin: 60px 20px 10px 20px;
+  	      height: 60px;
+	      }
       }
 
       .index-profile-picture{
@@ -569,9 +532,7 @@ background-size: 100% auto;
 	        	margin: 0 20px;
 	        	overflow: hidden;
         	}
-        }
-
-        .blur   {
+        }        .blur   {
 			    filter: blur(5px);
 			    -webkit-filter: blur(5px);
 			    -moz-filter: blur(5px);
@@ -579,7 +540,6 @@ background-size: 100% auto;
 			    -ms-filter: blur(5px);
 				}
 </style>
-
 	</head>
 
 	<body>
@@ -587,16 +547,22 @@ background-size: 100% auto;
 	<div id="container">
 	<?php include "templates/nav.php";?>
 
+
 	<div id="home">
 		<!-- Identification de l'étudiant -->
-
 		<div class="index-profile" onclick="document.location.href = 'profile.php';">
       <img class="index-profile-picture" src="res/icon.svg">
+
       <div class="content">
-          <h4 class="index-name">Tom de Pasquale</h4>
-          <h4 class="index-money">Solde : 0.00€</h4>
+          <h4 class="index-name"><?php echo htmlspecialchars($_SESSION['username']); ?></h4>
+          <h4 class="index-money">Solde : <?php echo htmlspecialchars($_SESSION['credit']); ?> €</h4>
       </div>
-    </div>
+  </div>
+
+	<div id="home" class="default-linked-section linked-section">
+		<!-- Identification de l'étudiant -->
+
+		
     <!-- Evénéments à promouvoir ou des rappels! Exemple : mardi/jeudi viennoiseries, wei, etc -->
 
 		<div class="sub-categories carousel slide " data-ride="carousel" id="event">
@@ -635,7 +601,29 @@ background-size: 100% auto;
 
 		<div class="sub-categories" id="liked-items">		
 			<h4 class="sub-categories-title">J'adore ça, donnez m'en plus!</h4><span class="menuspan" id="span-like"></span>
-			<div class="grey"></div>
+			<div class="grey">
+<?php
+
+		require_once('lib/favorites.php');
+		$favorites = getFavorites($_SESSION['id'], 3);
+
+		foreach ($favorites as $favorite_id => $quantity) {
+			$query = 'SELECT id, image, name, price, bdlc_price FROM products WHERE id = ?';
+			if($stmt = $mysqli->prepare($query)) {
+				$stmt->bind_param('i', $favorite_id);
+				$stmt->execute();
+				$stmt->bind_result($id, $image, $name, $price, $bdlc_price);
+
+				while ($stmt->fetch()) {
+					// echo things there
+					echo '<p>' . $name . '</p>';
+					// ***
+				}
+			}
+		}
+
+?>
+			</div>
 		</div>
 
 		<!-- La répartition du shop avec mes 4 catégories -->
@@ -664,93 +652,32 @@ background-size: 100% auto;
 	</div>
 
 	<div id="shop">
-		<div id="hot-drinks">
+		<div id="hot-drinks" class="linked-section">
 			<div class="header">
 	      <h1>Les boisons chaudes</h1>
 	    </div>
-	    
-	    <!-- Faire comme ci dessous! -->
-
-	    <div class="presentation-card" id="12" onclick="toggleItem(1, 12)">
-	      <img class="card-picture" id="card-picture" src="res/images/products/Café.svg">
-	      <div class="content">
-	          <h4 class="card-name">Café</h4>
-	          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-	      </div> 
-	    </div>
-	    <div class="presentation-card" id="14" onclick="toggleItem(1, 14)">
-	      <img class="card-picture" src="res/images/products/Café.svg">
-	      <div class="content">
-	          <h4 class="card-name">Cafééééééééé</h4>
-	          <h4 class="card-subtitles">Prix unitaire: 0.80€</h4>
-	      </div> 
-	    </div>
+	   	
+	    <?php displayCategory(0); ?>
 		</div>
-		<div id="cold-drinks">
+		<div id="cold-drinks" class="linked-section">
 			<div class="header">
 	      <h1>Les boisons froides</h1>
 	    </div>
-	    
-	    <!-- Faire comme ci dessous! -->
-
-	    <div class="presentation-card" id="12" onclick="toggleItem(2, 12)">
-	      <img class="card-picture" id="card-picture" src="res/images/products/Café.svg">
-	      <div class="content">
-	          <h4 class="card-name">Milk</h4>
-	          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-	      </div> 
-	    </div>
-	    <div class="presentation-card" id="14" onclick="toggleItem(2, 14)">
-	      <img class="card-picture" src="res/images/products/Café.svg">
-	      <div class="content">
-	          <h4 class="card-name">Cafééééééééé</h4>
-	          <h4 class="card-subtitles">Prix unitaire: 0.80€</h4>
-	      </div> 
-	    </div>
-		</div>
-		<div id="snacks">
+	  	
+	  	<?php displayCategory(1); ?>  
+	  </div>
+		<div id="snacks" class="linked-section">
 			<div class="header">
 	      <h1>Les trucs à grignoter</h1>
 	    </div>
-	    
-	    <!-- Faire comme ci dessous! -->
-
-	    <div class="presentation-card" id="12" onclick="toggleItem(3, 12)">
-	      <img class="card-picture" id="card-picture" src="res/images/products/Café.svg">
-	      <div class="content">
-	          <h4 class="card-name">Chocolat</h4>
-	          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-	      </div> 
-	    </div>
-	    <div class="presentation-card" id="14" onclick="toggleItem(3, 14)">
-	      <img class="card-picture" src="res/images/products/Café.svg">
-	      <div class="content">
-	          <h4 class="card-name">Cafééééééééé</h4>
-	          <h4 class="card-subtitles">Prix unitaire: 0.80€</h4>
-	      </div> 
-	    </div>
+	   
+	   	<?php displayCategory(2); ?>
 		</div>
-		<div id="formules">
+		<div id="formules" class="linked_section" style="display: none;">
 			<div class="header">
 	      <h1>Formules</h1>
-	    </div>
-	    
-	    <!-- Faire comme ci dessous! -->
-
-	    <div class="presentation-card" id="12" onclick="toggleItem(4, 12)">
-	      <img class="card-picture" id="card-picture" src="res/images/products/Café.svg">
-	      <div class="content">
-	          <h4 class="card-name">Truc</h4>
-	          <h4 class="card-subtitles">Prix unitaire: 0.40€</h4>
-	      </div> 
-	    </div>
-	    <div class="presentation-card" id="14" onclick="toggleItem(4, 14)">
-	      <img class="card-picture" src="res/images/products/Café.svg">
-	      <div class="content">
-	          <h4 class="card-name">Cafééééééééé</h4>
-	          <h4 class="card-subtitles">Prix unitaire: 0.80€</h4>
-	      </div> 
-	    </div>
+	    </div
+	  
 		</div>
   </div>
 
@@ -798,7 +725,8 @@ background-size: 100% auto;
 
 
 
- 	<script type="text/javascript">
+<script type="text/javascript" src="js/linked_sections.js"></script>
+<script type="text/javascript">
 		function quantityItem(x){
 			var qty = parseInt(document.getElementById("item-quantity").innerHTML);
 
@@ -913,6 +841,7 @@ background-size: 100% auto;
 				}
 
 				let myArray = Array.from(elmtList);
+				console.log(myArray);
 				let idArray = findById(myArray, String(id));
 
 				var img = myArray[idArray].firstElementChild.currentSrc;

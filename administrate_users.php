@@ -34,7 +34,7 @@
                 </form>
 
                 <table id="table" class="table table-hover table-sm sortable-table table-striped bg-light">
-                    <thead class="thead-dark sticky-top">
+                    <thead class="thead-dark">
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Numéro étudiant.e</th>
@@ -42,7 +42,7 @@
                             <th scope="col" class="sortable">Adhérent.e</th>
                             <th scope="col" class="sortable">Niveau d'autorisation</th>
                             <th scope="col" class="sortable">Crédit</th>
-                            <th scope="col" class="sortable">Actif</th>
+                            <th scope="col" class="sortable">Actif.ve</th>
                             <th></th> 
                         </tr>
                     </thead>
@@ -142,58 +142,6 @@
                     </div>
                     <button id="add-user-submit" type="submit" class="btn btn-primary" name="submit">Ajouter</button>
                 </form> 
-            </div>
-        </div>
-
-            <div id="add-success-message" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal modal-dialog-centered">
-                <div class="modal-content bg-success">
-                    <div class="modal-body">
-                        <h5 class="modal-title text-white" id="exampleModalLabel">L'utilisateurice a bien été ajouté !</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-                            <span class="text-white" aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="add-error-message" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal modal-dialog-centered">
-                <div class="modal-content bg-danger">
-                    <div class="modal-body">
-                        <h5 class="modal-title text-white" id="exampleModalLabel">Il y a eu un problème lors de l'ajout de l'utilisateurice ... (oups)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-                            <span class="text-white" aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="delete-success-message" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal modal-dialog-centered">
-                <div class="modal-content bg-success">
-                    <div class="modal-body">
-                        <h5 class="modal-title text-white" id="exampleModalLabel">L'utilisateurice a bien été supprimé (de la base de donnée bien entendu). Iel va toujours bien rassurez-vous !</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-                            <span class="text-white" aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="delete-error-message" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal modal-dialog-centered">
-                <div class="modal-content bg-danger">
-                    <div class="modal-body">
-                        <h5 class="modal-title text-white" id="exampleModalLabel">Il y a eu un problème lors de la suppression de l'utilisateurice ... Espérons qu'iel soit encore en un morceau !</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-                            <span class="text-white" aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </main>

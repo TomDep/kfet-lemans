@@ -59,6 +59,11 @@
 
 	typeWriter();
 
+	addStatusMessage('activate', {
+        'success' : 'Le compte a bien été activé !',
+        'error' : 'Il y a eu un problème lors de l\'activation du compte ...'
+    })
+
 </script>
 
 </html>

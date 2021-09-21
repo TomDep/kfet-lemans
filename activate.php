@@ -47,7 +47,7 @@
 				}
 
 				// Redirect to the connection page
-				header('Location: login.php');
+				header('Location: login.php?activate_status=success');
 			} else {
 				$alreadyActivatedError = TRUE;
 			}
@@ -91,6 +91,10 @@
 
 	if(isset($alreadyActivatedError)) {
 		echo '<small class="text-danger">Erreur : le compte est déjà activé.</small>';
+	}
+
+	if(isset($alreadyActivatedError) || isset($databaseError)) {
+		header('Location: login.php?activate_status=error');
 	}
 
 ?>

@@ -19,26 +19,38 @@
     
     if(isset($_POST['student_number'], $_POST['class'], $_FILES['photo'])) {
         
-        $result = $mysqli->query('SELECT username, id FROM users WHERE student_number=' . $_POST['student_number']);
-        $row = $result->fetch_assoc();
-        $user_id = $row['id'];
-        $username = $row['username'];
-
-        // Add the image
-        saveFile('images/baristas/', $_FILES['photo'], $username);
-        $extansion = getFileExtansion($_FILES['photo']['name']);
-
-        if(!insert($mysqli, 'baristas', array(
-            array('key' => 'user_id', 'value' => $user_id), 
-            array('key' => 'class', 'value' => $_POST['class']), 
-            array('key' => 'photo', 'value' => $username . '.' . $extansion)
-        ))) {
+        $query = 'SELECT username, id FROM users WHERE student_number = ?';
+        if(!$stmt = $mysqli->prepare($query)) {
             $databaseError = true;
-            $errorMessage = 'Unable to insert the product';
-        }    
+            $errorMessage = 'Unable to get the user informations';
+        } else {
+
+            $stmt->bind_param('i', $_POST['student_number']);
+            $stmt->execute();
+            $stmt->bind_result($username, $user_id);
+            $stmt->fetch();
+            $stmt->close();
+
+            // Add the image
+            saveFile('images/baristas/', $_FILES['photo'], $username);
+            $extansion = getFileExtansion($_FILES['photo']['name']);
+
+            var_dump($_POST['class']);
+
+            $imgName =  $username . '.' . $extansion;
+            $query = 'INSERT INTO baristas (user_id, class, photo) VALUES (?, ?, ?)';
+            if($stmt = $mysqli->prepare($query)) {  
+                $stmt->bind_param('iss', $user_id, $_POST['class'], $imgName);
+                $stmt->execute();
+            } else {
+                $databaseError = true;
+                $errorMessage = 'Unable to insert the product';
+            }
+        }
     }
 
     if($databaseError || $emptyValueError || $fileError) {
+        echo '<p>Error : ' . $errorMessage . '</p>';
         header('Location: ../../administrate_baristas.php?add_status=error');
     } else {
         header('Location: ../../administrate_baristas.php?add_status=success');

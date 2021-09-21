@@ -16,9 +16,9 @@ if(isset($_POST['student_number'], $_POST['username'])) {
         array('key' => 'activated', 'value' => '0')
     ));
     
-    header('Location: ../add_user.php?sucess');
+    header('Location: ../add_user.php?add_status=success');
 } else {
-    header('Location: ../add_user.php?error');
+    header('Location: ../add_user.php?add_status=error');
 }
 
 ?>

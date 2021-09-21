@@ -22,3 +22,4 @@
 
 <!-- Other Scripts -->
 <script src="js/administrate.js"></script>
+<script src="js/status_message.js"></script>

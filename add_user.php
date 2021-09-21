@@ -27,5 +27,12 @@
 			</form>
 		</div>
 	</section>
+	<script src="js/status_message"></script>
+    <script type="text/javascript">
+         addStatusMessage('add', {
+            'success' : 'L\'utilisateurice a bien été ajouté.e !',
+            'error' : 'Il y a eu un problème lors de l\'ajout ...'
+        })
+    </script>
 </body>
 </html>

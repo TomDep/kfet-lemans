@@ -98,11 +98,32 @@
 
                 <h2>Ajouter un.e barista</h2>
 
-                <form id="add-barista-form" enctype="multipart/form-data" method="post" action="lib/admin/barista_add.php">
+                <form id="add-barista-form" autocomplete="off" enctype="multipart/form-data" method="post" action="lib/admin/barista_add.php">
                     <div class="form-row">
                         <div class="form-group col">
                             <label for="i-barista-sutdent-number">Numéro étudiant</label>
-                            <input class="form-control" type="number" id="i-barista-sutdent-number" name="student_number" required>
+                            <input class="form-control" type="number" id="i-barista-sutdent-number" list="student_numbers" name="student_number" required>
+                            <datalist id="student_numbers">
+                                <?php
+                                    // Connect to the database
+                                    $mysqli = connectToDatabase();
+                                    if($mysqli == FALSE) {
+                                        $databaseError = TRUE;
+                                        $databaseErrorMessage = $mysqli->error;
+                                    }
+
+                                    if($result = $mysqli->query('SELECT student_number FROM users')) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo '<option>' . htmlspecialchars($row['student_number']) . '</option>';
+                                        }
+                                    } else {
+                                        $databaseError = TRUE;
+                                        $databaseErrorMessage = $mysqli->error;
+                                    }
+
+                                    $mysqli->close();
+                                ?>
+                            </datalist>
                         </div>
                         <div class="form-group col">
                             <label for="i-barista-class">Classe</label>

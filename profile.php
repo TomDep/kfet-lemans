@@ -22,6 +22,8 @@
 		}
 
 		.profile-section .profile-picture{
+			position: fixed;
+			left: calc(50% - 60px);
 			width: 120px;
 			margin: auto;
 		}
@@ -37,7 +39,7 @@
 		.profile-section h2{
 			font-size: 18px;
 			text-align: center;
-			margin-top: 2px;
+			margin-top: 130px;
 			font-weight: bold;
 		}
 
@@ -49,19 +51,9 @@
 		.profile-section h2,
 		.profile-section p{
 			margin-left:  10px;
+			width:  calc(100% - 40px);
 		}
 
-		@media (min-width: 600px){
-			.profile-section h2,
-			.profile-section p{
-				width: 100%;
-				margin:  10px 40%;
-			}
-
-			.profile-section p{
-				margin-left: 38% ;
-			}
-		}
 
 		.profile-background{
 			position: fixed;
@@ -75,21 +67,36 @@
           	margin: 0 -20px;
 		}
 
-		@media (min-width: 1000px){
+		@media (min-width: 800px){
 			.profile-background{
-				top: 170px;				
+				left: calc((100% - 450px) / 2 + 20px);
+
 				height: 200px;
+				max-width: 450px;
 
 				border-radius: 3%;
-				width: 30%;
-				
-				margin:  0 0 0 32%;
 			}
+
+			.profile-section h2,
+			.profile-section p{
+				margin-left: 30%;
+				width:  40%;
+			}
+
+			.profile-section h2{
+				margin-bottom: 20px;
+			}
+
+			.profile-section p{
+				margin-left: 37%;
+			}
+
+
 		}
 
 		.profile-settings{
 			width: calc(100% - 40px);
-			margin: 20px 20px 0 20px;
+			margin: 50px 20px 0 20px;
 		}
 
 		.profile-settings p{			
@@ -104,6 +111,11 @@
 		.profile-settings p a{
 		    text-decoration: none;
 		    font-size: 12px;
+		    color: black;
+		}
+
+		.profile-settings p a:hover{
+		    text-decoration: underline;
 		}
 
 		.grey-section{
@@ -147,57 +159,72 @@
 
 	<div class="container">
 		<div class="profile-section">
-		<div class="profile-picture">
-			<img src="https://www.bolde.com/wp-content/uploads/2020/09/iStock-1269607964-400x400.jpg">	
-		</div>
+			<div class="profile-picture" id="profile-picture">
+				<img src="https://www.bolde.com/wp-content/uploads/2020/09/iStock-1269607964-400x400.jpg">	
+			</div>
 
 
 			<?php
+			// User's informations
+			echo '<h2>' . htmlspecialchars($_SESSION['username']) . '</h2>';
 
+			echo '<p><b>Solde actuel</b>: ' . htmlspecialchars($_SESSION['credit']) . '€</p>';
 
-		// User's informations
-		echo '<h2>' . htmlspecialchars($_SESSION['username']) . '</h2>';
+			echo '<p><b>Status BDLC</b>: ';
+			echo ($_SESSION['bdlc_member']) ? 'Adhérent.e' : 'Non adhérent.e';
+			echo '</p>';
 
-		echo '<p><b>Solde actuel</b>: ' . htmlspecialchars($_SESSION['credit']) . '€</p>';
+			echo '<p><b>Status du compte</b>: ';
 
-		echo '<p><b>Status BDLC</b>: ';
-		echo ($_SESSION['bdlc_member']) ? 'Adhérent.e' : 'Non adhérent.e';
-		echo '</p>';
+			switch ($_SESSION['auth_level']) {
+				case 0:
+					echo 'Ensimien.ne';
+					break;
+				case 1:
+					echo 'Barista';
+					break;
+				case 2:
+					echo 'Administrateurice';
+					break;
+			}
+			echo '</p>';
+			?>
 
-		echo '<p><b>Status du compte</b>: ';
+			<div class="profile-background"></div>
+		</div>
 
-		switch ($_SESSION['auth_level']) {
-			case 0:
-				echo 'Ensimien.ne';
-				break;
-			case 1:
-				echo 'Barista';
-				break;
-			case 2:
-				echo 'Administrateurice';
-				break;
-		}
-		echo '</p>';
-		?>
+		<div class="profile-settings">
+			<h6 class="text-center" style="border-bottom:1px solid black">Paramètres</h6>
+			<p class="text-center"><a href="edit_password.php">Modifier mon mot de passe</a></p>
+			<!--<p class="text-center"><a href="edit_password.php">Ajouter de l'argent au compte</a></p>-->
+		</div>
 
-		<div class="profile-background"></div>
+		<div class="grey-section">
+			<p>Pssst! <br> Pour ajouter de l'argent à ton solde...<br> Demande aux baristas ! ;)</p>
+		</div>
+
 	</div>
-
-	<div class="profile-settings">
-		<h6 class="text-center" style="border-bottom:1px solid black">Paramètres</h6>
-		<p class="text-center"><a href="edit_password.php">Modifier mon mot de passe</a></p>
-		<!--<p class="text-center"><a href="edit_password.php">Ajouter de l'argent au compte</a></p>-->
-	</div>
-
-	<div class="grey-section">
-		<p>Pssst! <br> Pour ajouter de l'argent à ton solde...<br> Demande aux baristas ! ;)</p>
-	</div>
-	</div>
-	
-		
-
-
 	
 </body>
+
+<script type="text/javascript">
+	/*
+	var auth_level = "<?php echo $_SESSION['auth_level']; ?>";
+    var pic = document.getElementById("profile-picture").childNodes; 
+
+    // Randomize pictures for profile   
+    var src = "https://i.pinimg.com/originals/6d/d5/94/6dd5949d423e3a8f0e6863ff75e0b24d.jpg";
+    pic[1].setAttribute("src",src);
+
+
+    // Generate random colors 
+    var arrayColor = new Array(3);
+    for(var i=0;i<3;i++){
+    	arrayColor[i] = Math.floor(Math.random() * 256);
+    }
+    var color = "rgb(" + arrayColor[0] + "," + arrayColor[1] + "," + arrayColor[2] + ")";
+    pic[1].style.backgroundColor = color;
+    */
+</script>
 
 </html>

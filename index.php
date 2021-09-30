@@ -547,19 +547,18 @@ background-size: 100% auto;
 	<div id="container">
 	<?php include "templates/nav.php";?>
 
-
-	<div id="home" class="default-linked-section linked-section">
-		<!-- Identification de l'étudiant -->
-		<div class="index-profile" onclick="document.location.href = 'profile.php';">
+	<div class="index-profile" onclick="document.location.href = 'profile.php';">
       <img class="index-profile-picture" src="res/icon.svg">
 
       <div class="content">
           <h4 class="index-name"><?php echo htmlspecialchars($_SESSION['username']); ?></h4>
           <h4 class="index-money">Solde : <?php echo htmlspecialchars($_SESSION['credit']); ?> €</h4>
       </div>
-  	</div>
+  </div>
 
-		
+	<div id="home" class="default-linked-section linked-section">
+		<!-- Identification de l'étudiant -->
+			
     <!-- Evénéments à promouvoir ou des rappels! Exemple : mardi/jeudi viennoiseries, wei, etc -->
 
 		<div class="sub-categories carousel slide " data-ride="carousel" id="event">

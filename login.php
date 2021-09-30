@@ -64,6 +64,10 @@
         'error' : 'Il y a eu un problème lors de l\'activation du compte ...'
     })
 
+    addStatusMessage('login', {
+        'wrong' : 'Le numéro étudiant.e ou le mot de passe est incorrect ...'
+    })
+
 </script>
 
 </html>

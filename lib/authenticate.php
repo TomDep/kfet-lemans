@@ -42,15 +42,15 @@ if ($stmt = $connection->prepare($req)) {
 			$_SESSION['credit'] = $credit;
 
 			header('Location: ../index.php');
-		} else {
-			// Incorrect password
-			echo 'Incorrect username and/or password!';
+			exit();
 		}
-	} else {
-		// Incorrect username
-		echo 'Incorrect username and/or password!';
 	}
 
-	$stmt->close();
+	// Incorrect password or student number
+	header('Location: ../login.php?login_status=wrong');
+	exit();
 }
+
+// There has been an error
+header('Location: ../login.php?login_status=error');
 ?>

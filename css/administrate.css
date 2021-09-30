@@ -5,7 +5,7 @@
  */
 
 main {
-    margin: var(--nav-menu-height);
+    margin-top: var(--nav-menu-height);
 }
 
 .grid-box {

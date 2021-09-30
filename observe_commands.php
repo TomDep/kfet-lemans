@@ -19,9 +19,9 @@
     <?php include('templates/nav.php') ?>
 
     <main>
-        <div class="container bg-light p-5">
+        <div class="">
 
-            <h2>Historique des commandes</h2>
+            <h2 class="text-center">Historique des commandes</h2>
 
             <div id="accordion">
 <?php
@@ -113,12 +113,12 @@
 
                 <div class="card">
                     <div class="card-header" id="heading<?php echo $order_id; ?>">
-                        <div class="mb-0 sortable" data-toggle="collapse" data-target="#collapse<?php echo $order_id; ?>">
-                            <h5>
-                                <span class="badge badge-primary mr-1">Commande #<?php echo $order_id; ?></span>
+                        <div class="sortable" data-toggle="collapse" data-target="#collapse<?php echo $order_id; ?>">
+                            <p class="mb-0">
+                                <span class="badge badge-primary mr-1">#<?php echo $order_id; ?></span>
                                 par <?php echo $name; ?> : <b><?php echo $fmt->formatCurrency($total_price, "EUR"); ?></b>
-                                <small class="float-right"><?php echo $date_message; ?></small>
-                            </h5>
+                            </p>
+                            <small class=""><?php echo $date_message; ?></small>
                         </div>
                     </div>
                     <div id="collapse<?php echo $order_id; ?>" class="collapse pl-4 pr-4" aria-labelledby="heading<?php echo $order_id; ?>" data-parent="#accordion">

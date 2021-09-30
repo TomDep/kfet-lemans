@@ -115,7 +115,7 @@
                     <div class="card-header" id="heading<?php echo $order_id; ?>">
                         <div class="sortable" data-toggle="collapse" data-target="#collapse<?php echo $order_id; ?>">
                             <p class="mb-0">
-                                <span class="badge badge-primary mr-1">#<?php echo $order_id; ?></span>
+                                <span class="badge badge-secondary mr-1">#<?php echo $order_id; ?></span>
                                 par <?php echo $name; ?> : <b><?php echo $fmt->formatCurrency($total_price, "EUR"); ?></b>
                             </p>
                             <small class=""><?php echo $date_message; ?></small>

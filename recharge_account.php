@@ -1,10 +1,10 @@
 <?php
-
     session_start();
 
     require_once('lib/redirect.php');
-    auth_level(1);
+    require_once('lib/connect.php');
 
+    auth_level(1);
 ?>
 
 <!DOCTYPE html>
@@ -31,22 +31,22 @@
             <datalist id="usernames">
                 <?php
                     // Connect to the database
-                    $connection = connectToDatabase();
-                    if($connection == FALSE) {
+                    $mysqli = connectToDatabase();
+                    if($mysqli == FALSE) {
                         $databaseError = TRUE;
-                        $databaseErrorMessage = $connection->error;
+                        $databaseErrorMessage = $mysqli->error;
                     }
 
-                    if($result = $connection->query('SELECT username FROM users')) {
+                    if($result = $mysqli->query('SELECT username FROM users')) {
                         while($row = $result->fetch_array()) {
                             echo '<option>' . htmlspecialchars($row['username']) . '</option>';
                         }
                     } else {
                         $databaseError = TRUE;
-                        $databaseErrorMessage = $connection->error;
+                        $databaseErrorMessage = $mysqli->error;
                     }
 
-                    $connection->close();
+                    $mysqli->close();
                 ?>
             </datalist>
 

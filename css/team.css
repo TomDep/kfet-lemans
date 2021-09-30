@@ -1,0 +1,106 @@
+/* 
+ * Team CSS
+ * ----------------------------------------------------------------------------
+ * This stylesheet is reserved only for the team page. Do not import it on global
+ */
+
+*{
+    --color-header-team : var(--color-primary);
+
+    --size-presentation-card-4 : calc(100% / 4 - 40px);
+    --size-presentation-card-2 : calc(100% / 2 - 40px);
+    --size-presentation-card-1 : calc(100% - 20px);
+
+    --presentation-card-name-font :  bold 16px "Avenir Next", "Avenir", sans-serif;
+    --presentation-card-subtitle-font :  italic 14px "Avenir Next", "Avenir", sans-serif;
+}
+
+#header-team{
+    position: fixed;
+    z-index: 15;
+    top: 0; 
+    margin-top: var(--nav-menu-height-lg);
+    background-color: var(--color-header-team);
+}
+
+@media(max-width: 600px){
+    #header-team{
+        margin-top: var(--nav-menu-height-sm);
+    }
+}
+
+#header-team h1{
+    font-size: 20px;
+    width: var(--margin-width);
+    margin: 10px auto;
+}
+
+#header-team p{
+    margin: 0 20px 10px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid black;
+}
+
+#under{
+    margin-top: 20px;
+    z-index: -1;
+}
+
+.presentation-card-lg {
+  float: left;
+ 
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  
+  background-color: white;
+
+  width: var(--size-presentation-card-4);
+  margin: 10px 20px;
+}
+
+.presentation-card-lg .card-picture{
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    float: left;
+    vertical-align: middle;
+    margin: 10px 0 0 10px ;
+}
+
+.presentation-card-lg .content{
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-left: 100px;
+}
+
+.presentation-card-lg .content .card-name{ 
+    font:var(--presentation-card-name-font);
+}
+
+.presentation-card-lg .content .card-subtitles{
+    font: var(--presentation-card-subtitle-font);
+}
+
+/* 
+*   We are adding a new breakpoint for having a better view of the team on middle sized screen
+*
+*   Tips : Using calc function to share the space fairly on the screen
+*   width = size of the box / number of columns - margin's sides size * 2  
+*/
+
+@media(max-width: 1200px){
+    .presentation-card-lg{
+        width: var(--size-presentation-card-2);
+        margin: 10px 20px;
+    }
+}
+
+@media(max-width: 600px){
+    .presentation-card-lg{
+        width: var(--size-presentation-card-1);
+        margin: 5px 10px;
+    }
+}

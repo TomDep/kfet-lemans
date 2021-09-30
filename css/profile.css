@@ -1,0 +1,85 @@
+/* 
+ * Profile CSS
+ * ----------------------------------------------------------------------------
+ * This stylesheet is reserved only for the profile page. Do not import it on global
+ */
+
+*{
+    --bg-color-profile : white;    
+    --bg-color-settings : white;
+
+    --border-radius-profile : 10px;
+
+    --font-size-p:  12px;
+    --font-size-h2: 18px;
+}
+
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    align-items: center;
+    margin: 60px 20px 0 20px;
+}
+
+.profile-section{
+    width: var(--margin-width);
+    margin: 50px 20px 0 20px;
+    background-color: var(--bg-color-profile);
+    border-radius: var(--border-radius-profile);
+}
+
+.profile-section h2{
+    font-size: var(--font-size-h2);            
+    font-weight: bold;
+    text-align: center;
+    padding: 30px 0;
+    margin-bottom: 0;
+}
+
+.profile-section p{         
+    font-size: var(--font-size-p);
+    width:  calc(100% - 40px);
+    margin-bottom: 5px;
+    margin-left:  15px;
+}
+
+.profile-settings{
+    width: var(--margin-width);
+    margin: 20px 20px 0 20px;
+}
+
+.profile-settings p{            
+    border-radius: var(--border-radius-profile);
+    background-color: var(--bg-color-settings);
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px 0;
+    margin-bottom: 10px;
+}
+
+.profile-settings p a{
+    text-decoration: none;
+    font-size: var(--font-size-p);
+    color: black;
+}
+
+.profile-settings p a:hover{
+    text-decoration: underline;
+}
+
+@media (min-width: 700px){
+    .profile-container{
+        padding-top: 50px;
+    }
+
+    .profile-section,
+    .profile-settings{
+        width: 25%;
+    }
+
+    .profile-section h2,
+    .profile-section p{
+        width:  100%;
+    }
+}

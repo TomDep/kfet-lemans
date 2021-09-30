@@ -9,93 +9,11 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<?php include "templates/head.php"; ?>
-
+<head>	
 	<title>Kfet - Mon Compte</title>
-
-	<style type="text/css">
-		.profile-container{
-			display: flex;
-			flex-direction: column;
-			padding: 0;
-			align-items: center;
-			
-			margin: 60px 20px 0 20px;
-		}
-
-		.profile-section{
-			width: calc(100% - 40px);
-			margin: 50px 20px 0 20px;
-			background-color: white;
-			border-radius: 10px;
-		}
-
-		.profile-section h2{
-			font-size: 18px;			
-			font-weight: bold;
-
-			text-align: center;
-
-			padding: 30px 0;
-			margin-bottom: 0;
-		}
-
-		.profile-section p{			
-			font-size: 12px;
-
-			width:  calc(100% - 40px);
-
-			margin-bottom: 5px;
-			margin-left:  15px;
-		}
-
 	
-
-		.profile-settings{
-			width: calc(100% - 40px);
-			margin: 20px 20px 0 20px;
-		}
-
-		.profile-settings p{			
-			border-radius: 10px;
-			background-color: white;
-			cursor: pointer;
-			font-weight: bold;
-			margin: 5px 0;
-			margin-bottom: 10px;
-		}
-
-		.profile-settings p a{
-		    text-decoration: none;
-		    font-size: 12px;
-		    color: black;
-		}
-
-		.profile-settings p a:hover{
-		    text-decoration: underline;
-		}
-
-		@media (min-width: 700px){
-			.profile-container{
-				padding-top: 50px;
-			}
-
-			.profile-section,
-			.profile-settings{
-				width: 25%;
-			}
-
-			.profile-section h2,
-			.profile-section p{
-				width:  100%;
-			}
-
-			.profile-section p{
-				margin-left: 15px;
-			}
-		}
-	</style>
+	<?php include "templates/head.php"; ?>
+	<link rel="stylesheet" type="text/css" href="css/profile.css" />
 </head>
 <body>
 	<?php include "templates/nav.php";?>

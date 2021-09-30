@@ -15,88 +15,46 @@
 	<title>Kfet - Mon Compte</title>
 
 	<style type="text/css">
+		.profile-container{
+			display: flex;
+			flex-direction: column;
+			padding: 0;
+			align-items: center;
+			
+			margin: 60px 20px 0 20px;
+		}
+
 		.profile-section{
 			width: calc(100% - 40px);
-			margin: 0 20px;
-			margin-top: 50px;
+			margin: 50px 20px 0 20px;
+			background-color: white;
+			border-radius: 10px;
 		}
-
-		.profile-section .profile-picture{
-			position: fixed;
-			left: calc(50% - 60px);
-			width: 120px;
-			margin: auto;
-		}
-
-		.profile-section img{
-			border-radius: 50%;
-			height: 120px;
-			width: 120px;
-			filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-		}
-
 
 		.profile-section h2{
-			font-size: 18px;
-			text-align: center;
-			margin-top: 130px;
+			font-size: 18px;			
 			font-weight: bold;
+
+			text-align: center;
+
+			padding: 30px 0;
+			margin-bottom: 0;
 		}
 
-		.profile-section p{
-			margin-bottom: 5px;
+		.profile-section p{			
 			font-size: 12px;
-		}
 
-		.profile-section h2,
-		.profile-section p{
-			margin-left:  10px;
 			width:  calc(100% - 40px);
+
+			margin-bottom: 5px;
+			margin-left:  15px;
 		}
 
-
-		.profile-background{
-			position: fixed;
-			top: 160px;
-			height: 180px;
-			background-color: white;
-			width: calc(100% - 40px);
-			z-index: -1;
-			filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-          	border-radius: 10px;
-          	margin: 0 -20px;
-		}
-
-		@media (min-width: 800px){
-			.profile-background{
-				left: calc((100% - 450px) / 2 + 20px);
-
-				height: 200px;
-				max-width: 450px;
-
-				border-radius: 3%;
-			}
-
-			.profile-section h2,
-			.profile-section p{
-				margin-left: 30%;
-				width:  40%;
-			}
-
-			.profile-section h2{
-				margin-bottom: 20px;
-			}
-
-			.profile-section p{
-				margin-left: 37%;
-			}
-
-
-		}
+	
 
 		.profile-settings{
 			width: calc(100% - 40px);
-			margin: 50px 20px 0 20px;
+			margin: 20px 20px 0 20px;
 		}
 
 		.profile-settings p{			
@@ -118,52 +76,32 @@
 		    text-decoration: underline;
 		}
 
-		.grey-section{
-			display:flex;
-			justify-content:center;
-			align-items:center;
-			height: 100px;
-			padding: 10px;
-			margin: 150px 20px 50px 20px;
-
-			background-color: #777;
-			width: calc(100% - 40px);
-		}
-
-		.grey-section p{
-			font-weight: bold;
-			font-size: 10px;
-		}
-
-		@media (min-width: 1000px){
-			.profile-settings, 
-			.grey-section{
-				width: 30%;
+		@media (min-width: 700px){
+			.profile-container{
+				padding-top: 50px;
 			}
-		}
 
-		.container{
-			display: flex;
-			flex-direction: column;
-			padding: 0;
-			align-items: center;
-			margin-top: 60px;
-			height: calc(100vh - 60px);
-			width: calc(100% - 40px);
-			max-width: 1500px;
+			.profile-section,
+			.profile-settings{
+				width: 25%;
+			}
+
+			.profile-section h2,
+			.profile-section p{
+				width:  100%;
+			}
+
+			.profile-section p{
+				margin-left: 15px;
+			}
 		}
 	</style>
 </head>
 <body>
 	<?php include "templates/nav.php";?>
 
-	<div class="container">
+	<div class="profile-container">
 		<div class="profile-section">
-			<div class="profile-picture" id="profile-picture">
-				<img src="https://www.bolde.com/wp-content/uploads/2020/09/iStock-1269607964-400x400.jpg">	
-			</div>
-
-
 			<?php
 			// User's informations
 			echo '<h2>' . htmlspecialchars($_SESSION['username']) . '</h2>';
@@ -190,7 +128,7 @@
 			echo '</p>';
 			?>
 
-			<div class="profile-background"></div>
+			<br><p>Pssst! Pour ajouter de l'argent à ton solde... <br> Demande directement aux baristas! ;)</p><br>
 		</div>
 
 		<div class="profile-settings">
@@ -199,32 +137,7 @@
 			<!--<p class="text-center"><a href="edit_password.php">Ajouter de l'argent au compte</a></p>-->
 		</div>
 
-		<div class="grey-section">
-			<p>Pssst! <br> Pour ajouter de l'argent à ton solde...<br> Demande aux baristas ! ;)</p>
-		</div>
-
 	</div>
 	
 </body>
-
-<script type="text/javascript">
-	/*
-	var auth_level = "<?php echo $_SESSION['auth_level']; ?>";
-    var pic = document.getElementById("profile-picture").childNodes; 
-
-    // Randomize pictures for profile   
-    var src = "https://i.pinimg.com/originals/6d/d5/94/6dd5949d423e3a8f0e6863ff75e0b24d.jpg";
-    pic[1].setAttribute("src",src);
-
-
-    // Generate random colors 
-    var arrayColor = new Array(3);
-    for(var i=0;i<3;i++){
-    	arrayColor[i] = Math.floor(Math.random() * 256);
-    }
-    var color = "rgb(" + arrayColor[0] + "," + arrayColor[1] + "," + arrayColor[2] + ")";
-    pic[1].style.backgroundColor = color;
-    */
-</script>
-
 </html>

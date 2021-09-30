@@ -1,9 +1,9 @@
 <?php
-	session_start();
+	/*session_start();
 
 	if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == FALSE) {
 		header('Location: login.php');
-	}	
+	}*/	
 
 	// Include the database connect file
 	require_once('lib/connect.php');
@@ -140,11 +140,58 @@
 				margin-bottom: 0;
 			}
 
-			.sub-categories .grey{
+			.sub-categories .favorites-items{
 				height: 15vh;
-				background-color: grey;
 				width: calc(100% - 40px);   	/*Same size as .carousel-item img : must use a variable for that*/
 				margin: 0 20px;
+
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				align-items: flex-start;
+				align-content: flex-start;
+			}
+
+			.favorites-items .sub-presentation-card{
+				height: 100%;
+				width: 100px;
+				background-color: white;
+				border-radius: 10px;
+				padding-top: 5px;
+			}
+
+			.favorites-items .sub-presentation-card .card-picture{
+				padding-top: 10px;
+				
+				display: block;
+				margin: 0 auto;
+				
+				float: none;
+
+				width: 60px;
+				height: 60px;
+			}
+
+			.favorites-items .sub-presentation-card .content{
+				padding-top: 10px;
+				height: auto;
+			}
+
+			.favorites-items .sub-presentation-card .content h4{
+				width: 50%;
+			}
+
+			.favorites-items .sub-presentation-card .content .card-name{
+				font-size: 14px;
+				float: left;
+				padding-left: 5px;
+			}
+
+			.favorites-items .sub-presentation-card .content .card-subtitles{
+				float: right;
+				text-align: right;
+				padding-right: 5px;
 			}
 
 			.centered-text{
@@ -162,7 +209,7 @@
 			  height: 15vh;
 			  /*background-color: grey;*/
 			  margin: 5px;
-background-size: 100% auto;
+				background-size: 100% auto;
 			  cursor: pointer;
 			}
 
@@ -190,6 +237,12 @@ background-size: 100% auto;
         .header p{
             margin: 0 15px;
             font-size: 14px;
+        }
+
+        #shop .header h1{
+        	border-top: 1px solid black;
+        	padding: 10px 0;
+        	font-size: 24px;
         }
 
         .presentation-card {
@@ -532,12 +585,37 @@ background-size: 100% auto;
 	        	margin: 0 20px;
 	        	overflow: hidden;
         	}
-        }        .blur   {
+        }        
+
+        .blur{
 			    filter: blur(5px);
 			    -webkit-filter: blur(5px);
 			    -moz-filter: blur(5px);
 			    -o-filter: blur(5px);
 			    -ms-filter: blur(5px);
+				}
+
+				.return-button{
+					width: auto;
+					font-size: 12px;
+					margin-bottom: -10px;
+				}
+
+				.return-button i{
+					display: inline-block;
+					vertical-align: middle;
+					padding-left: 10px;
+					padding-right: 5px;
+				}
+
+				.return-button p{
+					display: inline-block;
+					vertical-align: middle;
+					margin-bottom: 0;
+				}
+
+				.return-button p:hover{
+					text-decoration: underline;
 				}
 </style>
 	</head>
@@ -595,31 +673,41 @@ background-size: 100% auto;
 
 		<!-- La liste de mes préférés! -->
 
-		<div class="sub-categories" id="liked-items">		
+		<div class="sub-categories">		
 			<h4 class="sub-categories-title">J'adore ça, donnez m'en plus!</h4><span class="menuspan" id="span-like"></span>
-			<div class="grey">
-<?php
 
-		require_once('lib/favorites.php');
-		$favorites = getFavorites($_SESSION['id'], 3);
+			<div class="favorites-items">
+			
+				<?php
 
-		foreach ($favorites as $favorite_id => $quantity) {
-			$query = 'SELECT id, image, name, price, bdlc_price FROM products WHERE id = ?';
-			if($stmt = $mysqli->prepare($query)) {
-				$stmt->bind_param('i', $favorite_id);
-				$stmt->execute();
-				$stmt->bind_result($id, $image, $name, $price, $bdlc_price);
+						require_once('lib/favorites.php');
+						$favorites = getFavorites($_SESSION['id'], 3);
 
-				while ($stmt->fetch()) {
-					// echo things there
-					echo '<p>' . $name . '</p>';
-					// ***
-				}
-			}
-		}
+						foreach ($favorites as $favorite_id => $quantity) {
+							$query = 'SELECT id, image, name, price, bdlc_price, category FROM products WHERE id = ?';
+							if($stmt = $mysqli->prepare($query)) {
+								$stmt->bind_param('i', $favorite_id);
+								$stmt->execute();
+								$stmt->bind_result($id, $image, $name, $price, $bdlc_price, $category);
 
-?>
+								while ($stmt->fetch()) {?>
+
+									<div class="sub-presentation-card" id="<?php echo $id; ?>" onclick="toggleItem(<?php echo $category . ',' . $id; ?> )">
+										<img class="card-picture" src="<?php echo 'res/products/' . $image ;?>">
+										<div class="content">
+											<h4 class="card-name"><?php echo $name;?></h4>
+											<h4 class="card-subtitles"><?php echo ($_SESSION['bdlc_member']) ? $bdlc_price : $price;?></h4>
+										</div>
+									</div>
+
+								<?php
+								}
+							}
+						}
+				?>
+	
 			</div>
+
 		</div>
 
 		<!-- La répartition du shop avec mes 4 catégories -->
@@ -649,6 +737,13 @@ background-size: 100% auto;
 
 	<div id="shop">
 		<div id="hot-drinks" class="linked-section">
+
+			<!--Add button to return main menu
+			-->
+			<div class="return-button" onclick="window.location = 'index.php';">
+				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
+			</div>
+
 			<div class="header">
 	      <h1>Les boisons chaudes</h1>
 	    </div>
@@ -718,8 +813,6 @@ background-size: 100% auto;
     	</form>
     </div>
 	</div>	
-
-
 
 <script type="text/javascript" src="js/linked_sections.js"></script>
 <script type="text/javascript">

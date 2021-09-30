@@ -13,7 +13,6 @@
       <a href="profile.php"><li>Mon Compte</li></a>
       <a href="#"><li>Mes Commandes</li></a>
       <a href="team.php"><li>L'équipe de la KFet</li></a>
-      <a href="#"><li>Contact</li></a>
         
       <!--Pour les baristas :-->
 

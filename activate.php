@@ -64,40 +64,36 @@
 <body>
 	<img src="res/icon.svg" id="biggerLogo">
 
-    <section>
-    	<form action="activate.php" method="post" class="standard-form">		
-    		<a href="login.php">Retour à l'écran de connexion</a>
+	<form action="activate.php" method="post" class="standard-form">		
+		<a href="login.php">Retour à l'écran de connexion</a>
 
-    		<h1>Activation du compte</h1>
+		<h1>Activation du compte</h1>
 
-			<div class="form-group">
-			    <label>Numéro d'étudiant.e</label>
-			    <input type="text" name="student_number" class="form-control input-lg" placeholder="182355" required>			
-			
-			    <label>Choisi un mot de passe</label>
-			    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Shhh! C'est secret" required>
-			</div>
+		<div class="form-group">
+		    <label>Numéro d'étudiant.e</label>
+		    <input type="text" name="student_number" class="form-control input-lg" placeholder="182355" required>			
+		
+		    <label>Choisi un mot de passe</label>
+		    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Shhh! C'est secret" required>
+		</div>
 
-			<div class="text-center">		  	<input id="btn-validate-lg" type="submit" value="Valider" id="btn-validate-lg">
-</div>
-		</form>
+		<div class="text-center">		  	
+			<input id="btn-validate-lg" type="submit" value="Valider">
+		</div>
+	</form>
 
+	<?php 
+		if(isset($databaseError)) {
+			echo '<small class="text-danger">Error : '. $mysqli->error .'</small>';
+		}
 
-<?php 
+		if(isset($alreadyActivatedError)) {
+			echo '<small class="text-danger">Erreur : le compte est déjà activé.</small>';
+		}
 
-	if(isset($databaseError)) {
-		echo '<small class="text-danger">Error : '. $mysqli->error .'</small>';
-	}
-
-	if(isset($alreadyActivatedError)) {
-		echo '<small class="text-danger">Erreur : le compte est déjà activé.</small>';
-	}
-
-	if(isset($alreadyActivatedError) || isset($databaseError)) {
-		header('Location: login.php?activate_status=error');
-	}
-
-?>
-	</section>
+		if(isset($alreadyActivatedError) || isset($databaseError)) {
+			header('Location: login.php?activate_status=error');
+		}
+	?>
 </body>
 </html>

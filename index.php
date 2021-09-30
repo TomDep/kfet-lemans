@@ -548,7 +548,7 @@ background-size: 100% auto;
 	<?php include "templates/nav.php";?>
 
 
-	<div id="home">
+	<div id="home" class="default-linked-section linked-section">
 		<!-- Identification de l'étudiant -->
 		<div class="index-profile" onclick="document.location.href = 'profile.php';">
       <img class="index-profile-picture" src="res/icon.svg">
@@ -557,10 +557,7 @@ background-size: 100% auto;
           <h4 class="index-name"><?php echo htmlspecialchars($_SESSION['username']); ?></h4>
           <h4 class="index-money">Solde : <?php echo htmlspecialchars($_SESSION['credit']); ?> €</h4>
       </div>
-  </div>
-
-	<div id="home" class="default-linked-section linked-section">
-		<!-- Identification de l'étudiant -->
+  	</div>
 
 		
     <!-- Evénéments à promouvoir ou des rappels! Exemple : mardi/jeudi viennoiseries, wei, etc -->
@@ -676,7 +673,7 @@ background-size: 100% auto;
 		<div id="formules" class="linked_section" style="display: none;">
 			<div class="header">
 	      <h1>Formules</h1>
-	    </div
+	    </div>
 	  
 		</div>
   </div>

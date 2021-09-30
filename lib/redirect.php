@@ -1,7 +1,10 @@
 <?php
 
 function auth_level($level) {
-    if($level > 0) {
+    if($level >= 0) {
+
+        timeout();  // Add a timeout
+
         // The user must be connected
         if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == FALSE) {
             // Redirect to the login page
@@ -14,6 +17,17 @@ function auth_level($level) {
             }
         }
     }
+}
+
+function timeout($amount = 180) {
+    if (isset($_SESSION['LAST_REQUEST_TIME'])) {
+        if (time() - $_SESSION['LAST_REQUEST_TIME'] > $amount) {
+            // session timed out, last request is longer than the timeout amount
+            header('Location: login.php');
+        }
+    }
+
+    $_SESSION['LAST_REQUEST_TIME'] = time();
 }
 
 ?>

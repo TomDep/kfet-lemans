@@ -62,5 +62,5 @@
     }
 
     // Redirect to home page
-    header('Location: index.php');
+    header('Location: ../index.php');
 ?>

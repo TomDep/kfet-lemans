@@ -9,7 +9,9 @@
 <html>
 <head>
 	<?php include "templates/head.php";?>
-	<title>Kfet - Accueil</title>
+	<link rel="stylesheet" type="text/css" href="css/administrate.css">
+
+	<title>Kfet - Ajout d'un.e utilisateurice</title>
 </head>
 <body>
 	<?php include "templates/nav.php";?>
@@ -17,7 +19,7 @@
     <section>
 		<div class="margin-top">
 			<form class="standard-form" action="lib/simple_user_add.php" method="post">
-				<h1>Ajout d'un.e nouvelle personne</h1>
+				<h1>Ajout d'un.e utilisateurice</h1>
 
 					<div class="form-group">
 					    <label>Numéro étudiant.e</label>

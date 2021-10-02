@@ -13,6 +13,8 @@
     <?php include 'templates/head.php'; ?>
 
     <title>Kfet - Recharger un compte</title>
+
+    <link rel="stylesheet" type="text/css" href="css/administrate.css">
 </head>
 <body>
 
@@ -25,7 +27,7 @@
 
             <div class="form-group">
                 <label for="username">Nom complet</label>
-                <input type="text" id="username" name="username" list="usernames" class="form-control" required>
+                <input type="text" id="username" name="username" list="usernames" class="form-control" placeholder="Tom de Pasquale" required>
             </div>
 
             <datalist id="usernames">

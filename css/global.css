@@ -11,8 +11,10 @@
 @import "typography.css";   /* Fonts */
 
 /* General variables */
-:root {
-  --nav-menu-height: 100px;
+* {
+  --nav-menu-height-lg: 100px;
+  --nav-menu-height-sm: 60px;
+  --margin-width : calc(100% - 40px);
 }
 
 #biggerLogo{
@@ -35,7 +37,7 @@
 nav{
   position : fixed;                  
   top: 0;
-  height: var(--nav-menu-height);
+  height: var(--nav-menu-height-lg);
   width: 100%;
   z-index: 20;
   background: var(--color-primary);
@@ -277,10 +279,6 @@ hr{
 
 .standard-form {
   background-color: var(--color-secondary);
-  /*Selon les préférences:  
-    30% sur les côtés, 2 en haut
-    40% sur les côtés, 5 en haut, effet carte
-  */
   margin: 5% 40% 0 40%;
   padding: 0 20px;
 

@@ -103,11 +103,9 @@
 		echo '<small class="text-danger">Erreur : le compte est déjà activé.</small>';
 	}
 
-	if(isset($alreadyActivatedError) || isset($databaseError)) {
-		//header('Location: login.php?activate_status=error');
-	}
-
-?>
-	</section>
+		if(isset($alreadyActivatedError) || isset($databaseError)) {
+			header('Location: login.php?activate_status=error');
+		}
+	?>
 </body>
 </html>

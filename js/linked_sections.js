@@ -10,7 +10,7 @@ function getAnchor() {
 
 function selectSection() {
     let currentAnchor = getAnchor();
-    console.log(currentAnchor);
+    //console.log(currentAnchor);
 
     // Hide all sections that are not selected
     let sections = document.getElementsByClassName('linked-section');

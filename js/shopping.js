@@ -253,7 +253,7 @@ function toggleShop() {
     	let key = sessionStorage.key(i)
     	let item = JSON.parse(sessionStorage.getItem(key))
 
-    	addItemCard(item.id, item.name, item.src, item.price, item.quantity)
+    	addItemCard(item.id, item.name, item.src, parseFloat(item.price, 2).toFixed(2), item.quantity)
     }
 
   } else {

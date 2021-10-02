@@ -120,13 +120,15 @@
 								$stmt->execute();
 								$stmt->bind_result($id, $image, $name, $price, $bdlc_price, $category);
 
-								while ($stmt->fetch()) {?>
+								while ($stmt->fetch()) {
+									$actualPrice = ($_SESSION['bdlc_member']) ? $bdlc_price : $price;
+									?>
 
-									<div class="sub-presentation-card clickable" id="<?php echo $id; ?>" onclick="toggleItem(<?php echo $category . ',' . $id; ?> )">
+									<div class="sub-presentation-card clickable" id="<?php echo $id; ?>" onclick="addItem(<?php echo $id . ',\'' . $name . '\',\'res/images/products/' . $image . '\',' . $actualPrice; ?>, 1)">
 										<img class="card-picture" src="<?php echo 'res/images/products/' . $image ;?>">
 										<div class="content">
 											<h4 class="card-name"><?php echo $name;?></h4>
-											<h4 class="card-subtitles"><?php echo ($_SESSION['bdlc_member']) ? $bdlc_price : $price;?></h4>
+											<h4 class="card-subtitles"><?php echo $actualPrice;?></h4>
 										</div>
 									</div>
 

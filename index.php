@@ -101,18 +101,19 @@
 		  </a>
 		</div>
 
-		<!-- La liste de mes préférés! -->
+		
+<?php
+		require_once('lib/favorites.php');
+		$favorites = getFavorites($_SESSION['id'], 3);
 
+		if(count($favorites) > 0) {
+?>
+		<!-- La liste de mes préférés! -->
 		<div class="sub-categories">		
 			<h4 class="sub-categories-title">J'adore ça, donnez m'en plus!</h4><span class="menuspan" id="span-like"></span>
 
 			<div class="favorites-items">
-			
-				<?php
-
-						require_once('lib/favorites.php');
-						$favorites = getFavorites($_SESSION['id'], 3);
-
+<?php
 						foreach ($favorites as $favorite_id => $quantity) {
 							$query = 'SELECT id, image, name, price, bdlc_price, category FROM products WHERE id = ?';
 							if($stmt = $mysqli->prepare($query)) {
@@ -141,7 +142,7 @@
 			</div>
 
 		</div>
-
+<?php } ?>
 		<!-- La répartition du shop avec mes 4 catégories -->
 
 		<div class="sub-categories" id="categories-items">

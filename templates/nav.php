@@ -11,7 +11,7 @@
     <ul id="menu">
       <a class="active" href="index.php"><li>Accueil</li></a>
       <a href="profile.php"><li>Mon Compte</li></a>
-      <a href="#"><li>Mes Commandes</li></a>
+      <a href="my_commands.php"><li>Mes Commandes</li></a>
       <a href="team.php"><li>L'équipe de la KFet</li></a>
         
       <!--Pour les baristas :-->

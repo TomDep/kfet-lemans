@@ -12,7 +12,7 @@
     <?php include('templates/head.php') ?>
     <?php include('templates/administrate_includes.php') ?>
 
-    <title>Administrer les commandes</title>
+    <title>Voir les commandes</title>
 
     <link rel="stylesheet" type="text/css" href="css/administrate.css">
 </head>
@@ -24,7 +24,6 @@
         <div class="">
 
             <h2 class="text-center">Historique des commandes</h2>
-
             <div id="accordion">
 <?php
 

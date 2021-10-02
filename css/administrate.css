@@ -5,7 +5,12 @@
  */
 
 main {
-    margin-top: var(--nav-menu-height);
+    margin-top: var(--nav-menu-height-sm);
+    background-color: white;
+}
+
+nav {
+    background-color: var(--dark);
 }
 
 .grid-box {

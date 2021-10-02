@@ -55,7 +55,7 @@
 	<div id="container">
 	<?php include "templates/nav.php";?>
 
-	<div class="index-profile" onclick="document.location.href = 'profile.php';">
+	<div class="index-profile clickable" onclick="document.location.href = 'profile.php';">
       <img class="index-profile-picture" src="res/icon.svg">
 
       <div class="content">
@@ -127,8 +127,8 @@
 									<div class="sub-presentation-card clickable" id="<?php echo $id; ?>" onclick="addItem(<?php echo $id . ',\'' . $name . '\',\'res/images/products/' . $image . '\',' . $actualPrice; ?>, 1)">
 										<img class="card-picture" src="<?php echo 'res/images/products/' . $image ;?>">
 										<div class="content">
-											<h4 class="card-name"><?php echo $name;?></h4>
-											<h4 class="card-subtitles"><?php echo $actualPrice;?></h4>
+											<p class="card-name"><?php echo $name;?></p>
+											<p class="card-subtitles"><?php echo $actualPrice;?>€</p>
 										</div>
 									</div>
 
@@ -232,7 +232,7 @@
 					<div class="item-control-minus" onclick="quantityItem(-1)"><i class="fas fa-minus"></i></div>
 				</div>
 				<div class="item-add">
-		  		<input type="submit" value="Ajouter pour 1.20€" id="btn-validate-lg">
+		  		<input type="submit" value="" id="btn-validate-lg">
 				</div>
 		</div>
 
@@ -240,10 +240,16 @@
 	</div>
 
 	<div class="shoping-cart clickable">
-		<div class="icon" onclick="toggleShop()">
+		<div class="icon" onmouseup="toggleShop()">
 			<span id="icon" class="fa-layers fa-fw">
 		    <i class="fas fa-shopping-cart" id="shopping-cart"></i>
 		    <span class="fa-layers-counter" id="number-item"></span>
+		  </span>
+		</div>
+
+		<div class="icon icon-check" id="check-icon" onmouseup="submitForm()">
+			<span id="" class="fa-layers fa-fw">
+		    <i class="fas fa-check" id="shopping-cart"></i>
 		  </span>
 		</div>
 
@@ -251,7 +257,6 @@
 			<h1 class="text-center">Total panier: <span id="total"></span></h1>
 
 			<form method="post" action="lib/command.php" id="order-form">
-				<button type="submit" class="check"><i class="fas fa-check"></i></button>
     	</form>
     </div>
 	</div>	

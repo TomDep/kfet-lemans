@@ -123,7 +123,7 @@
 								while ($stmt->fetch()) {?>
 
 									<div class="sub-presentation-card" id="<?php echo $id; ?>" onclick="toggleItem(<?php echo $category . ',' . $id; ?> )">
-										<img class="card-picture" src="<?php echo 'res/products/' . $image ;?>">
+										<img class="card-picture" src="<?php echo 'res/images/products/' . $image ;?>">
 										<div class="content">
 											<h4 class="card-name"><?php echo $name;?></h4>
 											<h4 class="card-subtitles"><?php echo ($_SESSION['bdlc_member']) ? $bdlc_price : $price;?></h4>

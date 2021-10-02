@@ -15,14 +15,20 @@
       <a href="team.php"><li>L'équipe de la KFet</li></a>
         
       <!--Pour les baristas :-->
-
+<?php
+  if($_SESSION['auth_level'] >= 1) {
+?>
       <hr>
       <a href="recharge_account.php"><li>Recharger un compte</li></a>
       <a href="add_user.php"><li>Ajouter une nouvelle personne</li></a>
       <a href="observe_commands.php"><li>Historique des commmandes</li></a>
 
       <!--Pour le boss-->
+<?php
+  }
 
+  if($_SESSION['auth_level'] >= 2) {
+?>
       <hr>
 
       <li class="nav-item dropdown">
@@ -38,7 +44,7 @@
 
         </div>
       </li>
-
+<?php } ?>
       <hr>
       <a href="lib/logout.php"><li>Se Déconnecter</li></a>
 

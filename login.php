@@ -43,7 +43,7 @@
 		</section>
 	</body>
 
-
+<script src="js/status_message.js"></script>
 <script type="text/javascript">
 	var i = 0;
 	var txt = "Bienvenue !";
@@ -62,6 +62,10 @@
 	addStatusMessage('activate', {
         'success' : 'Le compte a bien été activé !',
         'error' : 'Il y a eu un problème lors de l\'activation du compte ...'
+    })
+
+    addStatusMessage('login', {
+        'wrong' : 'Le numéro étudiant.e ou le mot de passe est incorrect ...'
     })
 
 </script>

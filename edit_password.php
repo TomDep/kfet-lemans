@@ -1,6 +1,10 @@
 <?php
 	session_start();
 
+	require_once('lib/redirect.php');
+	auth_level(1);
+	timeout();
+
 	require_once('lib/connect.php');
 
 	// Redirect if the user isn't connected

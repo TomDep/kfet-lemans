@@ -1,3 +1,10 @@
+<?php
+
+	session_start();
+	require_once('lib/redirect.php');
+	auth_level(1);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,9 +1,8 @@
 <?php
 	/*session_start();
 
-	if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == FALSE) {
-		header('Location: login.php');
-	}*/	
+	require_once('lib/redirect.php');
+	auth_level(0);
 
 	// Include the database connect file
 	require_once('lib/connect.php');

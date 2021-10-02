@@ -1,16 +1,10 @@
 <?php
-
     session_start();
 
-    // Include the database connection file from absolute path
-    include($_SERVER['DOCUMENT_ROOT'] . '/kfet/lib/connect.php');
+    require_once('lib/redirect.php');
+    require_once('lib/connect.php');
 
-    // Check if the user is connected and has the authorisation level
-    if(!isset($_SESSION['logged_in'], $_SESSION['auth_level']) || $_SESSION['auth_level'] == 0) {
-        // Redirect to the home page
-        header('Location: index.php');
-    }
-
+    auth_level(1);
 ?>
 
 <!DOCTYPE html>
@@ -37,22 +31,22 @@
             <datalist id="usernames">
                 <?php
                     // Connect to the database
-                    $connection = connectToDatabase();
-                    if($connection == FALSE) {
+                    $mysqli = connectToDatabase();
+                    if($mysqli == FALSE) {
                         $databaseError = TRUE;
-                        $databaseErrorMessage = $connection->error;
+                        $databaseErrorMessage = $mysqli->error;
                     }
 
-                    if($result = $connection->query('SELECT username FROM users')) {
+                    if($result = $mysqli->query('SELECT username FROM users')) {
                         while($row = $result->fetch_array()) {
                             echo '<option>' . htmlspecialchars($row['username']) . '</option>';
                         }
                     } else {
                         $databaseError = TRUE;
-                        $databaseErrorMessage = $connection->error;
+                        $databaseErrorMessage = $mysqli->error;
                     }
 
-                    $connection->close();
+                    $mysqli->close();
                 ?>
             </datalist>
 

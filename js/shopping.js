@@ -214,8 +214,17 @@ function toggleItem(categories, id) {
   }
 }
 
+function submitForm() {
+	let form = document.getElementById("order-form");
+	// Clear the session storage
+	sessionStorage.clear();
+
+	form.submit();
+}
+
 function toggleShop() {
-	debugSessionStorage()
+	// Display the check icon
+	$("#check-icon").toggle();
 
 	var summaryOrder = document.getElementById("order-summary");
   

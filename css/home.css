@@ -95,7 +95,7 @@
 .sub-categories .favorites-items{
     height: 15vh;
     width: calc(100% - 40px);       /*Same size as .carousel-item img : must use a variable for that*/
-    margin: 0 20px;
+    margin: 5px 20px;
 
     display: flex;
     flex-direction: row;

@@ -31,6 +31,10 @@
   }
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 /****** Navbar ******/
 
 

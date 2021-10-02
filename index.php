@@ -122,7 +122,7 @@
 
 								while ($stmt->fetch()) {?>
 
-									<div class="sub-presentation-card" id="<?php echo $id; ?>" onclick="toggleItem(<?php echo $category . ',' . $id; ?> )">
+									<div class="sub-presentation-card clickable" id="<?php echo $id; ?>" onclick="toggleItem(<?php echo $category . ',' . $id; ?> )">
 										<img class="card-picture" src="<?php echo 'res/images/products/' . $image ;?>">
 										<div class="content">
 											<h4 class="card-name"><?php echo $name;?></h4>
@@ -170,7 +170,7 @@
 
 			<!--Add button to return main menu
 			-->
-			<div class="return-button" onclick="window.location = 'index.php';">
+			<div class="return-button clickable" onclick="window.location = 'index.php';">
 				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
 			</div>
 
@@ -181,6 +181,10 @@
 	    <?php displayCategory(0); ?>
 		</div>
 		<div id="cold-drinks" class="linked-section">
+			<div class="return-button clickable" onclick="window.location = 'index.php';">
+				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
+			</div>
+
 			<div class="header">
 	      <h1>Les boisons froides</h1>
 	    </div>
@@ -188,6 +192,10 @@
 	  	<?php displayCategory(1); ?>  
 	  </div>
 		<div id="snacks" class="linked-section">
+			<div class="return-button clickable" onclick="window.location = 'index.php';">
+				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
+			</div>
+
 			<div class="header">
 	      <h1>Les trucs à grignoter</h1>
 	    </div>
@@ -195,6 +203,10 @@
 	   	<?php displayCategory(2); ?>
 		</div>
 		<div id="formules" class="linked_section" style="display: none;">
+			<div class="return-button clickable" onclick="window.location = 'index.php';">
+				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
+			</div>
+
 			<div class="header">
 	      <h1>Formules</h1>
 	    </div>
@@ -218,16 +230,14 @@
 					<div class="item-control-minus" onclick="quantityItem(-1)"><i class="fas fa-minus"></i></div>
 				</div>
 				<div class="item-add">
-		  		<input type="submit" value="Ajouter pour 1.20€" id="btn-validate-lg" onclick="addItem()">
+		  		<input type="submit" value="Ajouter pour 1.20€" id="btn-validate-lg">
 				</div>
 		</div>
-
-		
 
   	<div class="close" onclick="toggleItem(0,0)"><i class="fas fa-times"></i></div>
 	</div>
 
-	<div class="shoping-cart">
+	<div class="shoping-cart clickable">
 		<div class="icon" onclick="toggleShop()">
 			<span id="icon" class="fa-layers fa-fw">
 		    <i class="fas fa-shopping-cart" id="shopping-cart"></i>

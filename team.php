@@ -1,3 +1,11 @@
+<?php
+    
+    session_start();
+    require_once("lib/redirect.php");
+    auth_level(0);
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>    
@@ -15,190 +23,34 @@
         N'oubliez pas que l'équipe vous accompagne et gère également les recharges de vos comptes! <br></p>
     </div>
        
-
-    <?php
-
-        /*
-        // Get all baristas from the database
-        require_once('library/connect.php');
-
-        // Connect to the database
-        $connection = connectToDatabase();
-        if($connection == FALSE) {
-            echo '<p>Il y a eu une erreur ...</p>';
-            exit();
-        }
-
-        if($result = $connection->query('SELECT * FROM baristas')) {
-            while ($barista = $result->fetch_row()) {
-                var_dump($barista);
-            }
-        }
-
-        */
-    ?>
-
     <div id="under">
+
+<?php
+
+    // Include the database connection file
+    require_once('lib/connect.php');
+
+    // Connect to the database
+    $mysqli = connectToDatabase();
+    if($mysqli == FALSE) {
+        echo '<p>Il y a eu une erreur ...</p>';
+        exit();
+    }
+
+    $req = 'SELECT b.class, b.photo, u.username FROM baristas b INNER JOIN users u ON b.user_id = u.id';
+    if($result = $mysqli->query($req)) {
+        while($barista = $result->fetch_assoc()) {
+?>
         <div class="presentation-card-lg">
-                <img class="card-picture" src="res/icon.svg">
+                <img class="card-picture" src="res/images/baristas/<?php echo(htmlspecialchars($barista["photo"])); ?>">
                 <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
+                    <h4 class="card-name"><?php echo(htmlspecialchars($barista["username"])); ?></h4>
+                    <h4 class="card-subtitles"><?php echo(htmlspecialchars($barista["class"])); ?></h4>
+                </div>
         </div>
-
-        <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale 2</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-    
-
-        <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale 3</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-
-       <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale 4</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-                    <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-
-        <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-    
-
-        <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-
-       <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-                    <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-
-        <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-    
-
-        <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-
-       <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-                    <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-
-        <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-    
-
-        <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-
-       <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-                    <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-
-        <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-    
-
-        <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
-
-       <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/products/Café.jpg">
-                <div class="content">
-                    <h4 class="card-name">Tom de Pasquale</h4>
-                    <h4 class="card-subtitles">4A info</h4>
-                </div> 
-        </div>
+<?php   }
+    }
+ ?>
     </div>
 
     <script type="text/javascript">

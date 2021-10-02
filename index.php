@@ -1,5 +1,5 @@
 <?php
-	/*session_start();
+	session_start();
 
 	require_once('lib/redirect.php');
 	auth_level(0);

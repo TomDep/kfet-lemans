@@ -104,7 +104,7 @@
 		
 <?php
 		require_once('lib/favorites.php');
-		$favorites = getFavorites($_SESSION['id'], 3);
+		$favorites = getFavorites($_SESSION['id'], 4);
 
 		if(count($favorites) > 0) {
 ?>

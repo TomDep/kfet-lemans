@@ -12,23 +12,6 @@ main {
     margin-top: var(--nav-menu-height-lg);
 }
 
-nav {
-    background-color: var(--dark);
-}
-
-.standard-form {
-    background-color: var(--gray);
-    color: var(--light);
-}
-.standard-form .form-group input, .standard-form .form-group select {
-    background-color: var(--light);
-}
-
-#btn-validate-lg {
-    background-color: var(--dark);
-    color: white;
-}
-
 .grid-box {
     display: grid;
     grid-template-columns: 20% 20% 20% 20%;

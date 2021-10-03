@@ -125,7 +125,7 @@
 									$actualPrice = ($_SESSION['bdlc_member']) ? $bdlc_price : $price;
 									?>
 
-									<div class="sub-presentation-card clickable" id="<?php echo $id; ?>" onclick="addItem(<?php echo $id . ',\'' . $name . '\',\'res/images/products/' . $image . '\',' . $actualPrice; ?>, 1)">
+									<div title="<?php echo(htmlspecialchars($name)); ?>" class="sub-presentation-card clickable" id="<?php echo $id; ?>" onclick="addItem(<?php echo $id . ',\'' . $name . '\',\'res/images/products/' . $image . '\',' . $actualPrice; ?>, 1)">
 										<img class="card-picture" src="<?php echo 'res/images/products/' . $image ;?>">
 										<div class="content">
 											<p class="card-name"><?php echo $name;?></p>

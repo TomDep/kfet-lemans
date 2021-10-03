@@ -82,7 +82,7 @@
 		  <!-- The slideshow -->
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg" alt="Los Angeles">
+		      <img src="res/images/events/bbq.jpg" alt="BBQ">
 		    </div>
 		    <div class="carousel-item">
 		      <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg" alt="Chicago">
@@ -264,5 +264,20 @@
 
 <script type="text/javascript" src="js/linked_sections.js"></script>
 <script type="text/javascript" src="js/shopping.js"></script>
+<script src="js/status_message.js"></script>
+<script type="text/javascript">
+	addStatusMessage('command', {
+        'success' : 'Votre commande a été passée avec succès !',
+        'database_error_1' : 'Il y a eu un problème avec la base de donnée ... (1)',
+        'database_error_2' : 'Il y a eu un problème avec la base de donnée ... (2)',
+        'database_error_3' : 'Il y a eu un problème avec la base de donnée ... (3)',
+        'database_error_4' : 'Il y a eu un problème avec la base de donnée ... (4)',
+        'database_error_5' : 'Il y a eu un problème avec la base de donnée ... (5)',
+        'database_error_6' : 'Il y a eu un problème avec la base de donnée ... (6)',
+        'not_enough_money' : 'Il semble que vous soyez trop pauvre ! Demandez à un.e barista de vous rajouter de l\'argent.',
+        'empty_order' : 'Vous venez vraiment de passer une commande avec rien ?!! --\''
+    })
+
+</script>
 </body>
 </html>

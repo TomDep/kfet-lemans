@@ -330,12 +330,14 @@ function addItemCard(id, name, src, price, quantity) {
 	input.setAttribute("hidden","");
 	presentation.appendChild(input);
 
+	/*
 	var input = document.createElement("input");
 	input.setAttribute("type","number");
 	input.setAttribute("name","price");
 	input.setAttribute("value", price);
 	input.setAttribute("hidden", "");
 	presentation.appendChild(input);
+	*/
 
 	// Add the delete button
 	var close = document.createElement("div");

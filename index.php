@@ -68,27 +68,18 @@
 		<!-- Identification de l'étudiant -->
 			
     <!-- Evénéments à promouvoir ou des rappels! Exemple : mardi/jeudi viennoiseries, wei, etc -->
-
 		<div class="sub-categories carousel slide " data-ride="carousel" id="event">
 			<h4 class="sub-categories-title">Evénements</h4><span class="menuspan" id="span-event"></span>
 
 		  <!-- Indicators -->
 		  <ul class="carousel-indicators">
 		    <li data-target="#event" data-slide-to="0" class="active"></li>
-		    <li data-target="#event" data-slide-to="1"></li>
-		    <li data-target="#event" data-slide-to="2"></li>
 		  </ul>
 
 		  <!-- The slideshow -->
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="res/images/events/bbq.jpg" alt="BBQ">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg" alt="Chicago">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg" alt="New York">
+		      <img src="res/images/events/BBQ.jpg" alt="BBQ">
 		    </div>
 		  </div>
 

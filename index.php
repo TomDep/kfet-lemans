@@ -178,7 +178,7 @@
 			</div>
 
 			<div class="header">
-	      <h1>Les boisons chaudes</h1>
+	      <h1>Les boissons chaudes</h1>
 	    </div>
 	   	
 	    <?php displayCategory(0); ?>
@@ -267,6 +267,8 @@
 <script src="js/status_message.js"></script>
 <script type="text/javascript">
 	addStatusMessage('command', {
+				'cacolac_1' : 'T\'as vraiment pris un cacolac ??!!!',
+				'cacolac_2' : 'Cacolac = meilleure boisson <3',
         'success' : 'Votre commande a été passée avec succès !',
         'database_error_1' : 'Il y a eu un problème avec la base de donnée ... (1)',
         'database_error_2' : 'Il y a eu un problème avec la base de donnée ... (2)',

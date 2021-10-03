@@ -133,5 +133,16 @@
     }
 
     // Redirect to home page
-    header('Location: ../index.php?command_status=success');
+
+    // Check if a cacolac was purchased (id = 17)
+    // This is only a joke :)
+    if(in_array(17, $product_ids)) {
+        if(rand(0, 1) == 1) {
+            header('Location: ../index.php?command_status=cacolac_1');
+        } else {
+            header('Location: ../index.php?command_status=cacolac_2');
+        }
+    } else {
+        header('Location: ../index.php?command_status=success');
+    }
 ?>

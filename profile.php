@@ -51,8 +51,7 @@
 
 		<div class="profile-settings">
 			<h6 class="text-center" style="border-bottom:1px solid black">Paramètres</h6>
-			<p class="text-center"><a href="edit_password.php">Modifier mon mot de passe</a></p>
-			<!--<p class="text-center"><a href="edit_password.php">Ajouter de l'argent au compte</a></p>-->
+			<a href="edit_password.php" class="text-dark"><p class="text-center">Modifier mon mot de passe</p></a>
 		</div>
 
 	</div>

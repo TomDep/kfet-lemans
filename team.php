@@ -19,7 +19,7 @@
 
     <div id="header-team">
         <h1>Présentation de l'équipe 2021-2022</h1>
-        <p>L'équipe est là pour vous accueillir de nouveau et repartir pour une nouvelle année déchainé à vos côtés! <br><br>
+        <p>L'équipe est là pour vous accueillir de nouveau et repartir pour une nouvelle année déchainée à vos côtés! <br><br>
         N'oubliez pas que l'équipe vous accompagne et gère également les recharges de vos comptes! <br></p>
     </div>
        

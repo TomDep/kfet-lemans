@@ -31,7 +31,10 @@
     require_once('lib/connect.php');
 
     // Connect to the database
-    if(!$mysqli = connectToDatabase()) exit();
+    if(!$mysqli = connectToDatabase()) {
+        echo '<small class="text-danger">Error : '. $mysqli->error .'</small>';
+        exit();
+    }
 
     $req = 'SELECT * FROM orders ORDER BY datetime DESC LIMIT 50';
     $result = $mysqli->query($req);
@@ -42,7 +45,7 @@
     }
 
     // Create a number formater for all the prices
-    $fmt = new NumberFormatter( 'fr_FR', NumberFormatter::CURRENCY);
+    //$fmt = new NumberFormatter( 'fr_FR', NumberFormatter::CURRENCY);
 
     while($order_row = $result->fetch_array()) {
         $order_id = $order_row['id'];
@@ -56,6 +59,7 @@
             echo '<small class="text-danger">Error : '. $mysqli->error .'</small>';
         } else {
             $name = $name_query_result->fetch_array()['username'];
+            $name_query_result->close();
         }
 
         // Set a time message depending on the interval
@@ -79,8 +83,6 @@
         } else if($time_delta->i == 0) {
             $date_message = 'Il y a quelques secondes';
         }
-
-        
 
         // Get all products form this order
         $req = 'SELECT name, price, bdlc_price, quantity FROM item_orders o INNER JOIN products p ON o.product_id = p.id WHERE order_id=' . $order_id;
@@ -117,7 +119,7 @@
                         <div class="sortable" data-toggle="collapse" data-target="#collapse<?php echo $order_id; ?>">
                             <p class="mb-0">
                                 <span class="badge badge-secondary mr-1">#<?php echo $order_id; ?></span>
-                                par <?php echo $name; ?> : <b><?php echo $fmt->formatCurrency($total_price, "EUR"); ?></b>
+                                par <?php echo $name; ?> : <b><?php echo number_format($total_price, 2); ?> €</b>
                             </p>
                             <small class=""><?php echo $date_message; ?></small>
                         </div>
@@ -137,8 +139,8 @@
                             <tr>
                                 <td><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['quantity']; ?></td>
-                                <td><?php echo $fmt->formatCurrency($row['price'], "EUR"); ?></td>
-                                <td><?php echo $fmt->formatCurrency($row['total'], "EUR"); ?></td>
+                                <td><?php echo number_format($row['price'], 2); ?> €</td>
+                                <td><?php echo number_format($row['total'], 2); ?> €</td>
                             </tr>
 <?php
         }

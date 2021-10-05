@@ -41,7 +41,7 @@
     }
 
     // Create a number formater for all the prices
-    $fmt = new NumberFormatter( 'fr_FR', NumberFormatter::CURRENCY);
+    //$fmt = new NumberFormatter( 'fr_FR', NumberFormatter::CURRENCY);
 
     while($order_row = $result->fetch_array()) {
         $order_id = $order_row['id'];
@@ -116,7 +116,7 @@
                         <div class="sortable" data-toggle="collapse" data-target="#collapse<?php echo $order_id; ?>">
                             <p class="mb-0">
                                 <span class="badge badge-secondary mr-1">Commande #<?php echo $order_id; ?></span>
-                                <b><?php echo $fmt->formatCurrency($total_price, "EUR"); ?></b>
+                                <b><?php echo number_format($total_price, 2); ?> €</b>
                                 <small class=""><?php echo $date_message; ?></small>
                             </p>
                             
@@ -137,8 +137,8 @@
                             <tr>
                                 <td><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['quantity']; ?></td>
-                                <td><?php echo $fmt->formatCurrency($row['price'], "EUR"); ?></td>
-                                <td><?php echo $fmt->formatCurrency($row['total'], "EUR"); ?></td>
+                                <td><?php echo number_format($row['price'], 2); ?> €</td>
+                                <td><?php echo number_format($row['total'], 2); ?> €</td>
                             </tr>
 <?php
         }

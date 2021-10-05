@@ -3,7 +3,7 @@
     session_start();
 
     // Include the database connection file from absolute path
-    include($_SERVER['DOCUMENT_ROOT'] . '/kfet/lib/connect.php');
+    require_once('connect.php');
 
     // Check if the user is connected and has the authorisation level
     if(!isset($_SESSION['logged_in'], $_SESSION['auth_level']) || $_SESSION['auth_level'] == 0) {

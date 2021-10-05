@@ -1,7 +1,7 @@
 <?php
 
 function readDatabaseInformations() {
-	$LOGFILE_NAME = $_SERVER['DOCUMENT_ROOT'] . '/kfet/database_logs.txt';
+	$LOGFILE_NAME = $_SERVER['DOCUMENT_ROOT'] . '/kfet/lib/database_logs.txt';
 
 	if($file = fopen($LOGFILE_NAME, 'r')) {
 		while(!feof($file)) {
@@ -43,7 +43,6 @@ function readDatabaseInformations() {
 }
 
 function connectToDatabase() {
-	
 	// Connection info.
 	$INFOS = readDatabaseInformations();
 

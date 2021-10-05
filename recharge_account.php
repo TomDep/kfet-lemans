@@ -63,7 +63,7 @@
         </form>
     </div>
     
-    <script src="js/status_message"></script>
+    <script src="js/status_message.js"></script>
     <script type="text/javascript">
          addStatusMessage('update_amount', {
             'success' : 'Le montant a bien été mis à jour !',

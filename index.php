@@ -29,7 +29,7 @@
 		while($row = $result->fetch_assoc()) {
 			$actualPrice = ($_SESSION['bdlc_member']) ? $row['bdlc_price'] : $row['price'];
 ?>
-<div class="presentation-card" id="<?php echo htmlspecialchars($row['id']); ?>" onclick="toggleItem(<?php echo htmlspecialchars($category+1); ?>, <?php echo htmlspecialchars($row['id']); ?>)">
+<div class="presentation-card" id="<?php echo htmlspecialchars($row['id']); ?>" onclick="showItemDetails(<?php echo htmlspecialchars($row['id']); ?>,'<?php echo htmlspecialchars($row['name']); ?>', <?php echo htmlspecialchars($actualPrice); ?>, '<?php echo htmlspecialchars($row['image']) ?>')">
   <img class="card-picture" id="card-picture" src="res/images/products/<?php echo htmlspecialchars($row['image']); ?>">
   <div class="content">
       <h4 class="card-name"><?php echo htmlspecialchars($row['name']); ?></h4>
@@ -210,6 +210,7 @@
 
 	</div>
 	
+	<!--
 	<div id="detailed-item" class="detailed-item" >
 		<div class="item-presentation">
 			<img class="item-picture" id="item-picture" src="">
@@ -227,8 +228,41 @@
 		  		<input type="submit" value="" id="btn-validate-lg">
 				</div>
 		</div>
-
   	<div class="close" onclick="toggleItem(0,0)"><i class="fas fa-times"></i></div>
+	</div>
+	-->
+
+	<div class="modal fade" id="item-details">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="item-details-name">Produit</h3>
+					<button type="button" class="close" data-dismiss="modal">
+          	<span>&times;</span>
+        	</button>
+				</div>
+				<div class="modal-body p-4">
+					<img id="item-details-src" class="img-fluid" onerror="cantLoadImg(this)">
+					<hr>
+					<h5>Prix à l'unité : <span id="item-details-price">0.4€</span> €</h5>
+
+					<div class="container mt-4">
+						<div class="row justify-content-around">
+							<button id="item-details-remove" type="button" class="btn btn-primary btn-round">
+								<i class="fas fa-minus"></i>
+							</button>
+							<h4 id="item-details-quantity">1</h4>
+							<button id="item-details-add" type="button" class="btn btn-primary btn-round">
+								<i class="fas fa-plus"></i>
+							</button>
+						</div>
+						<div class="row justify-content-center">
+							<button id="item-details-submit" type="button" class="btn btn-primary w-100 submit-rounded">Ajouter au panier pour <span id="item-details-total">0.4</span> €</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
 	</div>
 
 	<div class="shoping-cart clickable">
@@ -270,6 +304,99 @@
         'not_enough_money' : 'Il semble que vous soyez trop pauvre ! Demandez à un.e barista de vous rajouter de l\'argent.',
         'empty_order' : 'Vous venez vraiment de passer une commande avec rien ?!! --\''
     })
+
+	//$('#item-details').modal();
+
+	function cantLoadImg(img) {
+		if($(img).next('.missing-img').length == 0) {
+			$(img).after('<small class="missing-img text-danger">Impossible de charger l\'image.</small>')
+		}
+
+		$(img).attr('src', 'res/icon.svg')
+	}
+
+	function updateItemTotal() {
+		let number = parseInt($('#item-details-quantity').text())
+		let unitPrice = parseFloat($('#item-details-price').text())
+		let totalPrice = unitPrice * number
+
+		$('#item-details-total').text(totalPrice.toFixed(2))
+	}
+
+	function showItemDetails(id, name, price, imgSrc) {
+		// Update the modal informations
+		$('#item-details-name').text(name)
+		$('#item-details-src').attr('src', 'res/images/products/' + imgSrc)
+		$('#item-details-price').text(price.toFixed(2))
+		$('#item-details-quantity').text(1)	// Reset the quantity to 1
+
+		updateItemTotal()
+
+		// Add events on buttons
+		$('#item-details-add').click(function() {
+			let number = parseInt($('#item-details-quantity').text())
+			number++;
+			$('#item-details-quantity').text(number)
+
+			updateItemTotal()
+		})
+
+		$('#item-details-remove').click(function() {
+			let number = parseInt($('#item-details-quantity').text())
+			if(number > 1) number--;
+			$('#item-details-quantity').text(number)
+
+			updateItemTotal()
+		})
+
+		$('#item-details-submit').click(function() {
+			let quantity = parseInt($('#item-details-quantity').text())
+			addItemToCart(id, name, price, imgSrc, quantity)
+
+			$('#item-details').modal('hide');
+
+			// Remove the event
+			$('#item-details-submit').off('click')
+		})
+
+		// Show the modal
+		$('#item-details').modal();
+	}
+
+	function addItemToCart(id, name, price, imgSrc, quantity) {
+	console.log('Adding the product [' + id + '] ' + quantity + ' x ' + name + ', ' + price + '€ (' + imgSrc + ')');
+
+	// Add it to the sessionStorage
+
+	// Check if there is already an item with this id
+	let item = sessionStorage.getItem(id)
+
+	if(item == null) {
+		// Create the new item
+		let data = {
+			"name" : name,
+			"imgSrc": imgSrc,
+			"price" : parseFloat(price, 2),
+			"quantity" : parseInt(quantity),
+			"id" : parseInt(id)
+		}
+
+		// Add to session storage
+		sessionStorage.setItem(id, JSON.stringify(data))
+
+	} else {
+		// Update the quantity
+		item = JSON.parse(item)
+		item.quantity = parseInt(item.quantity) + parseInt(quantity)
+
+		// Add it back to session storage
+		sessionStorage.setItem(id, JSON.stringify(item))
+	}
+
+	//debugSessionStorage()
+}
+
+	$('#item-details').on('')
 
 </script>
 </body>

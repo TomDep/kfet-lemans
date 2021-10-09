@@ -29,7 +29,7 @@
 		while($row = $result->fetch_assoc()) {
 			$actualPrice = ($_SESSION['bdlc_member']) ? $row['bdlc_price'] : $row['price'];
 ?>
-<div class="presentation-card" id="<?php echo htmlspecialchars($row['id']); ?>" onclick="toggleItem(<?php echo htmlspecialchars($category+1); ?>, <?php echo htmlspecialchars($row['id']); ?>)">
+<div class="presentation-card" id="<?php echo htmlspecialchars($row['id']); ?>" onclick="showItemDetails(<?php echo htmlspecialchars($row['id']); ?>,'<?php echo htmlspecialchars($row['name']); ?>', <?php echo htmlspecialchars($actualPrice); ?>, '<?php echo htmlspecialchars($row['image']) ?>')">
   <img class="card-picture" id="card-picture" src="res/images/products/<?php echo htmlspecialchars($row['image']); ?>">
   <div class="content">
       <h4 class="card-name"><?php echo htmlspecialchars($row['name']); ?></h4>
@@ -210,32 +210,64 @@
 
 	</div>
 	
-	<div id="detailed-item" class="detailed-item" >
-		<div class="item-presentation">
-			<img class="item-picture" id="item-picture" src="">
-			<h2 class="item-name text-center" id="item-name"></h2>
-		</div>
-
-		<div class="item-description">
-				<h4 class="item-price">Prix unitaire: <span id="item-price"></span>€</h4>
-				<h4 class="item-quantity">Quantité: <span id="item-quantity"></span></h4>
-				<div class="item-control">
-					<div class="item-control-plus" onclick="quantityItem(1)"><i class="fas fa-plus"></i></div>
-					<div class="item-control-minus" onclick="quantityItem(-1)"><i class="fas fa-minus"></i></div>
+	<div class="modal fade" id="item-details">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="item-details-name">Produit</h3>
+					<button type="button" class="close" data-dismiss="modal">
+          	<span>&times;</span>
+        	</button>
 				</div>
-				<div class="item-add">
-		  		<input type="submit" value="" id="btn-validate-lg">
-				</div>
-		</div>
+				<div class="modal-body p-4">
+					<img id="item-details-src" class="img-fluid" onerror="cantLoadImg(this)">
+					<hr>
+					<h5>Prix à l'unité : <span id="item-details-price">0.4€</span> €</h5>
 
-  	<div class="close" onclick="toggleItem(0,0)"><i class="fas fa-times"></i></div>
+					<div class="container mt-4">
+						<div class="row justify-content-around">
+							<button id="item-details-remove" type="button" class="btn btn-primary btn-round">
+								<i class="fas fa-minus"></i>
+							</button>
+							<h4 id="item-details-quantity">1</h4>
+							<button id="item-details-add" type="button" class="btn btn-primary btn-round">
+								<i class="fas fa-plus"></i>
+							</button>
+						</div>
+						<div class="row justify-content-center">
+							<button id="item-details-submit" type="button" class="btn btn-primary w-100 submit-rounded">Ajouter au panier pour <span id="item-details-total">0.4</span> €</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+
+	<div class="modal fade" id="order-summary">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="item-details-name">Panier</h3>
+					<button type="button" class="close" data-dismiss="modal">
+          	<span>&times;</span>
+        	</button>
+				</div>
+				<div class="modal-body p-4">
+					<form id="order-summary-form" method="post" action="lib/command.php">
+						<div class="list-group-flush" id="order-summary-content">
+						</div>
+					</form>
+					<h5 class="float-right mt-3 mr-2">Prix total : <span id="order-summary-total" class="font-weight-bold"></span> €</h5>
+				</div>
+			</div>	
+		</div>
 	</div>
 
 	<div class="shoping-cart clickable">
 		<div class="icon" onmouseup="toggleShop()">
-			<span id="icon" class="fa-layers fa-fw">
-		    <i class="fas fa-shopping-cart" id="shopping-cart"></i>
-		    <span class="fa-layers-counter" id="number-item"></span>
+			<span class="fa-layers fa-fw">
+		    <i id="cart-icon" class="fas fa-shopping-cart"></i>
+		    <span class="fa-layers-counter" id="cart-number-item"></span>
 		  </span>
 		</div>
 
@@ -244,14 +276,9 @@
 		    <i class="fas fa-check" id="shopping-cart"></i>
 		  </span>
 		</div>
-
-		<div id="order-summary">
-			<h1 class="text-center">Total panier: <span id="total"></span></h1>
-
-			<form method="post" action="lib/command.php" id="order-form">
-    	</form>
-    </div>
 	</div>	
+
+	
 
 <script type="text/javascript" src="js/linked_sections.js"></script>
 <script type="text/javascript" src="js/shopping.js"></script>
@@ -270,7 +297,6 @@
         'not_enough_money' : 'Il semble que vous soyez trop pauvre ! Demandez à un.e barista de vous rajouter de l\'argent.',
         'empty_order' : 'Vous venez vraiment de passer une commande avec rien ?!! --\''
     })
-
 </script>
 </body>
 </html>

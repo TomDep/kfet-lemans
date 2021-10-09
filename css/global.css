@@ -359,3 +359,14 @@ input[type="submit"]{
     background-size: auto 200px;
   }
 }
+
+.btn-round {
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+}
+
+.submit-rounded {
+  border-radius: 2em;
+  padding: 0.5em;
+}

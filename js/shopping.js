@@ -1,5 +1,66 @@
-function addItem(id, name, src, price, quantity) {
-	//console.log('Adding the product [' + id + '] ' + quantity + ' x ' + name + ', ' + price + '€ (' + src + ')');
+$(document).ready(() => {
+	// Update the number of item in the cart
+	updateCartItemCounter()
+})
+
+function cantLoadImg(img) {
+	if($(img).next('.missing-img').length == 0) {
+		$(img).after('<small class="missing-img text-danger">Impossible de charger l\'image.</small>')
+	}
+
+	$(img).attr('src', 'res/icon.svg')
+}
+
+function updateItemTotal() {
+	let number = parseInt($('#item-details-quantity').text())
+	let unitPrice = parseFloat($('#item-details-price').text())
+	let totalPrice = unitPrice * number
+
+	$('#item-details-total').text(totalPrice.toFixed(2))
+}
+
+function showItemDetails(id, name, price, imgSrc) {
+	// Update the modal informations
+	$('#item-details-name').text(name)
+	$('#item-details-src').attr('src', 'res/images/products/' + imgSrc)
+	$('#item-details-price').text(price.toFixed(2))
+	$('#item-details-quantity').text(1)	// Reset the quantity to 1
+
+	updateItemTotal()
+
+	// Add events on buttons
+	$('#item-details-add').click(function() {
+		let number = parseInt($('#item-details-quantity').text())
+		number++;
+		$('#item-details-quantity').text(number)
+
+		updateItemTotal()
+	})
+
+	$('#item-details-remove').click(function() {
+		let number = parseInt($('#item-details-quantity').text())
+		if(number > 1) number--;
+		$('#item-details-quantity').text(number)
+
+		updateItemTotal()
+	})
+
+	$('#item-details-submit').click(function() {
+		let quantity = parseInt($('#item-details-quantity').text())
+		addItemToCart(id, name, price, imgSrc, quantity)
+
+		$('#item-details').modal('hide');
+
+		// Remove the event
+		$('#item-details-submit').off('click')
+	})
+
+	// Show the modal
+	$('#item-details').modal();
+}
+
+function addItemToCart(id, name, price, imgSrc, quantity) {
+	console.log('Adding the product [' + id + '] ' + quantity + ' x ' + name + ', ' + price + '€ (' + imgSrc + ')');
 
 	// Add it to the sessionStorage
 
@@ -10,7 +71,7 @@ function addItem(id, name, src, price, quantity) {
 		// Create the new item
 		let data = {
 			"name" : name,
-			"src": src,
+			"imgSrc": imgSrc,
 			"price" : parseFloat(price, 2),
 			"quantity" : parseInt(quantity),
 			"id" : parseInt(id)
@@ -28,374 +89,125 @@ function addItem(id, name, src, price, quantity) {
 		sessionStorage.setItem(id, JSON.stringify(item))
 	}
 
-	// Update the quantity indicator on the shopping cart
-	calculateTotalItems()
-
-	debugSessionStorage()
+	// Update the cart product counter
+	updateCartItemCounter();
 }
 
-function debugSessionStorage() {
+function updateCartItemCounter() {
+	let itemCount = 0
 
+	// Calculate the item count
 	for(let i=0; i < sessionStorage.length; i++) {
-		let key = sessionStorage.key(i)
-		console.log(JSON.parse(sessionStorage.getItem(key)))
-	}
+  	let key = sessionStorage.key(i)
+  	let item = JSON.parse(sessionStorage.getItem(key))
 
-}
-
-function quantityItem(x){
-	var qty = parseInt(document.getElementById("item-quantity").innerHTML);
-
-	if(x==0){
-		document.getElementById("item-quantity").innerHTML = "1";
-	}else{
-		qty += x;
-		if(qty==0){
-			qty = 1;
-		}
-		document.getElementById("item-quantity").innerHTML = String(qty);
-	}
-	calculateItemPrice();
-}
-
-function calculateItemPrice(){
-	var qty = parseInt(document.getElementById("item-quantity").innerHTML);
-	var price = parseFloat(document.getElementById("item-price").innerHTML);
-
-	var totalPrice = qty * price;
-	totalPrice = totalPrice.toFixed(2);
-
-	document.getElementById("btn-validate-lg").value = "Ajouter pour " + totalPrice + "€";
-}
-
-function calculateTotalPrice(){
-	
-	let sum = 0
-
-	// Get the total price from the articles stored in the session storage
-	for(let i=0; i < sessionStorage.length; i++) {
-		let key = sessionStorage.key(i)
-		let item = JSON.parse(sessionStorage.getItem(key))
-		sum += item.quantity * item.price
-	}
-
-	/*
-	var form = document.getElementById("order-form");
-	var inputs = form.getElementsByTagName("input");
-
-	var sum = 0;
-	for(var i=0; i< inputs.length; i=i+2){
-		var qty = inputs[i].value;
-		var price = inputs[i+1].value;
-	  sum += qty * price;
-	}
-	*/
-
-	sum = sum.toFixed(2);
-	document.getElementById("total").innerHTML = sum + "€";
-
-	if(sum == 0){
-		// Display a message if the shopping cart is empty
-		var x = document.createElement("div");
-
-		x.style.backgroundImage = "url(res/empty-john-travolta.gif)";
-		x.style.backgroundRepeat = "no-repeat";
-		x.style.backgroundSize = "100% auto";
-		x.style.marginTop = "80px";
-		x.style.marginLeft = "40px";
-		x.style.marginRight = "40px";
-		x.style.width = "auto";
-		x.style.height = "200px";
-		x.setAttribute("id","easter-egg");
-
-	  document.getElementById("order-form").appendChild(x);
-	}else{
-		// Remove any easter egg
-		do{
-			var x = document.getElementById("easter-egg");
-			if(x != null){
-				x.remove();
-			}
-		} while(x != null)
-	}
-}
-
-/* Function that calculate the number of items in the shopping cart and update the indicator on top of the icon */
-function calculateTotalItems(){
-
-	let num = 0
-
-	for(let i=0; i < sessionStorage.length; i++) {
-		let key = sessionStorage.key(i)
-		let item = JSON.parse(sessionStorage.getItem(key))
-		let quantity = item.quantity
-		num += quantity
-	}
-
-	var elmt = document.getElementById("number-item");
-	if(elmt == null) return num
-
-	if(num == 0){
-		elmt.style.display = "none";
-	}else{
-		elmt.style.display = "block";
-		elmt.innerHTML = num;
-	}
-
-	return num;
-}
-
-function findById(myArray, id) {
-	for(let i=0; i<myArray.length;i++){
-		if(myArray[i].className == "presentation-card"){
-			if(myArray[i].id == id){
-				return i;
-			}
-		}
-	}
-}
-
-/* Function that creates/removes an interface to add the item to the shopping cart */
-function toggleItem(categories, id) {
-	var x = document.getElementById("detailed-item");
-	if(id == 0 && categories == 0){
-  	x.style.display = "none";
-  	blur(0);
-  	return;
+  	itemCount += item.quantity
   }
 
-	if (x.style.display === "none" || x.style.display === "") {
-		switch(categories){
-			case 1: var elmtList = document.getElementById("hot-drinks").childNodes; break;
-			case 2: var elmtList = document.getElementById("cold-drinks").childNodes; break;
-			case 3: var elmtList = document.getElementById("snacks").childNodes; break;
-			case 4: var elmtList = document.getElementById("formules").childNodes; break;
-		}
-
-		elmtList = Array.from(elmtList);
-		let idArray = findById(elmtList, String(id));
-		let element = elmtList[idArray];
-
-		console.log(element);
-
-		var img = element.firstElementChild.currentSrc;
-		var name = element.children[1].children[0].textContent;
-		var price = element.children[1].children[1].textContent;
-		var priceFloat = price.match(/\d\W\S\d/g);
-		priceFloat = parseFloat(priceFloat).toFixed(2);
-		
-		document.getElementById("item-picture").setAttribute("src",img);
-		document.getElementById("item-name").innerHTML = name;
-		document.getElementById("item-price").innerHTML = String(priceFloat);
-
-		// Set the item quantity
-		quantityItem(0); // In this case to 1
-
-
-		// Add the onclick event
-		document.getElementById("btn-validate-lg").addEventListener('click', function() {
-			var quantity = $('#detailed-item .item-quantity').text().substring(10)
-			console.log(quantity)
-
-			addItem(id, name, img, priceFloat, quantity);
-
-			// Close the interface
-			toggleItem(0, 0)
-
-			// Remove the event listener for this button so that the next time it wont add the item again
-			document.getElementById("btn-validate-lg").removeEventListener('click', null)
-		});
-
-    x.style.display = "block";
-    blur(1);
+  if(itemCount == 0) {
+  	$('#cart-number-item').hide()
   } else {
-    x.style.display = "none";
-    blur(0);
+  	$('#cart-number-item').text(itemCount).show()
   }
 }
 
 function submitForm() {
-	let form = document.getElementById("order-form");
 	// Clear the session storage
 	sessionStorage.clear();
 
-	form.submit();
+	$('#order-summary-form').submit();
 }
 
 function toggleShop() {
-	// Display the check icon
-	$("#check-icon").toggle();
+	// Hide the item-details
+	$('#item-details').modal('hide')
 
-	var summaryOrder = document.getElementById("order-summary");
-  
-  // If the order summary is not displayde : display it
-  if (summaryOrder.style.display === "none" || summaryOrder.style.display === "") {
-    summaryOrder.style.display = "block";
-    toggleItem(0, 0);
+	let modal = $('#order-summary')
+	let modalIcon = $('#cart-icon')
 
-    // Empty the shoping summary
-    $("#order-summary .presentation-card").remove()
+	// Check if the modal is shown
+	if(modal.hasClass('show')) {
+		// Close the modal
+		modal.modal('hide')
 
-    // Remove shopping cart and counter
-    var shoppingCart = document.getElementById("shopping-cart");
-    shoppingCart.remove();
-    var counter = document.getElementById("number-item");
-    counter.remove();
+		// Replace the close icon with the cart
+		modalIcon.removeClass('fa-times')
+		modalIcon.addClass('fa-shopping-cart')
 
-    // Replace by a time
-    var icon = document.createElement("i");
-    icon.classList.add("fas");
-    icon.classList.add("fa-times");
-    icon.setAttribute("id","icon-times");
+		// Hide the check button
+		$('#check-icon').hide()
 
-    icon.style.fontSize = "40px";
-    icon.style.marginLeft = "7px";
-    icon.style.marginTop = "5px";
+		// Clear the summary
+		$('#order-summary-content').empty()
 
-    var divIcon = document.getElementById("icon");
-    divIcon.appendChild(icon);
+		return
+	}
 
-    blur(1);
-    // Add all product cards to the order summary
+	// Add all items
+	for(let i=0; i < sessionStorage.length; i++) {
+  	let key = sessionStorage.key(i)
+  	let item = JSON.parse(sessionStorage.getItem(key))
 
-    for(let i=0; i < sessionStorage.length; i++) {
-    	let key = sessionStorage.key(i)
-    	let item = JSON.parse(sessionStorage.getItem(key))
+   	addCartItem(item.id, item.name, item.quantity, item.price)
+  }
 
-    	addItemCard(item.id, item.name, item.src, parseFloat(item.price, 2).toFixed(2), item.quantity)
-    }
+  // Set the total price
+	let totalPrice = updateCartTotalPrice()
 
-  } else {
-    summaryOrder.style.display = "none";
+	// Set the icons
+	modalIcon.removeClass('fa-shopping-cart')
+	modalIcon.addClass('fa-times')
 
-    // Remove time
-    var times = document.getElementById("icon-times");
-    times.remove();
+	if(totalPrice > 0)
+		$('#check-icon').show()
+	else {
+		$('#order-summary-content').append('<img class="img-fluid mx-auto d-block" src="res/empty-john-travolta.gif"><p class="text-center">Votre panier est vide !</p>')
+	}
 
-    var shoppingCart = document.createElement("i");
-    shoppingCart.classList.add("fas");
-    shoppingCart.classList.add("fa-shopping-cart");
-    shoppingCart.setAttribute("id", "shopping-cart");
-
-    var counter = document.createElement("span");
-    counter.classList.add("fa-layers-counter");
-    counter.setAttribute("id", "number-item");
-
-    var divIcon = document.getElementById("icon");
-    divIcon.appendChild(shoppingCart);
-    divIcon.appendChild(counter);
-
-    blur(0);
-    calculateTotalItems();
-  }			
+	// Show the cart
+	$('#order-summary').modal('show')
 }
 
-function addItemCard(id, name, src, price, quantity) {
-	var presentation = document.createElement("div");
-	presentation.classList.add("presentation-card");
-	presentation.setAttribute("id",id);
+function updateCartTotalPrice() {
+	let totalPrice = 0
+	
+	// Add all items
+	for(let i=0; i < sessionStorage.length; i++) {
+  	let key = sessionStorage.key(i)
+  	let item = JSON.parse(sessionStorage.getItem(key))
 
-	var img = document.createElement("img");
-	img.classList.add("card-picture");
-	img.setAttribute("src", src);
-	presentation.appendChild(img);
+  	totalPrice += item.price * item.quantity
+  }
 
-	var content = document.createElement("div");
-	content.classList.add("content-sm");
-	presentation.appendChild(content);
+  // Set the total price
+	$('#order-summary-total').text(totalPrice.toFixed(2))
 
-	// Add product name
-	var title = document.createElement("h4");
-	title.classList.add("card-name");
-	title.innerHTML = name;
-	content.appendChild(title);
-
-	// Add product price
-	title = document.createElement("h4");
-	title.classList.add("card-subtitles");
-	title.innerHTML = "Prix unitaire: " + price + "€";
-	content.appendChild(title);
-
-	// Add product quantity
-	title = document.createElement("h4");
-	title.classList.add("card-subtitles");
-	title.innerHTML = "Quantité: " + quantity;
-	content.appendChild(title);
-
-	// Create inputs for quantity and price
-	var input = document.createElement("input");
-	input.setAttribute("type","number");
-	input.setAttribute("name", id);
-	input.setAttribute("value", quantity);
-	input.setAttribute("hidden","");
-	presentation.appendChild(input);
-
-	/*
-	var input = document.createElement("input");
-	input.setAttribute("type","number");
-	input.setAttribute("name","price");
-	input.setAttribute("value", price);
-	input.setAttribute("hidden", "");
-	presentation.appendChild(input);
-	*/
-
-	// Add the delete button
-	var close = document.createElement("div");
-	close.classList.add("delete");
-	close.addEventListener('click', function() {
-		deleteItem(id)
-	})
-	presentation.appendChild(close);
-
-	var btn_del = document.createElement("i");
-	btn_del.classList.add("fas");
-	btn_del.classList.add("fa-times");
-	close.appendChild(btn_del);
-
-	// Append the card to the order summary
-	document.getElementById("order-form").appendChild(presentation);
-
-	calculateTotalItems();
-	calculateTotalPrice();
-
-	toggleItem(0,0);	
+	return totalPrice
 }
 
-function deleteItem(id){
-	var elmtList = document.getElementById("order-form").childNodes;
-	let myArray = Array.from(elmtList);
-	let idArray = findById(myArray, String(id));
-	myArray[idArray].remove();
-
-	// Remove the element from the session storage
+function removeItem(id) {
+	$('#order-item-' + id).remove()
 	sessionStorage.removeItem(id)
 
-	calculateTotalPrice();
-	calculateTotalItems();
+	updateCartTotalPrice()
+	updateCartItemCounter()
 }
 
 
-function blur(state){	
-	// State 1 : blur the background and activate the overlay
-	// State 0 : remove the overlay and blur effect	
-	
-	var containerElement = document.getElementById("container");		    
-	var nav = document.getElementById("nav");
+function addCartItem(id, name, quantity, price) {
 
-	if(state == 1){
-    containerElement.setAttribute("class", "blur");
 
-    // Fixing the margin problem with the navbar while applying a filter
-    if(parseInt(nav.offsetHeight) == "60"){
-    	nav.style.top = "-60px";
-    }else{
-      nav.style.top = "-100px";
-    }
-	} else{
-    containerElement.setAttribute("class", null);
-    nav.style.top = "0";
-	}
+	let item = `
+	<li id="order-item-` + id + `" class="list-group-item">
+		<span class="badge badge-secondary badge-pill">` + quantity + `</span>
+		<span class="ml-2">` + name + `</span>
+		
+		<span class="float-right ml-3 text-secondary clickable" onclick="removeItem(` + id + `)">x</span>
+		<span class="float-right">` + (quantity * price).toFixed(2) + ` €</span>
+
+		<input type="number" name="` + id + `" value="` + quantity + `" hidden>
+	</li>
+	`;
+
+	$('#order-summary-content').append(item)
 }
-
-calculateTotalItems();
-calculateTotalPrice();

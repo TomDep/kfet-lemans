@@ -2,7 +2,7 @@
 <meta lang="fr"/>
 
 <!--Responsive Web Design-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!--Description's project-->
 <meta name="description" content="Site web de la KFet (ENSIM)">

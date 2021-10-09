@@ -210,28 +210,6 @@
 
 	</div>
 	
-	<!--
-	<div id="detailed-item" class="detailed-item" >
-		<div class="item-presentation">
-			<img class="item-picture" id="item-picture" src="">
-			<h2 class="item-name text-center" id="item-name"></h2>
-		</div>
-
-		<div class="item-description">
-				<h4 class="item-price">Prix unitaire: <span id="item-price"></span>€</h4>
-				<h4 class="item-quantity">Quantité: <span id="item-quantity"></span></h4>
-				<div class="item-control">
-					<div class="item-control-plus" onclick="quantityItem(1)"><i class="fas fa-plus"></i></div>
-					<div class="item-control-minus" onclick="quantityItem(-1)"><i class="fas fa-minus"></i></div>
-				</div>
-				<div class="item-add">
-		  		<input type="submit" value="" id="btn-validate-lg">
-				</div>
-		</div>
-  	<div class="close" onclick="toggleItem(0,0)"><i class="fas fa-times"></i></div>
-	</div>
-	-->
-
 	<div class="modal fade" id="item-details">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -265,11 +243,31 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="order-summary">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="item-details-name">Panier</h3>
+					<button type="button" class="close" data-dismiss="modal">
+          	<span>&times;</span>
+        	</button>
+				</div>
+				<div class="modal-body p-4">
+					<form id="order-summary-form" method="post" action="lib/command.php">
+						<div class="list-group-flush" id="order-summary-content">
+						</div>
+					</form>
+					<h5 class="float-right mt-3 mr-2">Prix total : <span id="order-summary-total" class="font-weight-bold"></span> €</h5>
+				</div>
+			</div>	
+		</div>
+	</div>
+
 	<div class="shoping-cart clickable">
 		<div class="icon" onmouseup="toggleShop()">
-			<span id="icon" class="fa-layers fa-fw">
-		    <i class="fas fa-shopping-cart" id="shopping-cart"></i>
-		    <span class="fa-layers-counter" id="number-item"></span>
+			<span class="fa-layers fa-fw">
+		    <i id="cart-icon" class="fas fa-shopping-cart"></i>
+		    <span class="fa-layers-counter" id="cart-number-item"></span>
 		  </span>
 		</div>
 
@@ -278,14 +276,9 @@
 		    <i class="fas fa-check" id="shopping-cart"></i>
 		  </span>
 		</div>
-
-		<div id="order-summary">
-			<h1 class="text-center">Total panier: <span id="total"></span></h1>
-
-			<form method="post" action="lib/command.php" id="order-form">
-    	</form>
-    </div>
 	</div>	
+
+	
 
 <script type="text/javascript" src="js/linked_sections.js"></script>
 <script type="text/javascript" src="js/shopping.js"></script>
@@ -304,100 +297,6 @@
         'not_enough_money' : 'Il semble que vous soyez trop pauvre ! Demandez à un.e barista de vous rajouter de l\'argent.',
         'empty_order' : 'Vous venez vraiment de passer une commande avec rien ?!! --\''
     })
-
-	//$('#item-details').modal();
-
-	function cantLoadImg(img) {
-		if($(img).next('.missing-img').length == 0) {
-			$(img).after('<small class="missing-img text-danger">Impossible de charger l\'image.</small>')
-		}
-
-		$(img).attr('src', 'res/icon.svg')
-	}
-
-	function updateItemTotal() {
-		let number = parseInt($('#item-details-quantity').text())
-		let unitPrice = parseFloat($('#item-details-price').text())
-		let totalPrice = unitPrice * number
-
-		$('#item-details-total').text(totalPrice.toFixed(2))
-	}
-
-	function showItemDetails(id, name, price, imgSrc) {
-		// Update the modal informations
-		$('#item-details-name').text(name)
-		$('#item-details-src').attr('src', 'res/images/products/' + imgSrc)
-		$('#item-details-price').text(price.toFixed(2))
-		$('#item-details-quantity').text(1)	// Reset the quantity to 1
-
-		updateItemTotal()
-
-		// Add events on buttons
-		$('#item-details-add').click(function() {
-			let number = parseInt($('#item-details-quantity').text())
-			number++;
-			$('#item-details-quantity').text(number)
-
-			updateItemTotal()
-		})
-
-		$('#item-details-remove').click(function() {
-			let number = parseInt($('#item-details-quantity').text())
-			if(number > 1) number--;
-			$('#item-details-quantity').text(number)
-
-			updateItemTotal()
-		})
-
-		$('#item-details-submit').click(function() {
-			let quantity = parseInt($('#item-details-quantity').text())
-			addItemToCart(id, name, price, imgSrc, quantity)
-
-			$('#item-details').modal('hide');
-
-			// Remove the event
-			$('#item-details-submit').off('click')
-		})
-
-		// Show the modal
-		$('#item-details').modal();
-	}
-
-	function addItemToCart(id, name, price, imgSrc, quantity) {
-	console.log('Adding the product [' + id + '] ' + quantity + ' x ' + name + ', ' + price + '€ (' + imgSrc + ')');
-
-	// Add it to the sessionStorage
-
-	// Check if there is already an item with this id
-	let item = sessionStorage.getItem(id)
-
-	if(item == null) {
-		// Create the new item
-		let data = {
-			"name" : name,
-			"imgSrc": imgSrc,
-			"price" : parseFloat(price, 2),
-			"quantity" : parseInt(quantity),
-			"id" : parseInt(id)
-		}
-
-		// Add to session storage
-		sessionStorage.setItem(id, JSON.stringify(data))
-
-	} else {
-		// Update the quantity
-		item = JSON.parse(item)
-		item.quantity = parseInt(item.quantity) + parseInt(quantity)
-
-		// Add it back to session storage
-		sessionStorage.setItem(id, JSON.stringify(item))
-	}
-
-	//debugSessionStorage()
-}
-
-	$('#item-details').on('')
-
 </script>
 </body>
 </html>

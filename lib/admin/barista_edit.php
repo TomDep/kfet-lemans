@@ -35,13 +35,13 @@
 
         // Remove it
         try {
-            removeFile('images/baristas/', $filenameToRemove);
+            removeFile('../../res/images/baristas/', $filenameToRemove);
         } catch(Exception $e) {
             $warningMessage = $e->getMessage();
         }
         
         // Save the file to the directory
-        if(!saveFile('images/baristas/', $_FILES['file'], $filenameToSet)) {
+        if(!saveFile('../../res/images/baristas/', $_FILES['file'], $filenameToSet)) {
             $fileError = true;
             $errorMessage = 'Unable to move the file';
         } else {

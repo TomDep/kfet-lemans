@@ -164,7 +164,7 @@
 
 			<!--Add button to return main menu
 			-->
-			<div class="return-button clickable" onclick="window.location = 'index.php';">
+			<div class="return-button clickable" onclick="window.location = 'index.php#';">
 				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
 			</div>
 
@@ -175,7 +175,7 @@
 	    <?php displayCategory(0); ?>
 		</div>
 		<div id="cold-drinks" class="linked-section">
-			<div class="return-button clickable" onclick="window.location = 'index.php';">
+			<div class="return-button clickable" onclick="window.location = 'index.php#';">
 				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
 			</div>
 
@@ -186,7 +186,7 @@
 	  	<?php displayCategory(1); ?>  
 	  </div>
 		<div id="snacks" class="linked-section">
-			<div class="return-button clickable" onclick="window.location = 'index.php';">
+			<div class="return-button clickable" onclick="window.location = 'index.php#';">
 				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
 			</div>
 
@@ -197,7 +197,7 @@
 	   	<?php displayCategory(2); ?>
 		</div>
 		<div id="formules" class="linked_section" style="display: none;">
-			<div class="return-button clickable" onclick="window.location = 'index.php';">
+			<div class="return-button clickable" onclick="window.location = 'index.php#';">
 				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
 			</div>
 

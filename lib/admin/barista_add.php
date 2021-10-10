@@ -32,7 +32,7 @@
             $stmt->close();
 
             // Add the image
-            saveFile('images/baristas/', $_FILES['photo'], $username);
+            saveFile('../../res/images/baristas/', $_FILES['photo'], $username);
             $extansion = getFileExtansion($_FILES['photo']['name']);
 
             var_dump($_POST['class']);

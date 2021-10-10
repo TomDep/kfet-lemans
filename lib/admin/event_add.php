@@ -22,7 +22,7 @@
     if(isset($_POST['name'], $_FILES['image'])) {
             
         // Add the image
-        saveFile('images/events/', $_FILES['image'], $_POST['name']);
+        saveFile('../../res/images/events/', $_FILES['image'], $_POST['name']);
         $extansion = getFileExtansion($_FILES['image']['name']);
 
         $imgName =  $_POST['name'] . '.' . $extansion;

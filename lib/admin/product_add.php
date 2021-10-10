@@ -20,7 +20,7 @@
     if(isset($_POST['name'], $_POST['price'], $_POST['bdlc_price'], $_POST['category'], $_FILES['image'])) {
         
         // Add the image
-        saveFile('images/products/', $_FILES['image'], $_POST['name']);
+        saveFile('../../res/images/products/', $_FILES['image'], $_POST['name']);
         $extansion = getFileExtansion($_FILES['image']['name']);
 
         if(!insert($mysqli, 'products', array(

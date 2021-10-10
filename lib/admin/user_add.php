@@ -17,11 +17,21 @@
         $errorMessage = 'Unable to connect to the database';
     }
 
-    var_dump($_POST);
-    
     if(isset($_POST['student_number'], $_POST['username'], $_POST['auth_level'], $_POST['credit'])) {
 
         $isMember = (isset($_POST['bdlc_member'])) ? '1' : '0';
+
+        // Check if there isn't already a user with this student number
+        if($stmt = $mysqli->prepare('SELECT COUNT(*) as total FROM users WHERE student_number = ?')) {
+            $stmt->bind_param('i', $_POST['student_number']);
+            $stmt->execute();
+            $stmt->bind_result($total);
+            $stmt->fetch();
+            if($total > 0) {
+                header('Location: ../../administrate_users.php?add_status=user_already_exists');
+                exit();
+            }
+        }
 
         if(!insert($mysqli, 'users', array(
             array('key' => 'student_number', 'value' => $_POST['student_number']),

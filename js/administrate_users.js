@@ -79,11 +79,12 @@ $(document).ready(function() {
     // ---------- Status Messages ----------
     addStatusMessage('add', {
         'success' : 'L\'utilisateurice a bien été ajouté !',
-        'error' : 'Il y a eu un problème lors de l\'ajout de l\'utilisateurice ... (oups)'
+        'error' : 'Il y a eu un problème lors de l\'ajout de l\'utilisateurice ... (oups)',
+        'user_already_exists' : 'L\'utilisateurice existe déjà !'
     })
 
     addStatusMessage('delete', {
-        'success': 'L\'utilisateurice a bien été supprimé (de la base de donnée bien entendu). Iel va toujours bien rassurez-vous !',
+        'success': 'L\'utilisateurice a bien été supprimé (de la base de donnée bien entendu)',
         'error': 'Il y a eu un problème lors de la suppression de l\'utilisateurice ... Espérons qu\'iel soit encore en un morceau !'
     })
 })

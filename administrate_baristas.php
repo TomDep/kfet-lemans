@@ -10,7 +10,7 @@
     <?php include('templates/head.php') ?>
     <?php include('templates/administrate_includes.php') ?>
 
-    <title>Administrer les produits</title>
+    <title>Administrer les baristas</title>
 
     <script src="js/administrate.js"></script>
     <script src="js/administrate_baristas.js"></script>
@@ -21,13 +21,13 @@
     <?php include('templates/nav.php') ?>
 
     <main>
-        <h1 class="text-center">Gestion des produits</h1>
+        <h1 class="text-center">Gestion des Baristas</h1>
 
         <hr>
 
         <div class="container bg-light p-5">
             <div>
-                <h2>Liste des produits</h2>
+                <h2>Liste des Baristas</h2>
 
                 <form class="float-right mb-2">
                     <div class="input-group">
@@ -62,26 +62,26 @@
         exit();
     }
 
-    $req = 'SELECT b.id, b.class, b.photo, u.username, u.student_number FROM baristas b INNER JOIN users u ON b.user_id = u.id';
+    $req = 'SELECT b.id AS barista_id, b.class, b.photo, u.username, u.student_number FROM baristas b INNER JOIN users u ON b.user_id = u.id';
     if($result = $mysqli->query($req)) {
         while($barista = $result->fetch_assoc()) {
 ?>
                         <tr>
-                            <th scope="row"><?php echo htmlspecialchars($barista['id']); ?></th>
+                            <th scope="row"><?php echo htmlspecialchars($barista['barista_id']); ?></th>
                             <td><?php echo htmlspecialchars($barista['student_number']); ?></td>
                             <td><?php echo htmlspecialchars($barista['username']); ?></td>
                             <td>
-                                <a href="#" class="barista-class" data-pk="<?php echo htmlspecialchars($barista['id']); ?>">
+                                <a href="#" class="barista-class" data-pk="<?php echo htmlspecialchars($barista['barista_id']); ?>">
                                     <?php echo htmlspecialchars($barista['class']); ?>
                                 </a>
                             </td>
                             <td>
-                                <a href="#" class="barista-photo" data-pk="<?php echo htmlspecialchars($barista['id']); ?>">
+                                <a href="#" class="barista-photo" data-pk="<?php echo htmlspecialchars($barista['barista_id']); ?>">
                                     <?php echo htmlspecialchars($barista['photo']); ?>
                                 </a>
                             </td>
                             <td>
-                                <a class="delete-row" href="lib/admin/barista_delete.php?id=<?php echo htmlspecialchars($barista['id']); ?>">
+                                <a class="delete-row" href="lib/admin/barista_delete.php?id=<?php echo htmlspecialchars($barista['barista_id']); ?>">
                                     <button type="button" title="Supprimer l'élément" class="btn btn-outline-danger">
                                         <i class="oi oi-x"></i>
                                     </button>

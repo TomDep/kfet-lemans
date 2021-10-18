@@ -337,7 +337,7 @@
 
 /************************/
 
-#item-details button {
+#item-details .btn {
     background-color: var(--color-primary);
     border-color: var(--color-secondary);
 }

@@ -15,6 +15,8 @@
     if(!$mysqli = connectToDatabase()) {
         $databaseError = true;
         $errorMessage = 'Unable to connect to the database';
+        header('Location: ../../administrate_users.php?add_status=error');
+        exit();
     }
 
     if(isset($_POST['student_number'], $_POST['username'], $_POST['auth_level'], $_POST['credit'])) {
@@ -22,7 +24,7 @@
         $isMember = (isset($_POST['bdlc_member'])) ? '1' : '0';
 
         // Check if there isn't already a user with this student number
-        if($stmt = $mysqli->prepare('SELECT COUNT(*) as total FROM users WHERE student_number = ?')) {
+        if($stmt = $mysqli->prepare('SELECT COUNT(*) AS total FROM users WHERE student_number = ?')) {
             $stmt->bind_param('i', $_POST['student_number']);
             $stmt->execute();
             $stmt->bind_result($total);
@@ -31,25 +33,44 @@
                 header('Location: ../../administrate_users.php?add_status=user_already_exists');
                 exit();
             }
+
+            $stmt->close();
         }
 
-        if(!insert($mysqli, 'users', array(
-            array('key' => 'student_number', 'value' => $_POST['student_number']),
-            array('key' => 'password', 'value' => getRandomString(10)), 
-            array('key' => 'username', 'value' => $_POST['username']), 
-            array('key' => 'bdlc_member', 'value' => $isMember), 
-            array('key' => 'auth_level', 'value' => $_POST['auth_level']),
-            array('key' => 'credit', 'value' => $_POST['credit']),
-            array('key' => 'activated', 'value' => 0)
-        ))) {
-            $databaseError = true;
-            $errorMessage = 'Unable to insert the user';
-        }
-    }
 
-    if($databaseError || $emptyValueError || $fileError) {
-        header('Location: ../../administrate_users.php?add_status=error');
-    } else {
+
+        $req = 'INSERT INTO users (student_number, password, username, bdlc_member, auth_level, credit, activated) 
+                VALUES (?, \''. getRandomString(10) .'\', ?, ?, ?, ?, 0)';
+        var_dump($req);
+
+        if($stmt = $mysqli->prepare($req)) {
+            $stmt->bind_param('issid', $_POST['student_number'], $_POST['username'], $isMember, $_POST['auth_level'], $_POST['credit']);
+            $stmt->execute();
+            $stmt->close();
+
+            if($_POST['auth_level'] > 0) {
+                // Adding a new Barista
+
+                $photoName = $_POST['username'] . '.svg';
+
+                $req = 'INSERT INTO baristas (user_id, class, photo) VALUES 
+                ((SELECT DISTINCT id FROM users WHERE student_number = ?), \'Inconnue\', ?)';    
+                if($stmt = $mysqli->prepare($req)) {
+                    $stmt->bind_param('is', $_POST['student_number'], $photoName);
+                    $stmt->execute();
+                } else {
+                    header('Location: ../../administrate_users.php?add_status=barista_error');
+                    exit();
+                }
+
+                // Move the bdlc icon to the barista folder
+                copy('../../res/icon.svg', '../../res/images/baristas/' . $photoName);
+            }
+        } else {
+            header('Location: ../../administrate_users.php?add_status=error');
+            exit();
+        }
+
         header('Location: ../../administrate_users.php?add_status=success');
     }
 ?>

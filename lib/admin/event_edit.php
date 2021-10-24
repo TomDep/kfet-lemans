@@ -1,5 +1,9 @@
 <?php
+    session_start();
 
+    require_once('../redirect.php');
+    auth_level(2);
+    
     // Error
     $errorMessage = '';
     $warningMessage = '';

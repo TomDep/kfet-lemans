@@ -1,5 +1,10 @@
 <?php
 
+    session_start();
+
+    require_once('../redirect.php');
+    auth_level(2);
+
     // Errors
     $errorMessage = '';
     $databaseError = false;

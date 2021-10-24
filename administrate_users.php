@@ -11,7 +11,7 @@
     <?php include('templates/head.php') ?>
     <?php include('templates/administrate_includes.php') ?>
 
-    <title>Administrer les produits</title>
+    <title>Administrer les usager.es</title>
 
     <script src="js/administrate.js"></script>
     <script src="js/administrate_users.js"></script>

@@ -22,7 +22,7 @@
         // Remove the img from the barista folder
         $req = 'SELECT photo FROM baristas WHERE user_id = ' .htmlspecialchars($_GET['id']);
         if($result = $mysqli->query($req)) {
-            $photoName = $resul->fetch_assoc()['photo'];
+            $photoName = $result->fetch_assoc()['photo'];
             $result->close();
 
             unlink('../../res/images/baristas/' . $photoName);

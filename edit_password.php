@@ -2,7 +2,7 @@
 	session_start();
 
 	require_once('lib/redirect.php');
-	auth_level(1);
+	auth_level(0);
 	timeout();
 
 	require_once('lib/connect.php');

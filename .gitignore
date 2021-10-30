@@ -1,2 +1,3 @@
 # Ignore the database_logs.txt file
 database_logs.txt
+.phpintel

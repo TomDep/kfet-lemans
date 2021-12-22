@@ -26,8 +26,8 @@
     if(isset($_POST['name'], $_FILES['image'])) {
             
         // Add the image
-        saveFile('../../res/images/events/', $_FILES['image'], $_POST['name']);
         $extansion = getFileExtansion($_FILES['image']['name']);
+        saveFile('../../res/images/events/', $_FILES['image'], $_POST['name'] . '.' . $extansion);
 
         $imgName =  $_POST['name'] . '.' . $extansion;
         $query = 'INSERT INTO events (name, image) VALUES (?, ?)';

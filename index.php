@@ -69,33 +69,62 @@
 	<div id="home" class="default-linked-section linked-section">
 		<!-- Identification de l'étudiant -->
 			
-    <!-- Evénéments à promouvoir ou des rappels! Exemple : mardi/jeudi viennoiseries, wei, etc -->
-		<div class="sub-categories carousel slide " data-ride="carousel" id="event">
+        <!-- Evénéments à promouvoir ou des rappels! Exemple : mardi/jeudi viennoiseries, wei, etc -->
+        <?php
+
+        // Know if there is an event
+        $result = $mysqli->query('SELECT COUNT(*) FROM events');
+        $count = intval($result->fetch_array()[0]);
+
+        if($count != 0) {
+        ?>
+
+		<div class="sub-categories carousel slide carousel-dark" data-ride="carousel" id="event">
 			<h4 class="sub-categories-title">Evénements</h4><span class="menuspan" id="span-event"></span>
 
-		  <!-- Indicators -->
-		  <ul class="carousel-indicators">
-		    <li data-target="#event" data-slide-to="0" class="active"></li>
-		  </ul>
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <?php
+                for ($i = 0; $i < $count; $i++) {
+                    echo ($i == 0) ? '<li data-target="#event" data-slide-to="0" class="active"></li>' :
+                        '<li data-target="#event" data-slide-to="'. $i .'"></li>';
+                }
+                ?>
+            </ul>
 
-		  <!-- The slideshow -->
-		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img src="res/images/events/BBQ.jpg" alt="BBQ">
-		    </div>
-		  </div>
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <?php
 
-		  <!-- Left and right controls -->
-		  <a class="carousel-control-prev" href="#event" data-slide="prev">
-		    <span class="carousel-control-prev-icon"></span>
-		  </a>
-		  <a class="carousel-control-next" href="#event" data-slide="next">
-		    <span class="carousel-control-next-icon"></span>
-		  </a>
+                    $result = $mysqli->query('SELECT * FROM events');
+                    $i = 0;
+                    while($event = $result->fetch_assoc()) {
+                        if($i == 0) {
+                            echo '<div class="carousel-item active">';
+                        } else {
+                            echo '<div class="carousel-item">';
+                        }
+
+                        $i++;
+                        echo '<img src="res/images/events/'. $event['image'] .'" alt="'. $event['name'] .'">';
+                        echo '</div>';
+                    }
+                ?>
+            </div>
+
+          <!-- Left and right controls -->
+          <a class="carousel-control-prev" href="#event" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#event" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
 		</div>
 
 		
 <?php
+        }   // End of the if statement for the event(s)
+
 		require_once('lib/favorites.php');
 		$favorites = getFavorites($_SESSION['id'], 4);
 

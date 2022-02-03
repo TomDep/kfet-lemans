@@ -27,7 +27,7 @@
 
 		$result = $mysqli->query('SELECT * FROM products WHERE category = ' . $category);
 		while($row = $result->fetch_assoc()) {
-			$actualPrice = ($_SESSION['bdlc_member']) ? $row['bdlc_price'] : $row['price'];
+			$actualPrice = (isset($_SESSION['bdlc_member']) && $_SESSION['bdlc_member']) ? $row['bdlc_price'] : $row['price'];
 ?>
 <div class="presentation-card" id="<?php echo htmlspecialchars($row['id']); ?>" onclick="showItemDetails(<?php echo htmlspecialchars($row['id']); ?>,'<?php echo htmlspecialchars($row['name']); ?>', <?php echo htmlspecialchars($actualPrice); ?>, '<?php echo htmlspecialchars($row['image']) ?>')">
   <img class="card-picture" id="card-picture" src="res/images/products/<?php echo htmlspecialchars($row['image']); ?>">
@@ -39,8 +39,6 @@
 <?php
 		}
 	}
-
-	/////////////////////////////////////////////////////////////////////////////////
 ?>
 
 <!DOCTYPE html>

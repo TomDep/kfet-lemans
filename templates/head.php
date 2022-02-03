@@ -17,8 +17,7 @@
 	<!--Icons for menu-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
-
-	<!-- jQuery library v3.5.1 -->
+    <!-- jQuery library v3.5.1 -->
 	<script src="plugins/jQuery-3.5.1/jquery.min.js"></script>
 
 	<!-- Popper JS v1.16 -->

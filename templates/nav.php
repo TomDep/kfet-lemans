@@ -16,7 +16,8 @@
         
       <!--Pour les baristas :-->
 <?php
-  if($_SESSION['auth_level'] >= 1) {
+  if(isset($_SESSION['auth_level'])) {
+      if($_SESSION['auth_level'] >= 1) {
 ?>
       <hr>
       <a href="recharge_account.php"><li>Recharger un compte</li></a>
@@ -26,7 +27,6 @@
       <!--Pour le boss-->
 <?php
   }
-
   if($_SESSION['auth_level'] >= 2) {
 ?>
       <hr>
@@ -44,7 +44,9 @@
 
         </div>
       </li>
-<?php } ?>
+<?php }
+  }
+?>
       <hr>
       <a href="lib/logout.php"><li>Se Déconnecter</li></a>
 

@@ -35,6 +35,10 @@
   cursor: pointer;
 }
 
+.unclickable {
+  cursor: not-allowed;
+}
+
 /****** Navbar ******/
 
 

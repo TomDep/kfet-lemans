@@ -52,17 +52,5 @@
     }
  ?>
     </div>
-
-    <script type="text/javascript">
-        var header = document.getElementById("header-team");
-        var nav = document.getElementById("nav");
-        console.log(nav.offsetHeight + header.offsetHeight);
-
-        var sum = nav.offsetHeight + header.offsetHeight;
-        var margin_top = "" + sum + "px";
-        console.log(margin_top);
-
-        document.getElementById("under").style.marginTop = margin_top;
-    </script>
 </body>
 </html>

@@ -166,24 +166,26 @@
 		<!-- La répartition du shop avec mes 4 catégories -->
 
 		<div class="sub-categories" id="categories-items">
-			<h4 class="sub-categories-title centered-text underline">Catégories</h4>
+			<h4 class="mt-3 sub-categories-title centered-text underline mx-auto" style="width: 80%">Catégories</h4>
 
 			<div class="row">
-				<div class="column" style="background-image:url(https://images.pexels.com/photos/585750/pexels-photo-585750.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);" onclick="window.location = 'index.php#hot-drinks'">
-					<p>Boisson<br>Chaude</p>
-				</div>
-				<div class="column" 
-						style="background-image:url(https://images.pexels.com/photos/7235673/pexels-photo-7235673.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);" onclick="window.location = 'index.php#cold-drinks'">
-					<p>Boisson<br>Froide</p>
-				</div>
-			</div>
+                <div class="col">
+				    <img class="w-100 rounded d-block clickable" src="res/images/categories/boissons_chaudes.png"
+                         onclick="window.location = 'index.php#hot-drinks';">
+                </div>
+                <div class="col">
+                    <img class="w-100 rounded d-block clickable" src="res/images/categories/boissons_froides.png"
+                         onclick="window.location = 'index.php#cold-drinks';">
+                </div>
+            </div>
 			<div class="row">
-				<div class="column" style="background-image:url(https://images.pexels.com/photos/4087610/pexels-photo-4087610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);" onclick="window.location = 'index.php#snacks'">
-					<p>Snacks</p>
-				</div>
-				<div class="column" style="cursor:not-allowed;background: grey;">
-					<p>Formules</p>
-				</div>
+                <div class="col">
+                    <img class="w-100 rounded d-block clickable" src="res/images/categories/snacks.png"
+                         onclick="window.location = 'index.php#snacks';">
+                </div>
+                <div class="col">
+                    <img class="w-100 rounded d-block unclickable" src="res/images/categories/formules.png">
+                </div>
 			</div>		
 		</div>
 	</div>

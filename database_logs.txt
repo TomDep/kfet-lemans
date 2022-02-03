@@ -1,0 +1,7 @@
+# This file is made to save the database informations
+# The user and pass can only be accessed in local :)
+
+HOST localhost
+USER admin9988
+PASS ensim1995
+NAME kfet

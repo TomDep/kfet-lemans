@@ -1,7 +1,0 @@
-# This file is made to save the database informations
-# IMPORTANT : DO not to upload your informations online (Github)
-
-HOST localhost
-USER admin9988
-PASS ensim1995
-NAME kfet

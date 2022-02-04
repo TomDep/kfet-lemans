@@ -51,8 +51,10 @@ function showItemDetails(id, name, price, imgSrc) {
 
 		$('#item-details').modal('hide');
 
-		// Remove the event
+		// Remove the events
 		$('#item-details-submit').off('click')
+		$('#item-details-add').off('click')
+		$('#item-details-remove').off('click')
 	})
 
 	// Show the modal

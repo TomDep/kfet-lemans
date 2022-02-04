@@ -279,7 +279,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 class="modal-title" id="item-details-name">Panier</h3>
-					<button type="button" class="close" data-dismiss="modal">
+					<button type="button" class="close" data-dismiss="modal" onmouseup="toggleShop()">
           	<span>&times;</span>
         	</button>
 				</div>

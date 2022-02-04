@@ -11,6 +11,15 @@ function cantLoadImg(img) {
 	$(img).attr('src', 'res/icon.svg')
 }
 
+function cancelOrder() {
+
+	// Clear the session storage
+	sessionStorage.clear();
+
+	// Close the cart
+	toggleShop()
+}
+
 function updateItemTotal() {
 	let number = parseInt($('#item-details-quantity').text())
 	let unitPrice = parseFloat($('#item-details-price').text())
@@ -100,17 +109,19 @@ function updateCartItemCounter() {
 
 	// Calculate the item count
 	for(let i=0; i < sessionStorage.length; i++) {
-  	let key = sessionStorage.key(i)
-  	let item = JSON.parse(sessionStorage.getItem(key))
+		let key = sessionStorage.key(i)
+		let item = JSON.parse(sessionStorage.getItem(key))
 
-  	itemCount += item.quantity
-  }
+		itemCount += item.quantity
+  	}
 
-  if(itemCount == 0) {
-  	$('#cart-number-item').hide()
-  } else {
-  	$('#cart-number-item').text(itemCount).show()
-  }
+	console.log('Count : ' + itemCount)
+
+	if(itemCount === 0) {
+		$('#cart-number-item').hide()
+	} else {
+		$('#cart-number-item').text(itemCount).show()
+	}
 }
 
 function submitForm() {
@@ -126,6 +137,7 @@ function toggleShop() {
 
 	let modal = $('#order-summary')
 	let modalIcon = $('#cart-icon')
+	let numberIcon = $('#cart-number-item')
 
 	// Check if the modal is shown
 	if(modal.hasClass('show')) {
@@ -135,6 +147,8 @@ function toggleShop() {
 		// Replace the close icon with the cart
 		modalIcon.removeClass('fa-times')
 		modalIcon.addClass('fa-shopping-cart')
+
+		updateCartItemCounter();
 
 		// Hide the check button
 		$('#check-icon').hide()
@@ -147,18 +161,19 @@ function toggleShop() {
 
 	// Add all items
 	for(let i=0; i < sessionStorage.length; i++) {
-  	let key = sessionStorage.key(i)
-  	let item = JSON.parse(sessionStorage.getItem(key))
+		let key = sessionStorage.key(i)
+		let item = JSON.parse(sessionStorage.getItem(key))
 
-   	addCartItem(item.id, item.name, item.quantity, item.price)
-  }
+		addCartItem(item.id, item.name, item.quantity, item.price)
+	}
 
-  // Set the total price
+  	// Set the total price
 	let totalPrice = updateCartTotalPrice()
 
 	// Set the icons
 	modalIcon.removeClass('fa-shopping-cart')
 	modalIcon.addClass('fa-times')
+	numberIcon.hide()
 
 	if(totalPrice > 0)
 		$('#check-icon').show()

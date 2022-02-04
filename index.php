@@ -284,12 +284,15 @@
         	</button>
 				</div>
 				<div class="modal-body p-4">
+                    <p>Montrez votre commande au barista avant de la valider :)</p>
 					<form id="order-summary-form" method="post" action="lib/command.php">
 						<div class="list-group-flush" id="order-summary-content">
 						</div>
 					</form>
 					<h5 class="float-right mt-3 mr-2">Prix total : <span id="order-summary-total" class="font-weight-bold"></span> €</h5>
-				</div>
+
+                    <button class="float-right mr-2 btn-outline-secondary btn-sm btn" onclick="cancelOrder()">Annuler la commande</button>
+                </div>
 			</div>	
 		</div>
 	</div>

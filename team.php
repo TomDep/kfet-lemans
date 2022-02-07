@@ -42,7 +42,9 @@
         while($barista = $result->fetch_assoc()) {
 ?>
         <div class="presentation-card-lg">
-                <img class="card-picture" src="res/images/baristas/<?php echo(htmlspecialchars($barista["photo"])); ?>">
+                <img class="card-picture" src="res/images/baristas/<?php echo(htmlspecialchars($barista["photo"])); ?>"
+                onerror="this.src = 'res/icon.svg';">
+
                 <div class="content">
                     <h4 class="card-name"><?php echo(htmlspecialchars($barista["username"])); ?></h4>
                     <h4 class="card-subtitles"><?php echo(htmlspecialchars($barista["class"])); ?></h4>

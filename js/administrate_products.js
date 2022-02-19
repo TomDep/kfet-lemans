@@ -52,7 +52,7 @@ $(document).ready(function() {
             name: 'category',
             type: 'select',
             autotext: 'always',
-            source: [{value: '0', text: 'Boisson chaude'}, {value: '1', text: 'Boisson froide'}, {value: '2', text: 'Snack'}],
+            source: [{value: '0', text: 'Boisson chaude'}, {value: '1', text: 'Boisson froide'}, {value: '2', text: 'Snack'}, {value: '3', text: 'Formule'}],
             title: 'Catégorie du produit',
             url: POST_URL
         })

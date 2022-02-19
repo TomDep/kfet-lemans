@@ -137,6 +137,7 @@
                                 <option value="0">Boisson chaude</option>
                                 <option value="1">Boisson froide</option>
                                 <option value="2">Snack</option>
+                                <option value="3">Formule</option>
                             </select>
                         </div>
                         <div class="form-group col">

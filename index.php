@@ -184,7 +184,8 @@
                          onclick="window.location = 'index.php#snacks';">
                 </div>
                 <div class="col">
-                    <img class="w-100 rounded d-block unclickable" src="res/images/categories/formules.png">
+                    <img class="w-100 rounded d-block clickable" src="res/images/categories/formules.png"
+                         onclick="window.location = 'index.php#formules';">
                 </div>
 			</div>		
 		</div>
@@ -192,18 +193,15 @@
 
 	<div id="shop">
 		<div id="hot-drinks" class="linked-section">
-
-			<!--Add button to return main menu
-			-->
 			<div class="return-button clickable" onclick="window.location = 'index.php#';">
 				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
 			</div>
 
 			<div class="header">
-	      <h1>Les boissons chaudes</h1>
-	    </div>
+	            <h1>Les boissons chaudes</h1>
+	        </div>
 	   	
-	    <?php displayCategory(0); ?>
+	        <?php displayCategory(0); ?>
 		</div>
 		<div id="cold-drinks" class="linked-section">
 			<div class="return-button clickable" onclick="window.location = 'index.php#';">
@@ -211,10 +209,10 @@
 			</div>
 
 			<div class="header">
-	      <h1>Les boisons froides</h1>
-	    </div>
+	            <h1>Les boisons froides</h1>
+	        </div>
 	  	
-	  	<?php displayCategory(1); ?>  
+	  	    <?php displayCategory(1); ?>
 	  </div>
 		<div id="snacks" class="linked-section">
 			<div class="return-button clickable" onclick="window.location = 'index.php#';">
@@ -222,22 +220,23 @@
 			</div>
 
 			<div class="header">
-	      <h1>Les trucs à grignoter</h1>
-	    </div>
+	            <h1>Les trucs à grignoter</h1>
+            </div>
 	   
-	   	<?php displayCategory(2); ?>
+	   	    <?php displayCategory(2); ?>
 		</div>
-		<div id="formules" class="linked_section" style="display: none;">
+		<div id="formules" class="linked-section">
 			<div class="return-button clickable" onclick="window.location = 'index.php#';">
 				<i class="fas fa-undo-alt"></i><p>Retour vers le menu</p>
 			</div>
 
 			<div class="header">
-	      <h1>Formules</h1>
-	    </div>
-	  
+	            <h1>Formules</h1>
+	        </div>
+
+            <?php displayCategory(3); ?>
 		</div>
-  </div>
+    </div>
 
 	</div>
 	

@@ -29,6 +29,11 @@ function updateItemTotal() {
 }
 
 function showItemDetails(id, name, price, imgSrc) {
+	// Remove previous events
+	$('#item-details-submit').off('click')
+	$('#item-details-add').off('click')
+	$('#item-details-remove').off('click')
+
 	// Update the modal informations
 	$('#item-details-name').text(name)
 	$('#item-details-src').attr('src', 'res/images/products/' + imgSrc)

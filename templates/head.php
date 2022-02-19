@@ -25,8 +25,7 @@
 
 <!--Description's project-->
 <meta name="description" content="Site web de la KFet (ENSIM)">
-<meta name="author" content="Tom De Pasquale, Aksel Vaillant, Clément Le Bâtard">
-<link rel="icon" href="res/icon.svg" type="image/svg">
+<meta name="author" content="Tom De Pasquale, Aksel Vaillant">
 
 <!--General Librairies-->
 

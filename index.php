@@ -56,7 +56,7 @@
 	<?php include "templates/nav.php";?>
 
 	<div class="index-profile clickable" onclick="document.location.href = 'profile.php';">
-      <img class="index-profile-picture" src="res/icon.svg">
+      <img class="index-profile-picture" src="res/icons/person-circle-outline.svg">
 
       <div class="content">
           <h4 class="index-name"><?php echo htmlspecialchars($_SESSION['username']); ?></h4>

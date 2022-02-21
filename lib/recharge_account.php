@@ -22,6 +22,8 @@
     $databaseErrorMessage = '';
     $noUserError = FALSE;
 
+    $username = "";
+
     $operationSuccess = FALSE;
 
     if(isset($_POST['username-or-student-number'], $_POST['amount'])) {
@@ -41,7 +43,7 @@
                 $student_number = formatStudentNumber($_POST["username-or-student-number"]);
 
                 // Check if the account exists
-                $req = 'SELECT id FROM users WHERE username = ? OR student_number = ?';
+                $req = 'SELECT id, username FROM users WHERE username = ? OR student_number = ?';
                 if($stmt = $connection->prepare($req)) {
                     $stmt->bind_param('si', $_POST['username'], $student_number);
                     $stmt->execute();
@@ -51,7 +53,7 @@
                         // No user with this username
                         $noUserError = TRUE;
                     } else {
-                        $stmt->bind_result($id);
+                        $stmt->bind_result($id, $username);
                         $stmt->fetch();
 
                         // Update the account credits
@@ -75,10 +77,10 @@
         }
     }
 
-    if($emptyFieldsError || $databaseError || $noUserError) {
+    if(($emptyFieldsError || $databaseError || $noUserError) && !empty($username)) {
         header('Location: ../recharge_account.php?update_amount_status=error');
     } else {
-        header('Location: ../recharge_account.php?update_amount_status=success');
+        header('Location: ../recharge_account.php?update_amount_status=success&username=' . $username);
     }
 
 ?>

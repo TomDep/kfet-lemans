@@ -129,4 +129,20 @@ function getRandomString($length = 6) {
     return $result;
 }
 
+/**
+ * Returns the student number in the correct format whether there is letter or not.
+ * @param string $raw_student_number
+ * @return string
+ */
+function formatStudentNumber(string $raw_student_number) {
+    $str_std_number = (string) $raw_student_number;
+    $first_char = substr($str_std_number, 0, 1);
+    if(is_numeric($first_char)) {
+        return $raw_student_number;
+    } else {
+        $last_chars = substr($raw_student_number, 1);
+        return ($last_chars) ? $last_chars : $raw_student_number;
+    }
+}
+
 ?>

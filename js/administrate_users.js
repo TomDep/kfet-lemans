@@ -73,6 +73,25 @@ $(document).ready(function() {
         })
     })
 
+    // User activated
+    $('.user-activated').each((i, obj) => {
+        $(obj).editable({
+            name: 'activated',
+            type: 'checklist',
+            title: 'Compte activé',
+            placement: 'right',
+            source: {'1': 'enabled'},
+            url: POST_URL,
+            isSingle: true,
+            showbuttons: false,
+            mode: 'inline',
+            onblur: 'submit',
+            display: (value) => {
+                $(obj).text((value[0] == '1') ? 'Oui' : 'Non')
+            }
+        })
+    })
+
     // ---------- Validate Form ----------
     $('#add-user-form').validate()
 

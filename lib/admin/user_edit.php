@@ -25,8 +25,11 @@
     // Update a value
     if(isset($_POST['name'], $_POST['pk'])) {
         
-        // Just because there is a checkbox that can be edited
+        // Just because there are checkboxes that can be edited
         if($_POST['name'] == 'bdlc_member') $value = (isset($_POST['value'])) ? '1' : '0';
+        else $value = $_POST['value'];
+
+        if($_POST['name'] == 'activated') $value = (isset($_POST['value'])) ? '1' : '0';
         else $value = $_POST['value'];
 
         if(update($mysqli, 'users', array(array('key' => $_POST['name'], 'value' => $value)), $_POST['pk'])) {

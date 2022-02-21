@@ -83,7 +83,10 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="#" class="user-bdlc-member" data-value="<?php echo htmlspecialchars($user['bdlc_member']); ?>" data-pk="<?php echo htmlspecialchars($user['id']); ?>"></a>
+                                <a href="#" class="user-bdlc-member"
+                                   data-value="<?php echo htmlspecialchars($user['bdlc_member']); ?>"
+                                   data-pk="<?php echo htmlspecialchars($user['id']); ?>">
+                                </a>
                             </td>
                             <td>
                                 <a href="#" class="user-auth-level" data-pk="<?php echo htmlspecialchars($user['id']); ?>" data-value="<?php echo htmlspecialchars($user['auth_level']); ?>"></a>
@@ -92,7 +95,10 @@
                                 <a href="#" class="user-credit" data-pk="<?php echo htmlspecialchars($user['id']); ?>"><?php echo htmlspecialchars($user['credit']); ?></a>
                             </td>
                             <td>
-                                <?php echo htmlspecialchars($user['activated']); ?>
+                                <a href="#" class="user-activated"
+                                   data-pk="<?php echo htmlspecialchars($user['id']); ?>"
+                                   data-value="<?php echo htmlspecialchars($user['activated']); ?>">
+                                </a>
                             </td>
                             <td>
                                 <a class="delete-row" href="lib/admin/user_delete.php?id=<?php echo htmlspecialchars($user['id']); ?>">

@@ -21,108 +21,117 @@
 
     <?php include('templates/nav.php') ?>
 
-    <main>
+    <main class="container bg-light mb-5 pb-3 rounded">
    
-        <h1 class="text-center">Gestion des usager.es</h1>
+        <h1 class="text-center">Gestion des utilisateurices</h1>
 
-        <hr>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="table-tab" data-toggle="tab" href="#table-div" role="tab">Utilsateurices</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="new-user-tab" data-toggle="tab" href="#new-user-div" role="tab">
+                    Ajouter un.e utilisateurice
+                </a>
+            </li>
+        </ul>
 
-        <div class="container bg-light p-5">
-            <div>
-                <h2>Liste des usager.es</h2>
+        <div class="tab-content border-bottom border-left border-right p-3 bg-white" id="myTabContent">
+            <div class="tab-pane fade show active" id="table-div" role="tabpanel">
+                <div>
+                    <h2 class="mb-4">Liste des utilisateurices</h2>
 
-                <form class="float-right mb-2">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="i-search">Rechercher</label>
+                    <form class="mb-2">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="i-search">Rechercher</label>
+                            </div>
+                            <input id="i-search" class="form-control filter" data-tablefilter="#table" type="search" placeholder="Nom, numéro étudiant.e ...">
                         </div>
-                        <input id="i-search" class="form-control filter" data-tablefilter="#table" type="search" placeholder="Nom, numéro étudiant.e ...">
-                    </div>
-                </form>
+                    </form>
 
-                <table id="table" class="table table-hover table-sm sortable-table table-striped bg-light">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Numéro étudiant.e</th>
-                            <th scope="col" class="sortable">Nom</th>
-                            <th scope="col" class="sortable">Adhérent.e</th>
-                            <th scope="col" class="sortable">Niveau d'autorisation</th>
-                            <th scope="col" class="sortable">Crédit</th>
-                            <th scope="col" class="sortable">Actif.ve</th>
-                            <th></th> 
-                        </tr>
-                    </thead>
-                    <tbody>
-<?php
+                    <table id="table" class="table table-hover table-sm sortable-table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Numéro étudiant.e</th>
+                                <th scope="col" class="sortable">Nom</th>
+                                <th scope="col" class="sortable">Adhérent.e</th>
+                                <th scope="col" class="sortable">Niveau d'autorisation</th>
+                                <th scope="col" class="sortable">Crédit</th>
+                                <th scope="col" class="sortable">Actif.ve</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+    <?php
 
-    // Include the database connection file
-    require_once('lib/connect.php');
+        // Include the database connection file
+        require_once('lib/connect.php');
 
-    // Connect to the database
-    $connection = connectToDatabase();
-    if($connection == FALSE) {
-        echo '<p>Il y a eu une erreur ...</p>';
-        exit();
-    }
-
-    $req = 'SELECT id, student_number, username, bdlc_member, auth_level, credit, activated FROM users';
-    if($result = $connection->query($req)) {
-        while($user = $result->fetch_array()) {
-?>
-                        <tr>
-                            <th scope="row"><?php echo htmlspecialchars($user['id']); ?></th>
-                            <td>
-                                <a href="#" class="user-student-number" data-pk="<?php echo htmlspecialchars($user['id']); ?>">
-                                    <?php echo htmlspecialchars($user['student_number']); ?>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" class="user-username" data-pk="<?php echo htmlspecialchars($user['id']); ?>">
-                                    <?php echo htmlspecialchars($user['username']); ?>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" class="user-bdlc-member"
-                                   data-value="<?php echo htmlspecialchars($user['bdlc_member']); ?>"
-                                   data-pk="<?php echo htmlspecialchars($user['id']); ?>">
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" class="user-auth-level" data-pk="<?php echo htmlspecialchars($user['id']); ?>" data-value="<?php echo htmlspecialchars($user['auth_level']); ?>"></a>
-                            </td>
-                            <td>
-                                <a href="#" class="user-credit" data-pk="<?php echo htmlspecialchars($user['id']); ?>"><?php echo htmlspecialchars($user['credit']); ?></a>
-                            </td>
-                            <td>
-                                <a href="#" class="user-activated"
-                                   data-pk="<?php echo htmlspecialchars($user['id']); ?>"
-                                   data-value="<?php echo htmlspecialchars($user['activated']); ?>">
-                                </a>
-                            </td>
-                            <td>
-                                <a class="delete-row" href="lib/admin/user_delete.php?id=<?php echo htmlspecialchars($user['id']); ?>">
-                                    <button type="button" title="Supprimer l'élément" class="btn btn-outline-danger">
-                                        <i class="oi oi-x"></i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-<?php
+        // Connect to the database
+        $connection = connectToDatabase();
+        if($connection == FALSE) {
+            echo '<p>Il y a eu une erreur ...</p>';
+            exit();
         }
-    }
 
-    $connection->close();
-?>
-                    </tbody>
-                </table>
+        $req = 'SELECT id, student_number, username, bdlc_member, auth_level, credit, activated FROM users';
+        if($result = $connection->query($req)) {
+            while($user = $result->fetch_array()) {
+    ?>
+                            <tr>
+                                <th scope="row"><?php echo htmlspecialchars($user['id']); ?></th>
+                                <td>
+                                    <a href="#" class="user-student-number" data-pk="<?php echo htmlspecialchars($user['id']); ?>">
+                                        <?php echo htmlspecialchars($user['student_number']); ?>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" class="user-username" data-pk="<?php echo htmlspecialchars($user['id']); ?>">
+                                        <?php echo htmlspecialchars($user['username']); ?>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" class="user-bdlc-member"
+                                       data-value="<?php echo htmlspecialchars($user['bdlc_member']); ?>"
+                                       data-pk="<?php echo htmlspecialchars($user['id']); ?>">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" class="user-auth-level" data-pk="<?php echo htmlspecialchars($user['id']); ?>" data-value="<?php echo htmlspecialchars($user['auth_level']); ?>"></a>
+                                </td>
+                                <td>
+                                    <a href="#" class="user-credit" data-pk="<?php echo htmlspecialchars($user['id']); ?>"><?php echo htmlspecialchars($user['credit']); ?></a>
+                                </td>
+                                <td>
+                                    <a href="#" class="user-activated"
+                                       data-pk="<?php echo htmlspecialchars($user['id']); ?>"
+                                       data-value="<?php echo htmlspecialchars($user['activated']); ?>">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="delete-row" href="lib/admin/user_delete.php?id=<?php echo htmlspecialchars($user['id']); ?>">
+                                        <button type="button" title="Supprimer l'élément" class="btn btn-outline-danger">
+                                            <i class="oi oi-x"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+    <?php
+            }
+        }
+
+        $connection->close();
+    ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <hr>
+            <div class="tab-pane fade" id="new-user-div" role="tabpanel">
 
-            <div>
-
-                <h2>Ajouter un.e utilisateurice</h2>
+                <h2 class="ml-3">Ajouter un.e utilisateurice</h2>
 
                 <form id="add-user-form" class="form-check" method="post" action="lib/admin/user_add.php">
                     <div class="form-row">
@@ -154,7 +163,7 @@
                         </div>
                     </div>
                     <button id="add-user-submit" type="submit" class="btn btn-primary" name="submit">Ajouter</button>
-                </form> 
+                </form>
             </div>
         </div>
     </main>

@@ -31,20 +31,12 @@
 ?>
       <hr>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="administrate.php">Menu d'administration</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="administrate_products.php">Produits</a>
-          <a class="dropdown-item" href="administrate_users.php">Utilisateurices</a>
-          <a class="dropdown-item" href="administrate_baristas.php">Baristas</a>
-          <a class="dropdown-item" href="administrate_stats.php">Statistiques</a>
-          <a class="dropdown-item" href="administrate_events.php">Évévenements</a>
-
-        </div>
-      </li>
-<?php }
+      <a href="administrate_products.php"><li>Produits</li></a>
+      <a href="administrate_users.php"><li>Utilisateurices</li></a>
+      <a href="administrate_baristas.php"><li>Baristas</li></a>
+      <a href="#" class="unclickable"><li>Statistiques</li></a>
+      <a href="administrate_events.php"><li>Évévenements</li></a>
+  <?php }
   }
 ?>
       <hr>

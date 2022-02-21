@@ -65,7 +65,9 @@
     <script src="js/status_message.js"></script>
     <script type="text/javascript">
          addStatusMessage('update_amount', {
-            'success' : 'Le montant a bien été mis à jour !',
+            'success' : 'Les crédits ont bien été mis à jour<?php
+                 if(isset($_GET["username"])) echo " pour " . htmlspecialchars($_GET["username"]);
+             ?>',
             'error' : 'Il y a eu un problème lors de l\'ajout ...'
         })
     </script>

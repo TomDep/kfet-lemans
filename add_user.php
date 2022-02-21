@@ -9,7 +9,6 @@
 <html>
 <head>
 	<?php include "templates/head.php";?>
-	<link rel="stylesheet" type="text/css" href="css/administrate.css">
 
 	<title>Kfet - Ajout d'un.e utilisateurice</title>
 </head>

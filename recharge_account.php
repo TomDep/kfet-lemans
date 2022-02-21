@@ -13,8 +13,6 @@
     <?php include 'templates/head.php'; ?>
 
     <title>Kfet - Recharger un compte</title>
-
-    <link rel="stylesheet" type="text/css" href="css/administrate.css">
 </head>
 <body>
 

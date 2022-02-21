@@ -26,8 +26,9 @@
             <h1>Recharger un compte</h1>
 
             <div class="form-group">
-                <label for="username">Nom complet</label>
-                <input type="text" id="username" name="username" list="usernames" class="form-control" placeholder="Tom de Pasquale" required>
+                <label for="username">Nom complet ou numéro d'étudiant.e</label>
+                <input type="text" id="username" name="username-or-student-number" list="usernames" class="form-control"
+                       placeholder="Tom de Pasquale ou 182355" required>
             </div>
 
             <datalist id="usernames">

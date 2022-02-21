@@ -24,9 +24,9 @@
 
     $operationSuccess = FALSE;
 
-    if(isset($_POST['username'], $_POST['amount'])) {
+    if(isset($_POST['username-or-student-number'], $_POST['amount'])) {
 
-        if(empty($_POST['username']) || empty($_POST['amount'])) {
+        if(empty($_POST['username-or-student-number']) || empty($_POST['amount'])) {
             // Raise an empty field error
             $emptyFieldsError = TRUE;
         } else {
@@ -38,9 +38,9 @@
             } else {
 
                 // Check if the account exists
-                $req = 'SELECT id FROM users WHERE username = ?';
+                $req = 'SELECT id FROM users WHERE username = ? OR student_number = ?';
                 if($stmt = $connection->prepare($req)) {
-                    $stmt->bind_param('s', $_POST['username']);
+                    $stmt->bind_param('si', $_POST['username'], $_POST["username-or-student-number"]);
                     $stmt->execute();
                     $stmt->store_result();
 

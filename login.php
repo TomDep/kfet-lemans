@@ -2,6 +2,12 @@
 	session_start();
 	session_destroy();
 
+    require_once "lib/connect.php";
+
+    if(isset($_COOKIE["kfet-login"], $_COOKIE["kfet-password"])) {
+        header("Location: lib/authenticate.php");
+    }
+
 	if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE) {
 		header('Location: index.php');
 	}

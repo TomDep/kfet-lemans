@@ -117,7 +117,7 @@
 
 .favorites-items .sub-presentation-card{
     height: 100%;
-    width: calc((100vw - 120px) / 3);
+    width: calc((100vw - 70px) / 3);
     background-color: white;
     border-radius: 10px;
     padding-top: 5px;

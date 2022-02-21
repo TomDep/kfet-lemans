@@ -30,9 +30,10 @@
   color: black;
 
   border-radius: 20px;
-  margin: 20px 0 20px 0;
+  margin: 30px auto 20px auto;
   border: none;
   text-align: center;
+  display: block;
 
   text-transform: capitalize;
 }

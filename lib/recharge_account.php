@@ -45,7 +45,7 @@
                 // Check if the account exists
                 $req = 'SELECT id, username FROM users WHERE username = ? OR student_number = ?';
                 if($stmt = $connection->prepare($req)) {
-                    $stmt->bind_param('si', $_POST['username'], $student_number);
+                    $stmt->bind_param('si', $_POST['username-or-student-number'], $student_number);
                     $stmt->execute();
                     $stmt->store_result();
 

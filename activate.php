@@ -2,6 +2,7 @@
 	session_start();
 
 	require_once('lib/connect.php');
+    require_once('lib/util.php');
 
 	function activateAccount($studentNumber, $password) {
 		$mysqli = connectToDatabase();
@@ -54,7 +55,7 @@
 	if(isset($_POST['student_number'], $_POST['password'])) {
 		// Check if the password field is filled
 		if(!empty($_POST['password'])) {
-			$success = activateAccount($_POST['student_number'], $_POST['password']);
+			$success = activateAccount(formatStudentNumber($_POST['student_number']), $_POST['password']);
 			if($success) {
 				header('Location: login.php?activate_status=success');
 			} else {

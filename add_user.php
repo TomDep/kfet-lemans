@@ -28,8 +28,14 @@
 					<div class="form-group">
 					    <label>Nom complet</label>
 					    <input type="text" name="username" class="form-control" id="formGroupExampleInput2" placeholder="Tom de Pasquale" required>
-					</div>				  
-				  	<div class="text-center">
+					</div>
+
+                    <div class="ml-4 mt-2 form-check form-group">
+                        <input type="checkbox" style="width: 30px" name="bdlc_member" class="form-check-input">
+                        <label class="form-check-label" style="margin-left: 15px">Adhérent.e au BDLC</label>
+                    </div>
+
+                <div class="text-center">
 				  		<input type="submit" value="Ajouter" id="btn-validate-lg">
 				  	</div>
 			</form>

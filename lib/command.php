@@ -143,6 +143,6 @@
             header('Location: ../index.php?command_status=cacolac_2');
         }
     } else {
-        header('Location: ../index.php?command_status=success');
+        header('Location: ../index.php?command_status=success_order');
     }
 ?>

@@ -130,9 +130,6 @@ function updateCartItemCounter() {
 }
 
 function submitForm() {
-	// Clear the session storage
-	sessionStorage.clear();
-
 	$('#order-summary-form').submit();
 }
 

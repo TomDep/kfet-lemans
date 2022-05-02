@@ -279,12 +279,11 @@
 				<div class="modal-header">
 					<h3 class="modal-title" id="item-details-name">Panier</h3>
 					<button type="button" class="close" data-dismiss="modal" onmouseup="toggleShop()">
-          	<span>&times;</span>
-        	</button>
+          	            <span>&times;</span>
+        	        </button>
 				</div>
 				<div class="modal-body p-4">
-                    <p>Montrez votre commande au barista avant de la valider :)</p>
-					<form id="order-summary-form" method="post" action="lib/command.php">
+                    <form id="order-summary-form" method="post" action="lib/command.php">
 						<div class="list-group-flush" id="order-summary-content">
 						</div>
 					</form>
@@ -318,9 +317,9 @@
 <script src="js/status_message.js"></script>
 <script type="text/javascript">
 	addStatusMessage('command', {
-				'cacolac_1' : 'T\'as vraiment pris un cacolac ??!!!',
-				'cacolac_2' : 'Cacolac = meilleure boisson <3',
-        'success' : 'Votre commande a été passée avec succès !',
+        'cacolac_1' : 'T\'as vraiment pris un cacolac ??!!!',
+        'cacolac_2' : 'Cacolac = meilleure boisson <3',
+        'success_order' : 'Commande passée avec succès !',
         'database_error_1' : 'Il y a eu un problème avec la base de donnée ... (1)',
         'database_error_2' : 'Il y a eu un problème avec la base de donnée ... (2)',
         'database_error_3' : 'Il y a eu un problème avec la base de donnée ... (3)',

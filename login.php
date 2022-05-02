@@ -28,23 +28,25 @@
 			<form class="standard-form" action="lib/authenticate.php" method="post">
 				<h1 id="title"></h1>
 
-				<div class="form-group">
-				    <label>Numéro étudiant</label>
-				    <input type="text" name="student_number" class="form-control input-lg" placeholder="182355" required>
-				</div>
+                <div class="mr-2 float-right">
+                    <a href="activate.php">Première connexion?</a>
+                </div
 
-				<div class="form-group">
-				    <label>Mot de passe</label>
-				    <input type="password" name="password" class="form-control" id="password" placeholder="Shhh! C'est secret" required>
+                <div>
+                    <div class="form-group">
+                        <label>Numéro étudiant</label>
+                        <input type="text" name="student_number" class="form-control input-lg" placeholder="182355" required>
+                    </div>
 
-				    <div class="float-left">
-				    	<a href="activate.php">Première connexion?</a>
-					</div>							  	
-				</div>
-			  
-			  	<div class="text-center">
-			  		<input type="submit" value="Se connecter" id="btn-validate-lg">
-			  	</div>
+                    <div class="form-group">
+                        <label>Mot de passe</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Shhh! C'est secret" required>
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" value="Se connecter" id="btn-validate-lg">
+                    </div>
+                </div>
 			</form>
 		</section>
 	</body>

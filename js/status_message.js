@@ -46,29 +46,32 @@ class StatusMessage {
         $('body').append(html)
         let modalId = '#' + this.name + '-' + messageName
 
-        let innerMessage = `
-        <h6>
-            Récapitulatif de la commande (<span id="totalAmount"></span> €)
-        </h6>
-        <ul id="innerMessageList">
-            
-        </ul>
-        `;
+        if(messageName === "success_order" || messageName === "cacolac_1" || messageName === "cacolac_2") {
 
-        $('#innerMessage').append(innerMessage);
+            let innerMessage = `
+            <h6>
+                Récapitulatif de la commande (<span id="totalAmount"></span> €)
+            </h6>
+            <ul id="innerMessageList">
+                
+            </ul>
+            `;
 
-        // Add all items
-        let totalPrice = 0;
-        for (let i = 0; i < sessionStorage.length; i++) {
-            let key = sessionStorage.key(i)
-            let item = JSON.parse(sessionStorage.getItem(key))
+            $('#innerMessage').append(innerMessage);
 
-            totalPrice += item.price * item.quantity
+            // Add all items
+            let totalPrice = 0;
+            for (let i = 0; i < sessionStorage.length; i++) {
+                let key = sessionStorage.key(i)
+                let item = JSON.parse(sessionStorage.getItem(key))
 
-            addItem(item.id, item.name, item.quantity, item.price)
+                totalPrice += item.price * item.quantity
+
+                addItem(item.id, item.name, item.quantity, item.price)
+            }
+
+            $('#totalAmount').append(totalPrice.toFixed(2));
         }
-
-        $('#totalAmount').append(totalPrice.toFixed(2));
 
         $(modalId).modal()
         window.history.replaceState(null, null, window.location.pathname);

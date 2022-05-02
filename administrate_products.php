@@ -27,91 +27,98 @@
         <hr>
 
         <div class="container bg-light p-5">
-            <div>
-                <h2>Liste des produits</h2>
 
-                <form class="float-right mb-2">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="i-search">Rechercher</label>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab">Liste des produits</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-toggle="tab" id="add-tab" href="#add" role="tab">Ajout</a>
+                </li>
+            </ul>
+            <div class="tab-content border p-3">
+                <div class="tab-pane fade show active" id="list" role="tabpanel">
+                    <h2>Liste des produits</h2>
+
+                    <form class="float-right mb-2">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="i-search">Rechercher</label>
+                            </div>
+                            <input id="i-search" class="form-control filter" data-tablefilter="#table" type="search" placeholder="Café, Boisson chaude ...">
                         </div>
-                        <input id="i-search" class="form-control filter" data-tablefilter="#table" type="search" placeholder="Café, Boisson chaude ...">
-                    </div>
-                </form>
+                    </form>
 
-                <table id="table" class="table table-hover table-sm sortable-table table-striped bg-light administrate-table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col" class="sortable">Nom</th>
-                            <th scope="col" class="sortable">Prix</th>
-                            <th scope="col" class="sortable">Prix adhérent</th>
-                            <th scope="col" class="sortable">Catégorie</th>
-                            <th scope="col">Image</th>
-                            <th></th> 
-                        </tr>
-                    </thead>
-                    <tbody>
-<?php
+                    <table id="table" class="table table-hover table-sm sortable-table table-striped bg-light administrate-table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col" class="sortable">Nom</th>
+                                <th scope="col" class="sortable">Prix</th>
+                                <th scope="col" class="sortable">Prix adhérent</th>
+                                <th scope="col" class="sortable">Catégorie</th>
+                                <th scope="col">Image</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+    <?php
 
-    // Include the database connection file
-    require_once('lib/connect.php');
+        // Include the database connection file
+        require_once('lib/connect.php');
 
-    // Connect to the database
-    $connection = connectToDatabase();
-    if($connection == FALSE) {
-        echo '<p>Il y a eu une erreur ...</p>';
-        exit();
-    }
-
-    $req = 'SELECT * FROM products ORDER BY name ASC';
-    if($result = $connection->query($req)) {
-        while($product = $result->fetch_array()) {
-?>
-                        <tr>
-                            <th scope="row"><?php echo htmlspecialchars($product['id']); ?></th>
-                            <td>
-                                <a href="#" class="product-name" data-pk="<?php echo htmlspecialchars($product['id']); ?>">
-                                    <?php echo htmlspecialchars($product['name']); ?>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" class="product-price" data-pk="<?php echo htmlspecialchars($product['id']); ?>">
-                                    <?php echo htmlspecialchars($product['price']); ?>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" class="product-bdlc-price" data-pk="<?php echo htmlspecialchars($product['id']); ?>">
-                                    <?php echo htmlspecialchars($product['bdlc_price']); ?>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" class="product-category" data-value="<?php echo htmlspecialchars($product['category']); ?>" data-pk="<?php echo htmlspecialchars($product['id']); ?>"></a>
-                            </td>
-                            <td>
-                                <a href="#" class="product-image" data-pk="<?php echo htmlspecialchars($product['id']); ?>"><?php echo htmlspecialchars($product['image']); ?></a>
-                            </td>
-                            <td>
-                                <a class="delete-row" href="lib/admin/product_delete.php?id=<?php echo htmlspecialchars($product['id']); ?>">
-                                    <button type="button" title="Supprimer l'élément" class="btn btn-outline-danger">
-                                        <i class="oi oi-x"></i>
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-<?php
+        // Connect to the database
+        $connection = connectToDatabase();
+        if($connection == FALSE) {
+            echo '<p>Il y a eu une erreur ...</p>';
+            exit();
         }
-    }
 
-    $connection->close();
-?>
-                    </tbody>
-                </table>
-            </div>
+        $req = 'SELECT * FROM products ORDER BY name ASC';
+        if($result = $connection->query($req)) {
+            while($product = $result->fetch_array()) {
+    ?>
+                            <tr>
+                                <th scope="row"><?php echo htmlspecialchars($product['id']); ?></th>
+                                <td>
+                                    <a href="#" class="product-name" data-pk="<?php echo htmlspecialchars($product['id']); ?>">
+                                        <?php echo htmlspecialchars($product['name']); ?>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" class="product-price" data-pk="<?php echo htmlspecialchars($product['id']); ?>">
+                                        <?php echo htmlspecialchars($product['price']); ?>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" class="product-bdlc-price" data-pk="<?php echo htmlspecialchars($product['id']); ?>">
+                                        <?php echo htmlspecialchars($product['bdlc_price']); ?>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" class="product-category" data-value="<?php echo htmlspecialchars($product['category']); ?>" data-pk="<?php echo htmlspecialchars($product['id']); ?>"></a>
+                                </td>
+                                <td>
+                                    <a href="#" class="product-image" data-pk="<?php echo htmlspecialchars($product['id']); ?>"><?php echo htmlspecialchars($product['image']); ?></a>
+                                </td>
+                                <td>
+                                    <a class="delete-row" href="lib/admin/product_delete.php?id=<?php echo htmlspecialchars($product['id']); ?>">
+                                        <button type="button" title="Supprimer l'élément" class="btn btn-outline-danger">
+                                            <i class="oi oi-x"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+    <?php
+            }
+        }
 
-            <hr>
-
-            <div class="bg-light">
+        $connection->close();
+    ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="add" role="tabpanel" class="tab-pane fade bg-light">
 
                 <h2>Ajouter un produit</h2>
 
@@ -148,6 +155,7 @@
                     </div>
                     <button id="add-product-submit" type="submit" class="btn btn-primary" name="submit">Ajouter</button>
                 </form> 
+            </div>
             </div>
         </div>
 

@@ -21,35 +21,41 @@
     <?php include('templates/nav.php') ?>
 
     <main>
-        <h1 class="text-center">Gestion des Baristas</h1>
-
-        <hr>
-
         <div class="container bg-light p-5">
-            <div>
-                <h2>Liste des Baristas</h2>
 
-                <form class="float-right mb-2">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="i-search">Rechercher</label>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab">Liste des barista</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-toggle="tab" id="add-tab" href="#add" role="tab">Ajout</a>
+                </li>
+            </ul>
+            <div class="tab-content border p-3">
+                <div class="tab-pane fade show active" id="list" role="tabpanel">
+                    <h2>Liste des Baristas</h2>
+
+                    <form class="float-right mb-2">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="i-search">Rechercher</label>
+                            </div>
+                            <input id="i-search" class="form-control filter" data-tablefilter="#table" type="search" placeholder="Nom, Classe ...">
                         </div>
-                        <input id="i-search" class="form-control filter" data-tablefilter="#table" type="search" placeholder="Nom, Classe ...">
-                    </div>
-                </form>
+                    </form>
 
-                <table id="table" class="table table-hover table-sm sortable-table table-striped bg-light administrate-table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Numéro étudiant.e</th>
-                            <th scope="col" class="sortable">Nom</th>
-                            <th scope="col" class="sortable">Classe</th>
-                            <th scope="col">Photo</th>
-                            <th></th> 
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <table id="table" class="table table-hover table-sm sortable-table table-striped bg-light administrate-table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Numéro étudiant.e</th>
+                                <th scope="col" class="sortable">Nom</th>
+                                <th scope="col" class="sortable">Classe</th>
+                                <th scope="col">Photo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 <?php
 
     // Include the database connection file
@@ -94,55 +100,54 @@
 
     $mysqli->close();
 ?>
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
 
-            <hr>
+                <div id="add" role="tabpanel" class="tab-pane fade bg-light">
 
-            <div class="bg-light">
+                    <h2>Ajouter un.e barista</h2>
 
-                <h2>Ajouter un.e barista</h2>
-
-                <form id="add-barista-form" autocomplete="off" enctype="multipart/form-data" method="post" action="lib/admin/barista_add.php">
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label for="i-barista-sutdent-number">Numéro étudiant</label>
-                            <input class="form-control" type="number" id="i-barista-sutdent-number" list="student_numbers" name="student_number" required>
-                            <datalist id="student_numbers">
-                                <?php
-                                    // Connect to the database
-                                    $mysqli = connectToDatabase();
-                                    if($mysqli == FALSE) {
-                                        $databaseError = TRUE;
-                                        $databaseErrorMessage = $mysqli->error;
-                                    }
-
-                                    if($result = $mysqli->query('SELECT student_number FROM users')) {
-                                        while($row = $result->fetch_assoc()) {
-                                            echo '<option>' . htmlspecialchars($row['student_number']) . '</option>';
+                    <form id="add-barista-form" autocomplete="off" enctype="multipart/form-data" method="post" action="lib/admin/barista_add.php">
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="i-barista-sutdent-number">Numéro étudiant</label>
+                                <input class="form-control" type="number" id="i-barista-sutdent-number" list="student_numbers" name="student_number" required>
+                                <datalist id="student_numbers">
+                                    <?php
+                                        // Connect to the database
+                                        $mysqli = connectToDatabase();
+                                        if($mysqli == FALSE) {
+                                            $databaseError = TRUE;
+                                            $databaseErrorMessage = $mysqli->error;
                                         }
-                                    } else {
-                                        $databaseError = TRUE;
-                                        $databaseErrorMessage = $mysqli->error;
-                                    }
 
-                                    $mysqli->close();
-                                ?>
-                            </datalist>
+                                        if($result = $mysqli->query('SELECT student_number FROM users')) {
+                                            while($row = $result->fetch_assoc()) {
+                                                echo '<option>' . htmlspecialchars($row['student_number']) . '</option>';
+                                            }
+                                        } else {
+                                            $databaseError = TRUE;
+                                            $databaseErrorMessage = $mysqli->error;
+                                        }
+
+                                        $mysqli->close();
+                                    ?>
+                                </datalist>
+                            </div>
+                            <div class="form-group col">
+                                <label for="i-barista-class">Classe</label>
+                                <input class="form-control" type="text" id="i-barista-class" name="class" required>
+                            </div>
+                            <div class="form-group col">
+                                <label class="" for="i-product-image">Photo</label>
+                                <input class="form-control-file" type="file" id="i-barista-photo" name="photo" required>
+                                <small class="form-text text-muted">Extensions valides : jpg, png, svg</small>
+                            </div>
                         </div>
-                        <div class="form-group col">
-                            <label for="i-barista-class">Classe</label>
-                            <input class="form-control" type="text" id="i-barista-class" name="class" required>
-                        </div>
-                        <div class="form-group col">
-                            <label class="" for="i-product-image">Photo</label>
-                            <input class="form-control-file" type="file" id="i-barista-photo" name="photo" required>
-                            <small class="form-text text-muted">Extensions valides : jpg, png, svg</small>
-                        </div>
-                    </div>
-                    <button id="add-product-submit" type="submit" class="btn btn-primary" name="submit">Ajouter</button>
-                </form> 
+                        <button id="add-product-submit" type="submit" class="btn btn-primary" name="submit">Ajouter</button>
+                    </form>
+                </div>
             </div>
         </div>
     </main>

@@ -3,7 +3,7 @@
 Bien que pas incroyable, voici le site de notre chère Kfet qui nous permet de payer directement sans devoir faire des
 Lydia toutes les 7 secondes.
 
-Ce site à été réalisé par :
+Ce site a été réalisé par :
 - Tom de Pasquale • _Développement, design, base de donnée et serveur_
 - Aksel Vaillant • _Développement et design_
 - Maël Pénicaud • _Tests et gestion du serveur_
